@@ -1,0 +1,52 @@
+{
+  "author": "Masterpage",
+  "bugs": {
+    "url": "https://github.com/masterpage/iopta/issues"
+  },
+  "dependencies": {
+    "@emotion/cache": "^11.14.0",
+    "@emotion/css": "^11.13.5",
+    "@emotion/react": "^11.14.0",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.2.0",
+    "@mui/lab": "^7.0.0-beta.14",
+    "@mui/material": "^7.2.0",
+    "@mui/material-nextjs": "^7.2.0",
+    "@mui/styled-engine": "^7.2.0",
+    "@mui/system": "^7.2.0",
+    "@next/third-parties": "^15.4.6",
+    "@svgr/webpack": "^8.1.0",
+    "html-entities": "^2.5.5",
+    "http-status": "^2.1.0",
+    "lodash": "^4.17.21",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-string-replace": "^1.1.1",
+    "schema-dts": "^1.1.5"
+  },
+  "description": "iOpta web app",
+  "devDependencies": {
+    "@types/lodash": "^4.17.20",
+    "@types/node": "^24.0.10",
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "@types/webpack": "^5.28.5",
+    "typescript": "^5.8.2"
+  },
+  "homepage": "https://github.com/masterpage/iopta#readme",
+  "name": "iopta",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masterpage/iopta.git"
+  },
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev",
+    "start": "next start",
+    "type:check": "tsc --noEmit"
+  },
+  "version": "1.0.0"
+}
