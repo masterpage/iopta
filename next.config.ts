@@ -20,10 +20,10 @@ const nextConfig: NextConfig = {
   experimental: {
     authInterrupts: true,
     optimizePackageImports: ["@/utils", "@mui/material", "lodash"],
-    swcTraceProfiling: true,
   },
   generateBuildId: async () => commitHash,
   reactStrictMode: true,
+  turbopack: {},
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/,
