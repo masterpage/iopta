@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "allowUnreachableCode": true,
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "paths": {
+      "@/app": ["src/app"],
+      "@/app/*": ["src/app/*"],
+      "@/components": ["src/components"],
+      "@/components/*": ["src/components/*"],
+      "@/utils": ["src/utils"],
+      "@/utils/*": ["src/utils/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ESNext",
+    "types": ["node", "react-dom", "react", "webpack"]
+  },
+  "exclude": ["node_modules"],
+  "include": [".next/types/**/*.ts", "**/*.mts", "**/*.ts", "**/*.tsx"]
+}
