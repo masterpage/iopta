@@ -6,29 +6,28 @@ import { EnvBadge } from "@/components/EnvBadge";
 import { getSx } from "@/utils";
 
 import { Device, Wording } from "./SvgBox";
-import { MasterpageLogoProps } from "./types";
-import { useMasterpageLogo } from "./useMasterpageLogo";
+import { IoptaLogoProps } from "./types";
+import { useIoptaLogo } from "./useIoptaLogo";
 
-export function MasterpageLogo(props: Readonly<MasterpageLogoProps>) {
+export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   const {
     deviceOnly = false,
-    deviceSize = "small",
     envBadge = false,
     exclusion,
     href,
     resize,
     sx,
-    variant = "rainbow",
+    variant = "mono",
     ...buttonProps
   } = props;
   const theme = useTheme();
   const {
-    palette: { grey, mode, text },
+    palette: { grey, mode },
   } = theme;
-  const { exclusion: logoExclusion, geometry } = useMasterpageLogo(resize);
+  const { exclusion: logoExclusion, geometry } = useIoptaLogo(resize);
 
   const greyColor = grey[mode === "light" ? 600 : 400];
-  const fill = variant === "rainbow" ? greyColor : text.primary;
+  const fill = greyColor;
   const [exclusionTop, exclusionRight, exclusionBottom, exclusionLeft] =
     logoExclusion;
   let margin: CSSObject["margin"];
@@ -49,22 +48,13 @@ export function MasterpageLogo(props: Readonly<MasterpageLogoProps>) {
 
   const envBadgePosition: Record<
     "deviceOnly" | "full",
-    Record<
-      NonNullable<MasterpageLogoProps["deviceSize"]>,
-      Pick<CSSObject, "bottom" | "left" | "right" | "top">
-    >
+    Pick<CSSObject, "bottom" | "left" | "right" | "top">
   > = {
-    deviceOnly: {
-      large: { left: 25, right: "unset", top: -9 },
-      small: { left: 20, right: "unset", top: -10 },
-    },
+    deviceOnly: { left: 20, right: "unset", top: -10 },
     full: {
-      large: { left: "unset", right: 43, top: 0 },
-      small: {
-        left: "unset",
-        right: geometry.bg.width - geometry.wording.width,
-        top: -6,
-      },
+      left: "unset",
+      right: geometry.bg.width - geometry.wording.width,
+      top: -6,
     },
   };
 
@@ -112,7 +102,6 @@ export function MasterpageLogo(props: Readonly<MasterpageLogoProps>) {
         />
       )}
       <Device
-        deviceSize={deviceSize}
         sx={{
           fill,
           ...(deviceOnly
@@ -130,7 +119,7 @@ export function MasterpageLogo(props: Readonly<MasterpageLogoProps>) {
         sx={{
           fontSize: "round(0.75rem, 1px)",
           position: "absolute",
-          ...envBadgePosition[deviceOnly ? "deviceOnly" : "full"][deviceSize],
+          ...envBadgePosition[deviceOnly ? "deviceOnly" : "full"],
         }}
       />
     </Button>

@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 import { PageUri } from "@/components/types";
 import { PageMenu } from "./PageMenu";
 import { PageTabs } from "./PageTabs";
-import { MasterpageLogo } from "./MasterpageLogo";
+import { IoptaLogo } from "./IoptaLogo";
 
 export function Header() {
   const pathname = usePathname();
@@ -73,7 +73,7 @@ export function Header() {
                 justifyContent: { sm: "unset", xs: "center" },
               }}
             >
-              <MasterpageLogo
+              <IoptaLogo
                 {...(isHomePage ? {} : { href: "/" })}
                 deviceOnly={isDownSm}
                 envBadge
