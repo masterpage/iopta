@@ -43,7 +43,7 @@ export function Version(props: VersionProps) {
       {...boxProps}
     >
       {version} <GitCommitHash abbreviated sx={{ fontSize: "0.875em" }} />{" "}
-      <EnvBadge hidden={!isEnv} />
+      <EnvBadge hidden={!isEnv} sx={{ fontSize: "0.875em" }} />
     </Box>
   );
 }
