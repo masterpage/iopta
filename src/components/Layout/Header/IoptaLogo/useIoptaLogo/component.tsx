@@ -1,37 +1,37 @@
 import {
   LogoGeometry,
-  UseMasterpageLogoParams,
-  UseMasterpageLogoResize,
-  UseMasterpageLogoResizeHeight,
-  UseMasterpageLogoResizeWidth,
-  UseMasterpageLogoReturn,
-} from './types';
+  UseIoptaLogoParams,
+  UseIoptaLogoResize,
+  UseIoptaLogoResizeHeight,
+  UseIoptaLogoResizeWidth,
+  UseIoptaLogoReturn,
+} from "./types";
 
 export const defaultGeometry: LogoGeometry = {
-  bg: { height: 25, width: 150 },
-  device: { height: 25, right: 0, top: 0, width: 25 },
-  wording: { height: 10, left: 0, top: 15, width: 110 },
+  bg: { height: 32, width: 92 },
+  device: { height: 32, left: 0, top: 0, width: 32 },
+  wording: { height: 12, left: 40, top: 12, width: 52 },
 };
 
-export function useMasterpageLogo(
-  params: UseMasterpageLogoParams = {
+export function useIoptaLogo(
+  params: UseIoptaLogoParams = {
     scale: 1,
-  },
-): UseMasterpageLogoReturn {
+  }
+): UseIoptaLogoReturn {
   const { standardGeometry = defaultGeometry, ...resizeParams } = params;
 
   function scaleGeometry(
-    resize: UseMasterpageLogoResize = { scale: 1 },
+    resize: UseIoptaLogoResize = { scale: 1 }
   ): LogoGeometry {
     function goThruObject<TObj extends object>(o: TObj, coeff: number): TObj {
       const updatedObj = Object.entries(o).reduce((acc, curr) => {
         const [key, value] = curr;
 
-        if (typeof value === 'object') {
+        if (typeof value === "object") {
           Object.assign(acc, { [key]: goThruObject(value, coeff) });
         }
 
-        if (typeof value === 'number') {
+        if (typeof value === "number") {
           Object.assign(acc, { [key]: value * coeff });
         }
 
@@ -41,7 +41,7 @@ export function useMasterpageLogo(
       return updatedObj;
     }
 
-    if ('scale' in resize) {
+    if ("scale" in resize) {
       if (resize.scale === 1) {
         return standardGeometry;
       }
@@ -53,10 +53,9 @@ export function useMasterpageLogo(
 
     const { bg } = standardGeometry;
     const scaleKey:
-      | keyof UseMasterpageLogoResizeHeight
-      | keyof UseMasterpageLogoResizeWidth =
-      'height' in resize ? 'height' : 'width';
-    const resizeProp = 'height' in resize ? resize.height : resize.width;
+      | keyof UseIoptaLogoResizeHeight
+      | keyof UseIoptaLogoResizeWidth = "height" in resize ? "height" : "width";
+    const resizeProp = "height" in resize ? resize.height : resize.width;
     const scale = resizeProp / bg[scaleKey];
     const logoSize = goThruObject(standardGeometry, scale);
 
@@ -67,16 +66,19 @@ export function useMasterpageLogo(
    * Calculates exclusion sizes based on logo device width.
    * @returns `[top: number, right: number, bottom: number, left: number]`
    */
-  function getExclusion(
-    geometry: LogoGeometry,
-  ): [top: number, right: number, bottom: number, left: number] {
-    const exclusionSize = geometry.device.width;
+  function getExclusion(): [
+    top: number,
+    right: number,
+    bottom: number,
+    left: number
+  ] {
+    const exclusionSize = 20;
 
     return [exclusionSize, exclusionSize, exclusionSize, exclusionSize];
   }
 
   const geometry = scaleGeometry(resizeParams);
-  const exclusion = getExclusion(geometry);
+  const exclusion = getExclusion();
 
   return { exclusion, geometry };
 }
