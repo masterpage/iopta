@@ -54,6 +54,7 @@ declare module "@mui/material/styles" {
 
 declare module "node_modules/@mui/material/styles/createTypography" {
   interface FontStyle {
+    fontFamilyMono?: React.CSSProperties["fontFamily"];
     fontFamilySerif?: React.CSSProperties["fontFamily"];
   }
 }

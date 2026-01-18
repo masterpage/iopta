@@ -9,13 +9,15 @@ import {
 import { grey } from "@mui/material/colors";
 
 const fontFamily: TypographyVariantsOptions["fontFamily"] = [
-  "source-sans-pro",
-  '"Helvetica Neue"',
-  "Helvetica",
+  "Roboto",
   "sans-serif",
 ].join(",");
 const fontFamilySerif: TypographyVariantsOptions["fontFamilySerif"] = [
-  "source-serif-4",
+  "Roboto Serif",
+  "serif",
+].join(",");
+const fontFamilyMono: TypographyVariantsOptions["fontFamilyMono"] = [
+  "Roboto Mono",
   "serif",
 ].join(",");
 const fontVariantNumeric = ["oldstyle-nums", "proportional-nums"].join(" ");
@@ -186,6 +188,7 @@ export const getAppTheme = (mode: PaletteMode) => {
         WebkitFontSmoothing: "auto",
       },
       fontFamily,
+      fontFamilyMono,
       fontFamilySerif,
       fontWeightBold: 700,
       fontWeightLight: 300,
