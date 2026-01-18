@@ -50,11 +50,10 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
     "deviceOnly" | "full",
     Pick<CSSObject, "bottom" | "left" | "right" | "top">
   > = {
-    deviceOnly: { left: 20, right: "unset", top: -10 },
+    deviceOnly: { left: 28, top: -8 },
     full: {
-      left: "unset",
-      right: geometry.bg.width - geometry.wording.width,
-      top: -6,
+      bottom: 8,
+      left: geometry.bg.width + 4,
     },
   };
 

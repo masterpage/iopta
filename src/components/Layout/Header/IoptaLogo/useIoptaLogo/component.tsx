@@ -8,9 +8,9 @@ import {
 } from "./types";
 
 export const defaultGeometry: LogoGeometry = {
-  bg: { height: 25, width: 150 },
-  device: { height: 25, right: 0, top: 0, width: 25 },
-  wording: { height: 10, left: 0, top: 15, width: 110 },
+  bg: { height: 32, width: 92 },
+  device: { height: 32, left: 0, top: 0, width: 32 },
+  wording: { height: 12, left: 40, top: 12, width: 52 },
 };
 
 export function useIoptaLogo(
@@ -66,16 +66,19 @@ export function useIoptaLogo(
    * Calculates exclusion sizes based on logo device width.
    * @returns `[top: number, right: number, bottom: number, left: number]`
    */
-  function getExclusion(
-    geometry: LogoGeometry
-  ): [top: number, right: number, bottom: number, left: number] {
-    const exclusionSize = geometry.device.width;
+  function getExclusion(): [
+    top: number,
+    right: number,
+    bottom: number,
+    left: number
+  ] {
+    const exclusionSize = 20;
 
     return [exclusionSize, exclusionSize, exclusionSize, exclusionSize];
   }
 
   const geometry = scaleGeometry(resizeParams);
-  const exclusion = getExclusion(geometry);
+  const exclusion = getExclusion();
 
   return { exclusion, geometry };
 }

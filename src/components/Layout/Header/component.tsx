@@ -78,7 +78,7 @@ export function Header() {
                 deviceOnly={isDownSm}
                 envBadge
                 exclusion="y"
-                resize={{ height: 24 }}
+                resize={{ height: 32 }}
               />
             </Box>
             <Box
