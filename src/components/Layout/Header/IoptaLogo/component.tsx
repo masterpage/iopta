@@ -52,7 +52,7 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   > = {
     deviceOnly: { left: 28, top: -8 },
     full: {
-      bottom: 8,
+      bottom: 7,
       left: geometry.bg.width + 4,
     },
   };
@@ -116,7 +116,6 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
         data-testid="env-badge"
         hidden={!envBadge}
         sx={{
-          fontSize: "round(0.75rem, 1px)",
           position: "absolute",
           ...envBadgePosition[deviceOnly ? "deviceOnly" : "full"],
         }}
