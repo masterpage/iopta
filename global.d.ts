@@ -50,6 +50,32 @@ declare module "@mui/material/styles" {
     xl: true;
     xs: true;
   }
+
+  type GlobalFontVariantNumeric =
+    | "inherit"
+    | "initial"
+    | "revert-layer"
+    | "revert"
+    | "unset";
+
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/font-variant-numeric
+   */
+  type FontVariantNumeric =
+    | "diagonal-fractions"
+    | "lining-nums"
+    | "normal"
+    | "oldstyle-nums"
+    | "ordinal"
+    | "proportional-nums"
+    | "slashed-zero"
+    | "stacked-fractions"
+    | "tabular-nums"
+    | GlobalFontVariantNumeric;
+
+  interface CSSProperties {
+    fontVariantNumeric: FontVariantNumeric[];
+  }
 }
 
 declare module "node_modules/@mui/material/styles/createTypography" {

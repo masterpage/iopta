@@ -1,6 +1,7 @@
 import {
   Breakpoint,
   createTheme,
+  CSSProperties,
   PaletteMode,
   Theme,
   ThemeOptions,
@@ -20,7 +21,9 @@ const fontFamilyMono: TypographyVariantsOptions["fontFamilyMono"] = [
   "Roboto Mono",
   "serif",
 ].join(",");
-const fontVariantNumeric = ["oldstyle-nums", "proportional-nums"].join(" ");
+const fontVariantNumeric = (
+  ["normal"] satisfies CSSProperties["fontVariantNumeric"]
+).join(" ");
 
 type appBreakpoint = "mdUp" | "smDown" | Breakpoint;
 
