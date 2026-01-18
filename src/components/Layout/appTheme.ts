@@ -19,7 +19,7 @@ const fontFamilySerif: TypographyVariantsOptions["fontFamilySerif"] = [
 ].join(",");
 const fontFamilyMono: TypographyVariantsOptions["fontFamilyMono"] = [
   "Roboto Mono",
-  "serif",
+  "monospace",
 ].join(",");
 const fontVariantNumeric = (
   ["normal"] satisfies CSSProperties["fontVariantNumeric"]
