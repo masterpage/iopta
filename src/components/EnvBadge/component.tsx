@@ -1,6 +1,6 @@
 import { Typography, TypographyProps } from "@mui/material";
 
-import { CURRENT_ENV, getSx, isProd, smcp } from "@/utils";
+import { CURRENT_ENV, getSx, isProd } from "@/utils";
 import { setTestId } from "src/utils/tests";
 
 import { dictLabel, setEnvColor } from "./helpers";
@@ -24,23 +24,16 @@ export function EnvBadge(props: Readonly<TypographyProps>) {
       sx={(theme) => {
         const {
           palette: { mode },
+          typography: { fontFamilyMono, fontWeightBold },
         } = theme;
         const envColor = setEnvColor(CURRENT_ENV, mode);
 
         return {
-          "> *": {
-            display: "block",
-            lineHeight: "round(down, 0.9em, 1px)",
-            marginBottom: "round(0.1em, 1px)",
-          },
-          alignContent: "center",
-          border: "round(0.1em, 1px) solid",
-          borderRadius: "round(0.3em, 1px)",
-          display: "inline-flex",
+          fontFamily: fontFamilyMono,
           fontSize: "inherit",
+          fontWeight: fontWeightBold,
           letterSpacing: "initial",
           lineHeight: "1",
-          padding: "0 round(0.2em, 1px)",
           userSelect: "none",
           wordBreak: "keep-all",
           ...envColor,
@@ -49,7 +42,7 @@ export function EnvBadge(props: Readonly<TypographyProps>) {
       }}
       {...restProps}
     >
-      {smcp(dictLabel)}
+      {dictLabel}
     </Typography>
   );
 }

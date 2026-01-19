@@ -47,9 +47,14 @@ export default async function RootLayout(props: PropsWithChildren) {
   return (
     <html lang="en-US" suppressHydrationWarning>
       <head>
-        <link href="https://use.typekit.net/uog6jwu.css" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
-          href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          crossOrigin="anonymous"
+          href="https://fonts.gstatic.com"
+          rel="preconnect"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
           rel="stylesheet"
         />
         <script

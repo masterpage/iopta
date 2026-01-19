@@ -20,13 +20,19 @@ export function GitCommitHash(props: GitCommitHashProps) {
     <Link
       // TODO: Obtain Git's account and repo names.
       href={`https://www.github.com/masterpage/iopta/tree/${hash}`}
-      sx={(theme) => ({
-        "--Link-underlineColor": "unset",
-        color: "inherit",
-        fontFamily: "monospace",
-        fontVariantNumeric: "slashed-zero",
-        ...getSx(sx, theme),
-      })}
+      sx={(theme) => {
+        const {
+          typography: { fontFamilyMono },
+        } = theme;
+
+        return {
+          "--Link-underlineColor": "unset",
+          color: "inherit",
+          fontFamily: fontFamilyMono,
+          fontVariantNumeric: "slashed-zero",
+          ...getSx(sx, theme),
+        };
+      }}
       target="_blank"
       {...linkProps}
     >

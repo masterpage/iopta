@@ -22,12 +22,11 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   } = props;
   const theme = useTheme();
   const {
-    palette: { grey, mode },
+    palette: { primary },
   } = theme;
   const { exclusion: logoExclusion, geometry } = useIoptaLogo(resize);
 
-  const greyColor = grey[mode === "light" ? 600 : 400];
-  const fill = greyColor;
+  const fill = primary.main;
   const [exclusionTop, exclusionRight, exclusionBottom, exclusionLeft] =
     logoExclusion;
   let margin: CSSObject["margin"];
@@ -52,7 +51,7 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   > = {
     deviceOnly: { left: 28, top: -8 },
     full: {
-      bottom: 8,
+      bottom: 7,
       left: geometry.bg.width + 4,
     },
   };
@@ -116,7 +115,6 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
         data-testid="env-badge"
         hidden={!envBadge}
         sx={{
-          fontSize: "round(0.75rem, 1px)",
           position: "absolute",
           ...envBadgePosition[deviceOnly ? "deviceOnly" : "full"],
         }}
