@@ -1,1 +1,1 @@
-export const MASTERPAGE = "Masterpage";
+export const IOPTA = "Iopta";

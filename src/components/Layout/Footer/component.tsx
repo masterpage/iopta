@@ -4,7 +4,7 @@ import { Box, Container, Grid, useTheme } from "@mui/material";
 
 import { Global } from "@emotion/react";
 
-import { MASTERPAGE } from "@/app/consts";
+import { IOPTA } from "@/app/consts";
 import { Version } from "@/components/Version";
 import { isTest } from "@/utils";
 
@@ -36,7 +36,7 @@ export function Footer() {
         if (!clientHeight) return;
 
         const footerHeight = Math.ceil(
-          footerRect ? footerRect.height : clientHeight
+          footerRect ? footerRect.height : clientHeight,
         );
 
         setBodyMarginOffset(footerHeight);
@@ -145,7 +145,7 @@ export function Footer() {
                 <Box component="span" data-testid="CopyrightYear">
                   {isTest ? "0000" : new Date().getFullYear()}
                 </Box>{" "}
-                {MASTERPAGE}
+                {IOPTA}
               </Grid>
               <Version isEnv isVersion />
             </Grid>

@@ -9,7 +9,7 @@ import { Organization, WithContext } from "schema-dts";
 import { Layout } from "@/components/Layout";
 import { getFaviconFileName } from "@/components/Layout/getFaviconFileName";
 
-import { MASTERPAGE } from "./consts";
+import { IOPTA } from "./consts";
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -28,17 +28,17 @@ const jsonLd: WithContext<Organization> = {
     addressCountry: "US",
     addressRegion: "IN",
   },
-  alternateName: [MASTERPAGE, "MSPG"],
-  description: `Official website of MSPG, Inc. d/b/a ${MASTERPAGE}.`,
+  alternateName: [IOPTA, "IOPTA"],
+  description: `Official website of MSPG, Inc. d/b/a ${IOPTA}.`,
   email: "hello@masterpage.com",
   foundingDate: "2006-02-02",
   foundingLocation: "London, United Kingdom",
   legalName: "MSPG, Inc.",
   logo: "https://www.masterpage.com/logo.png",
   naics: ["513210", "541430", "541511", "541512"],
-  name: ["Masterpage®", "MSPG"],
+  name: ["IOPTA", "IOPTA"],
   slogan: "Puissance. Plaisir. Lumière.",
-  url: "https://www.masterpage.com",
+  url: "https://www.iopta.com",
 };
 
 export default async function RootLayout(props: PropsWithChildren) {
