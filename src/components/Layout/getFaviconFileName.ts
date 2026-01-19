@@ -16,7 +16,7 @@ export const getFaviconFileName = (
   env: EnvKey = CURRENT_ENV
 ): string => {
   const ifPaletteMode: PaletteMode | undefined =
-    env !== "production" && paletteMode === "dark" ? paletteMode : undefined;
+    paletteMode === "dark" ? paletteMode : undefined;
   /**
    * @sample `['favicon', 'development', 'dark']`. For `light` mode, `['favicon', 'development', undefined]`
    */
