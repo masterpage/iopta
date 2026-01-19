@@ -22,12 +22,11 @@ export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   } = props;
   const theme = useTheme();
   const {
-    palette: { grey, mode },
+    palette: { primary },
   } = theme;
   const { exclusion: logoExclusion, geometry } = useIoptaLogo(resize);
 
-  const greyColor = grey[mode === "light" ? 600 : 400];
-  const fill = greyColor;
+  const fill = primary.main;
   const [exclusionTop, exclusionRight, exclusionBottom, exclusionLeft] =
     logoExclusion;
   let margin: CSSObject["margin"];
