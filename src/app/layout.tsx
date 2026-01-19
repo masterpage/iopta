@@ -9,7 +9,7 @@ import { Organization, WithContext } from "schema-dts";
 import { Layout } from "@/components/Layout";
 import { getFaviconFileName } from "@/components/Layout/getFaviconFileName";
 
-import { IOPTA } from "./consts";
+import { IOPTA, MASTERPAGE } from "./consts";
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -28,15 +28,15 @@ const jsonLd: WithContext<Organization> = {
     addressCountry: "US",
     addressRegion: "IN",
   },
-  alternateName: [IOPTA, "IOPTA"],
-  description: `Official website of MSPG, Inc. d/b/a ${IOPTA}.`,
+  description: `A show-case app to demo user interface implementation best-practices for fintech industry.`,
   email: "hello@masterpage.com",
   foundingDate: "2006-02-02",
   foundingLocation: "London, United Kingdom",
   legalName: "MSPG, Inc.",
   logo: "https://www.masterpage.com/logo.png",
   naics: ["513210", "541430", "541511", "541512"],
-  name: ["IOPTA", "IOPTA"],
+  name: [IOPTA, "iopta.com"],
+  parentOrganization: MASTERPAGE,
   slogan: "Puissance. Plaisir. Lumière.",
   url: "https://www.iopta.com",
 };

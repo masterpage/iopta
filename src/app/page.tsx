@@ -2,13 +2,13 @@ import { Metadata, Viewport } from "next";
 
 import { getPageTitle } from "src/utils/page";
 
-import { IOPTA } from "./consts";
+import { IOPTA, MASTERPAGE } from "./consts";
 import { StyledPage } from "@/components/StyledPage";
 import { Grid } from "@mui/material";
 import { gridSettings, GridWrap } from "@/components/GridWrap";
 
 export async function generateMetadata(): Promise<Metadata> {
-  const description: Metadata["description"] = `${IOPTA} are the American boutique front-end and experience consultants. We design and build beautiful interfaces for web, mobile and desktop.`;
+  const description: Metadata["description"] = `${MASTERPAGE} are the American boutique front-end and experience consultants. We design and build beautiful interfaces for web, mobile and desktop.`;
   const title: Metadata["title"] = getPageTitle();
 
   return {
