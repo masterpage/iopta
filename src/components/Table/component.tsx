@@ -19,10 +19,10 @@ export function Table() {
     { make: "Toyota", model: "Corolla", price: 29600, electric: false },
   ]);
   const [colDefs] = useState<ColDef<Row, boolean | number | string>[]>([
-    { field: "make" },
-    { field: "model" },
-    { field: "price" },
-    { field: "electric" },
+    { field: "make", sortable: true, sort: "asc" },
+    { field: "model", sortable: true },
+    { field: "price", sortable: true },
+    { field: "electric", sortable: true },
   ]);
   const defaultColDef: ColDef = {
     flex: 1,
