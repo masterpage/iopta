@@ -1,7 +1,7 @@
-import { AgGridReact } from "ag-grid-react";
 import { useState } from "react";
 import type { ColDef } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { ThemedAgGrid } from "@/components/ThemedAgGrid";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -29,7 +29,7 @@ export function Table() {
   };
 
   return (
-    <AgGridReact
+    <ThemedAgGrid
       columnDefs={colDefs}
       defaultColDef={defaultColDef}
       domLayout="autoHeight"
