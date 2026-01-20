@@ -2,7 +2,7 @@ import { Metadata, Viewport } from "next";
 
 import { getPageTitle } from "src/utils/page";
 
-import { MASTERPAGE } from "./consts";
+import { IOPTA, MASTERPAGE } from "./consts";
 import { StyledPage } from "@/components/StyledPage";
 import { Grid } from "@mui/material";
 import { gridSettings, GridWrap } from "@/components/GridWrap";
@@ -15,10 +15,10 @@ export async function generateMetadata(): Promise<Metadata> {
     description,
     openGraph: {
       description,
-      siteName: MASTERPAGE,
+      siteName: IOPTA,
       title,
       type: "website",
-      url: "https://www.masterpage.com",
+      url: "https://www.iopta.com",
     },
     robots: "index, follow",
     title,
