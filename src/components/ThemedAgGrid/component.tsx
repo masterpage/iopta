@@ -2,6 +2,7 @@ import { Box, useTheme, decomposeColor } from "@mui/material";
 import { AgGridReact, AgGridReactProps } from "ag-grid-react";
 
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import { GridOptions } from "ag-grid-community";
 
 interface ThemedAgGridProps<TData = any> extends AgGridReactProps<TData> {}
 
@@ -15,12 +16,49 @@ export function ThemedAgGrid<TData = any>(props: ThemedAgGridProps<TData>) {
       primary,
       text,
     },
-    typography: { fontFamily, fontWeightBold },
+    typography: { fontFamily, fontFamilyMono, fontWeightBold },
     shape: { borderRadius },
   } = useTheme();
   const borderColor = divider;
   const colorHighlighted = primary.main;
   const isLightMode = mode === "light";
+  const gridOptions: GridOptions<TData> = {
+    dataTypeDefinitions: {
+      currency: {
+        baseDataType: "number",
+        columnTypes: ["numericColumn"],
+        extendsDataType: "number",
+        valueFormatter: (p) =>
+          p.value === null
+            ? ""
+            : Number(p.value).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              }),
+        valueParser: (p) => {
+          if (p.newValue == null || p.newValue === "") return null;
+
+          const num = String(p.newValue).replace(/[^\d.-]/g, "");
+
+          return num === "" ? null : Number(num);
+        },
+      },
+    },
+    defaultColDef: {
+      cellClass: (params) =>
+        params.colDef.cellDataType === "currency" ? "currency" : undefined,
+      flex: 1,
+      headerClass: (params) => {
+        const cd = params.column?.getColDef();
+
+        if (!cd) return;
+
+        return cd.cellDataType === "currency"
+          ? "ag-right-aligned-header"
+          : undefined;
+      },
+    },
+  };
 
   return (
     <Box
@@ -38,12 +76,17 @@ export function ThemedAgGrid<TData = any>(props: ThemedAgGridProps<TData>) {
           colorHighlighted
         ).values.join(",")}, 0.1)`,
         "--ag-wrapper-border-radius": `${borderRadius}px`,
+        ".ag-cell.currency": {
+          fontFamily: fontFamilyMono,
+          fontSize: "small",
+          textAlign: "right",
+        },
         ".ag-header-row": {
           fontWeight: fontWeightBold,
         },
       }}
     >
-      <AgGridReact {...agGridProps} />
+      <AgGridReact {...{ gridOptions, ...agGridProps }} />
     </Box>
   );
 }
