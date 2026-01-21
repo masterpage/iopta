@@ -47,7 +47,6 @@ export function ThemedAgGrid<TData = any>(props: ThemedAgGridProps<TData>) {
     defaultColDef: {
       cellClass: (params) =>
         params.colDef.cellDataType === "currency" ? "currency" : undefined,
-      flex: 1,
       headerClass: (params) => {
         const cd = params.column?.getColDef();
 

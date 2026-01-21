@@ -1,7 +1,7 @@
 "use client";
 
-import { Table } from "@/components/Table";
+import { OrdersTable } from "@/components/OrdersTable";
 
 export function ContentPage() {
-  return <Table />;
+  return <OrdersTable />;
 }

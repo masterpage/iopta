@@ -32,7 +32,7 @@ export default function Home() {
       <header>
         <Grid columnSpacing={4}>
           <Grid component="h1" {...gridSettings}>
-            Header
+            Orders
           </Grid>
         </Grid>
       </header>
