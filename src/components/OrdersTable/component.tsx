@@ -3,7 +3,6 @@ import type { ColDef } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { ThemedAgGrid } from "@/components/ThemedAgGrid";
 import { Order, orders } from "src/data";
-import { Lozenge } from "../ThemedAgGrid/formatters/Lozenge";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -15,7 +14,6 @@ export function OrdersTable() {
     { field: "broker", width: 160 },
     {
       field: "side",
-      cellRenderer: Lozenge,
       width: 80,
     },
     {
