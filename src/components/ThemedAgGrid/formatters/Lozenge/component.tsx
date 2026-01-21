@@ -1,12 +1,36 @@
 import { getSx, setAlphaColor } from "@/utils";
-import { Box, BoxProps } from "@mui/material";
+import { Box, BoxProps, Color, PaletteMode } from "@mui/material";
 import type { ICellRendererParams } from "ag-grid-community";
-import { deepOrange, green } from "@mui/material/colors";
+import { grey } from "@mui/material/colors";
 
-type LozengeProps = BoxProps & ICellRendererParams["value"];
+type MuiColorShade = keyof Color;
 
-export function Lozenge(props: LozengeProps) {
-  const { value, sx, ...boxProps } = props;
+type MuiColor = Record<MuiColorShade, string>;
+
+type LozengeColorMode = Record<PaletteMode, MuiColorShade>;
+
+type LozengeOptionsColorMap<V extends string> = Record<V, MuiColor>;
+
+interface LozengeOptions<V extends string = string> {
+  /**
+   * Sets MUI color shades for `dark` and `light` palette modes.
+   * @default dark = 300, light = 700
+   */
+  colorMode?: LozengeColorMode;
+  colorMap: LozengeOptionsColorMap<V>;
+}
+
+interface LozengeProps<V extends string>
+  extends BoxProps,
+    Pick<ICellRendererParams<any, V>, "value"> {
+  options: LozengeOptions<V>;
+}
+
+export function Lozenge<V extends string = string>(props: LozengeProps<V>) {
+  const { options, sx, value, ...boxProps } = props;
+  const { colorMap, colorMode } = options;
+  const { dark = 300, light = 700 } = colorMode || {};
+  const valueColor = (value && colorMap[value]) ?? grey;
 
   return (
     <Box
@@ -18,8 +42,7 @@ export function Lozenge(props: LozengeProps) {
           typography: { fontFamilyMono },
         } = theme;
         const isLightMode = mode === "light";
-        const isBuy = value === "BUY";
-        const color = (isBuy ? green : deepOrange)[isLightMode ? 700 : 300];
+        const color = valueColor[isLightMode ? light : dark];
 
         return {
           backgroundColor: setAlphaColor(color, 0.15),
