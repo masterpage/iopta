@@ -1,6 +1,6 @@
-type OrderSide = "BUY" | "SELL";
+export type OrderSide = "BUY" | "SELL";
 
-type OrderStatus =
+export type OrderStatus =
   | "NEW"
   | "ACCEPTED"
   | "PARTIALLY_FILLED"
@@ -8,7 +8,7 @@ type OrderStatus =
   | "CANCELLED"
   | "REJECTED";
 
-type TimeInForce = "DAY" | "FILLED" | "GTC" | "IOC";
+export type TimeInForce = "DAY" | "FILLED" | "GTC" | "IOC";
 
 export interface Order {
   broker: string;

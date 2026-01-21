@@ -2,7 +2,9 @@ import { useState } from "react";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { ThemedAgGrid } from "@/components/ThemedAgGrid";
-import { Order, orders } from "src/data";
+import { Order, orders, OrderSide } from "src/data";
+import { Lozenge } from "../ThemedAgGrid/formatters/Lozenge";
+import { deepOrange, green } from "@mui/material/colors";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -14,8 +16,13 @@ export function OrdersTable() {
     { field: "broker", width: 160 },
     {
       field: "side",
-      cellRenderer: ({ value }: ICellRendererParams<Order>) =>
-        Lozenge({ value }),
+      cellRenderer: ({ value }: ICellRendererParams<Order, OrderSide>) =>
+        Lozenge<OrderSide>({
+          value,
+          options: {
+            colorMap: { BUY: green, SELL: deepOrange },
+          },
+        }),
       width: 80,
     },
     {
