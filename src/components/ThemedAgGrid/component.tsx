@@ -1,8 +1,9 @@
-import { Box, useTheme, decomposeColor } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import { AgGridReact, AgGridReactProps } from "ag-grid-react";
 
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { GridOptions } from "ag-grid-community";
+import { setAlphaColor } from "@/utils";
 
 interface ThemedAgGridProps<TData = any> extends AgGridReactProps<TData> {}
 
@@ -71,9 +72,7 @@ export function ThemedAgGrid<TData = any>(props: ThemedAgGridProps<TData>) {
         "--ag-header-foreground-color": primary.main,
         "--ag-header-row-border": `${text.secondary} solid 1px`,
         "--ag-range-selection-border-color": colorHighlighted,
-        "--ag-row-hover-color": `rgba(${decomposeColor(
-          colorHighlighted
-        ).values.join(",")}, 0.1)`,
+        "--ag-row-hover-color": setAlphaColor(colorHighlighted, 0.1),
         "--ag-wrapper-border-radius": `${borderRadius}px`,
         ".ag-cell.currency": {
           fontFamily: fontFamilyMono,

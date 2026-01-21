@@ -1,19 +1,55 @@
 import { useState } from "react";
-import type { ColDef } from "ag-grid-community";
+import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import { ThemedAgGrid } from "@/components/ThemedAgGrid";
-import { Order, orders } from "src/data";
+import {
+  formatDateSettings,
+  Id,
+  Lozenge,
+  ThemedAgGrid,
+} from "@/components/ThemedAgGrid";
+import { Order, orders, OrderSide, OrderStatus } from "src/data";
+import {
+  deepOrange,
+  green,
+  grey,
+  blue,
+  pink,
+  cyan,
+  lime,
+} from "@mui/material/colors";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function OrdersTable() {
   const [rowData] = useState<Order[]>(orders);
   const [columnDefs] = useState<ColDef<Order>[]>([
-    { field: "orderId", headerName: "Order ID" },
-    { field: "createdAt", headerName: "Created" },
+    {
+      field: "orderId",
+      headerName: "Order ID",
+      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
+        if (!value) return "";
+
+        const [, , id] = value?.split("-");
+
+        return Id({ value: id });
+      },
+      width: 90,
+    },
+    {
+      field: "createdAt",
+      headerName: "Created",
+      ...formatDateSettings,
+    },
     { field: "broker", width: 160 },
     {
       field: "side",
+      cellRenderer: ({ value }: ICellRendererParams<Order, OrderSide>) =>
+        Lozenge<OrderSide>({
+          value,
+          options: {
+            colorMap: { BUY: green, SELL: deepOrange },
+          },
+        }),
       width: 80,
     },
     {
@@ -27,15 +63,57 @@ export function OrdersTable() {
       type: "numericColumn",
       width: 100,
     },
-    { field: "status", width: 160 },
+    {
+      field: "status",
+      width: 160,
+      cellRenderer: ({ value }: ICellRendererParams<Order, OrderStatus>) => {
+        return Lozenge<OrderStatus>({
+          value,
+          options: {
+            colorMap: {
+              ACCEPTED: green,
+              CANCELLED: grey,
+              FILLED: cyan,
+              NEW: blue,
+              PARTIALLY_FILLED: lime,
+              REJECTED: pink,
+            },
+            format: (v) => {
+              if (!v) return "";
+
+              let formatted: string = v;
+
+              if (v === "PARTIALLY_FILLED") {
+                formatted = "part.filled";
+              }
+
+              return formatted.replace(/_/g, " ").toUpperCase();
+            },
+          },
+        });
+      },
+    },
     { field: "orderType", width: 120 },
     { field: "fund" },
-    { field: "lastUpdatedAt", headerName: "Last updated" },
-    { field: "security", width: 140 },
+    {
+      field: "lastUpdatedAt",
+      headerName: "Last updated",
+      ...formatDateSettings,
+    },
+    {
+      field: "security",
+      width: 140,
+      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
+        if (!value) return "";
+
+        return Id({ value });
+      },
+    },
     {
       cellDataType: "currency",
       field: "limitPrice",
       type: "currency",
+      width: 140,
     },
     { field: "portfolio" },
     { field: "securityType" },
