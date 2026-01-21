@@ -100,7 +100,15 @@ export function OrdersTable() {
       headerName: "Last updated",
       ...formatDateSettings,
     },
-    { field: "security", width: 140 },
+    {
+      field: "security",
+      width: 140,
+      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
+        if (!value) return "";
+
+        return Id({ value });
+      },
+    },
     {
       cellDataType: "currency",
       field: "limitPrice",
