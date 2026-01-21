@@ -488,7 +488,7 @@ export const orders: Order[] = [
     security: "USD/JPY",
     securityType: "FX Spot",
     side: "SELL",
-    status: "FILLED",
+    status: "CANCELLED",
     strategy: "JPY Short-Term Macro",
     timeInForce: "DAY",
     trader: "Alice Morgan",
