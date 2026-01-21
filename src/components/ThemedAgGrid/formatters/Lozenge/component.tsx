@@ -18,6 +18,7 @@ interface LozengeOptions<V extends string = string> {
    */
   colorMode?: LozengeColorMode;
   colorMap: LozengeOptionsColorMap<V>;
+  format?: (value: V | null | undefined) => string;
 }
 
 interface LozengeProps<V extends string>
@@ -28,9 +29,10 @@ interface LozengeProps<V extends string>
 
 export function Lozenge<V extends string = string>(props: LozengeProps<V>) {
   const { options, sx, value, ...boxProps } = props;
-  const { colorMap, colorMode } = options;
+  const { colorMap, colorMode, format = (v) => v } = options;
   const { dark = 300, light = 700 } = colorMode || {};
   const valueColor = (value && colorMap[value]) ?? grey;
+  const formattedValue = format(value);
 
   return (
     <Box
@@ -55,7 +57,7 @@ export function Lozenge<V extends string = string>(props: LozengeProps<V>) {
         };
       }}
     >
-      {value}
+      {formattedValue}
     </Box>
   );
 }
