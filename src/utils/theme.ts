@@ -1,4 +1,4 @@
-import { SxProps, Theme } from "@mui/material";
+import { SxProps, Theme, decomposeColor } from "@mui/material";
 import { SystemStyleObject } from "@mui/system";
 
 /**
@@ -21,4 +21,14 @@ export function getSx<T extends object = Theme>(
     default:
       return sx(theme);
   }
+}
+
+export function setAlphaColor(hex: string, opacity?: number): string {
+  const decomposedColor = decomposeColor(hex).values.join(",");
+
+  if (opacity) {
+    return `rgba(${decomposedColor}, ${opacity})`;
+  }
+
+  return `rgb(${decomposedColor})`;
 }
