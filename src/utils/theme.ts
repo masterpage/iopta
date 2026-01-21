@@ -32,3 +32,24 @@ export function setAlphaColor(hex: string, opacity?: number): string {
 
   return `rgb(${decomposedColor})`;
 }
+
+export type MuiColorName =
+  | "amber"
+  | "blue"
+  | "blueGrey"
+  | "brown"
+  | "cyan"
+  | "deepOrange"
+  | "deepPurple"
+  | "green"
+  | "grey"
+  | "indigo"
+  | "lightBlue"
+  | "lightGreen"
+  | "lime"
+  | "orange"
+  | "pink"
+  | "purple"
+  | "red"
+  | "teal"
+  | "yellow";
