@@ -105,6 +105,7 @@ export function OrdersTable() {
       cellDataType: "currency",
       field: "limitPrice",
       type: "currency",
+      width: 140,
     },
     { field: "portfolio" },
     { field: "securityType" },
