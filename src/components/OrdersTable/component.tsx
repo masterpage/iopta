@@ -1,7 +1,12 @@
 import { useState } from "react";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import { Lozenge, ThemedAgGrid } from "@/components/ThemedAgGrid";
+import {
+  formatDateSettings,
+  Id,
+  Lozenge,
+  ThemedAgGrid,
+} from "@/components/ThemedAgGrid";
 import { Order, orders, OrderSide, OrderStatus } from "src/data";
 import {
   deepOrange,
@@ -12,7 +17,6 @@ import {
   cyan,
   lime,
 } from "@mui/material/colors";
-import { Id } from "../ThemedAgGrid/formatters/Id";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -31,7 +35,11 @@ export function OrdersTable() {
       },
       width: 90,
     },
-    { field: "createdAt", headerName: "Created" },
+    {
+      field: "createdAt",
+      headerName: "Created",
+      ...formatDateSettings,
+    },
     { field: "broker", width: 160 },
     {
       field: "side",
@@ -87,7 +95,11 @@ export function OrdersTable() {
     },
     { field: "orderType", width: 120 },
     { field: "fund" },
-    { field: "lastUpdatedAt", headerName: "Last updated" },
+    {
+      field: "lastUpdatedAt",
+      headerName: "Last updated",
+      ...formatDateSettings,
+    },
     { field: "security", width: 140 },
     {
       cellDataType: "currency",
