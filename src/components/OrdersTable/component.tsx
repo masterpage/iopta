@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { ColDef } from "ag-grid-community";
+import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { ThemedAgGrid } from "@/components/ThemedAgGrid";
 import { Order, orders } from "src/data";
@@ -14,6 +14,8 @@ export function OrdersTable() {
     { field: "broker", width: 160 },
     {
       field: "side",
+      cellRenderer: ({ value }: ICellRendererParams<Order>) =>
+        Lozenge({ value }),
       width: 80,
     },
     {
