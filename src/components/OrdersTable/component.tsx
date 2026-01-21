@@ -1,9 +1,8 @@
 import { useState } from "react";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import { ThemedAgGrid } from "@/components/ThemedAgGrid";
+import { Lozenge, ThemedAgGrid } from "@/components/ThemedAgGrid";
 import { Order, orders, OrderSide, OrderStatus } from "src/data";
-import { Lozenge } from "../ThemedAgGrid/formatters/Lozenge";
 import {
   deepOrange,
   green,
@@ -13,13 +12,25 @@ import {
   cyan,
   lime,
 } from "@mui/material/colors";
+import { Id } from "../ThemedAgGrid/formatters/Id";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function OrdersTable() {
   const [rowData] = useState<Order[]>(orders);
   const [columnDefs] = useState<ColDef<Order>[]>([
-    { field: "orderId", headerName: "Order ID" },
+    {
+      field: "orderId",
+      headerName: "Order ID",
+      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
+        if (!value) return "";
+
+        const [, , id] = value?.split("-");
+
+        return Id({ value: id });
+      },
+      width: 90,
+    },
     { field: "createdAt", headerName: "Created" },
     { field: "broker", width: 160 },
     {
