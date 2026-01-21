@@ -2,9 +2,17 @@ import { useState } from "react";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 import { ThemedAgGrid } from "@/components/ThemedAgGrid";
-import { Order, orders, OrderSide } from "src/data";
+import { Order, orders, OrderSide, OrderStatus } from "src/data";
 import { Lozenge } from "../ThemedAgGrid/formatters/Lozenge";
-import { deepOrange, green } from "@mui/material/colors";
+import {
+  deepOrange,
+  green,
+  grey,
+  blue,
+  pink,
+  cyan,
+  lime,
+} from "@mui/material/colors";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -36,7 +44,36 @@ export function OrdersTable() {
       type: "numericColumn",
       width: 100,
     },
-    { field: "status", width: 160 },
+    {
+      field: "status",
+      width: 160,
+      cellRenderer: ({ value }: ICellRendererParams<Order, OrderStatus>) => {
+        return Lozenge<OrderStatus>({
+          value,
+          options: {
+            colorMap: {
+              ACCEPTED: green,
+              CANCELLED: grey,
+              FILLED: cyan,
+              NEW: blue,
+              PARTIALLY_FILLED: lime,
+              REJECTED: pink,
+            },
+            format: (v) => {
+              if (!v) return "";
+
+              let formatted: string = v;
+
+              if (v === "PARTIALLY_FILLED") {
+                formatted = "part.filled";
+              }
+
+              return formatted.replace(/_/g, " ").toUpperCase();
+            },
+          },
+        });
+      },
+    },
     { field: "orderType", width: 120 },
     { field: "fund" },
     { field: "lastUpdatedAt", headerName: "Last updated" },
