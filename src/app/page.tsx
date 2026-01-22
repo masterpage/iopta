@@ -3,10 +3,9 @@ import { Metadata, Viewport } from "next";
 import { getPageTitle } from "src/utils/page";
 
 import { IOPTA, MASTERPAGE } from "./consts";
-import { StyledPage } from "@/components/StyledPage";
-import { Grid } from "@mui/material";
-import { gridSettings } from "@/components/GridWrap";
-import { ContentPage } from "./ContentPage";
+import { Box } from "@mui/material";
+import { setAlphaColor } from "@/utils";
+import { pink } from "@mui/material/colors";
 
 export async function generateMetadata(): Promise<Metadata> {
   const description: Metadata["description"] = `${MASTERPAGE} are the American boutique front-end and experience consultants. We design and build beautiful interfaces for web, mobile and desktop.`;
@@ -27,19 +26,22 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
+  const color = pink[100];
+
   return (
-    <StyledPage fullBleed>
-      <header>
-        <Grid columnSpacing={4}>
-          <Grid component="h1" {...gridSettings}>
-            Orders
-          </Grid>
-        </Grid>
-      </header>
-      <main>
-        <ContentPage />
-      </main>
-    </StyledPage>
+    <Box
+      sx={{
+        height: "500px",
+        background: setAlphaColor(color, 0.2),
+        color,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        border: `1px solid ${color}`,
+      }}
+    >
+      <Box>Dashboard placeholder</Box>
+    </Box>
   );
 }
 
