@@ -3,4 +3,4 @@ export interface Page {
   uri: PageUri;
 }
 
-export type PageUri = "/";
+export type PageUri = "/" | "/market" | "/orders";

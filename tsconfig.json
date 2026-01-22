@@ -34,12 +34,5 @@
     "types": ["node", "react-dom", "react", "webpack"]
   },
   "exclude": ["node_modules"],
-  "include": [
-    ".next/dev/types/**/*.ts",
-    ".next/types/**/*.ts",
-    "**/*.mts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/**/*"
-  ]
+  "include": ["**/*.mts", "**/*.ts", "**/*.tsx", "src"]
 }
