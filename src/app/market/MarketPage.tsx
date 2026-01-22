@@ -1,16 +1,12 @@
 "use client";
 
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 
-import { setAlphaColor } from "@/utils";
-
-import { pink } from "@mui/material/colors";
 import { gridSettings } from "@/components/GridWrap";
 import { StyledPage } from "@/components/StyledPage";
+import { Placeholder } from "@/components/Placeholder";
 
 export default function ContactPage() {
-  const color = pink[100];
-
   return (
     <StyledPage>
       <header>
@@ -21,19 +17,7 @@ export default function ContactPage() {
         </Grid>
       </header>
       <main>
-        <Box
-          sx={{
-            height: "500px",
-            background: setAlphaColor(color, 0.2),
-            color,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: `1px solid ${color}`,
-          }}
-        >
-          <Box>Market placeholder</Box>
-        </Box>
+        <Placeholder>Market placeholder</Placeholder>
       </main>
     </StyledPage>
   );

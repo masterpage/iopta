@@ -3,9 +3,7 @@ import { Metadata, Viewport } from "next";
 import { getPageTitle } from "src/utils/page";
 
 import { IOPTA, MASTERPAGE } from "./consts";
-import { Box } from "@mui/material";
-import { setAlphaColor } from "@/utils";
-import { pink } from "@mui/material/colors";
+import { Placeholder } from "@/components/Placeholder";
 
 export async function generateMetadata(): Promise<Metadata> {
   const description: Metadata["description"] = `${MASTERPAGE} are the American boutique front-end and experience consultants. We design and build beautiful interfaces for web, mobile and desktop.`;
@@ -26,23 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
-  const color = pink[100];
-
-  return (
-    <Box
-      sx={{
-        height: "500px",
-        background: setAlphaColor(color, 0.2),
-        color,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: `1px solid ${color}`,
-      }}
-    >
-      <Box>Dashboard placeholder</Box>
-    </Box>
-  );
+  return <Placeholder>Dashboard placeholder</Placeholder>;
 }
 
 export const viewport: Viewport = {
