@@ -15,7 +15,7 @@ export function getSx<T extends object = Theme>(
       return null;
     case Array.isArray(sx):
       return sx.reduce<SystemStyleObject<T>>((acc, item) => {
-        if (item === null || item === undefined) return acc;
+        if (!item) return acc;
         return { ...acc, ...getSx(item as SxProps<T>, theme) };
       }, {});
     case typeof sx === "object":

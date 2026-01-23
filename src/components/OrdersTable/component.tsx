@@ -108,13 +108,11 @@ export function OrdersTable() {
       onCellClicked(event) {
         setSelectedSecurity(event.value);
       },
-
       cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
         if (!value) return "";
 
         return Id({
           value,
-
           sx: {
             cursor: "pointer",
             textDecoration: "underline",

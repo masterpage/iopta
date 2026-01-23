@@ -1,15 +1,15 @@
-import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button, type DialogProps } from '@mui/material';
 
-interface SecurityDialogProps {
-  security: string | null;
+interface SecurityDialogProps extends DialogProps {
+  security?: string;
   onClose: () => void;
 }
 
 export function SecurityDialog(props: SecurityDialogProps) {
-  const { security, onClose } = props;
+  const { security, onClose, ...dialogProps } = props;
 
   return (
-    <Dialog open={Boolean(security)} onClose={onClose} maxWidth="lg" fullWidth>
+    <Dialog {...dialogProps} open={Boolean(security)} onClose={onClose} maxWidth="lg" fullWidth>
       <DialogTitle>Security details</DialogTitle>
       <DialogContent>
         <DialogContentText>
