@@ -12,6 +12,7 @@ export function Placeholder(props: PropsWithChildren<BoxProps>) {
 
   return (
     <Box
+      height="500px"
       {...boxProps}
       sx={(theme) => {
         const {
@@ -26,7 +27,6 @@ export function Placeholder(props: PropsWithChildren<BoxProps>) {
           display: "flex",
           fontFamily: fontFamilyMono,
           fontSize: "small",
-          height: "500px",
           justifyContent: "center",
           ...getSx(sx, theme),
         };
