@@ -110,14 +110,22 @@ export function OrdersTable() {
       onCellClicked(event) {
         setSelectedSecurity(event.value);
       },
-      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
+      cellRenderer: (params: ICellRendererParams<Order, string>) => {
+        const { value, data } = params;
+
         if (!value) return "";
 
-        return (
-          <Link component="button">
-            <Id value={value} />
-          </Link>
-        );
+        const formattedValue = <Id value={value} />;
+
+        if (data) {
+          const { securityType } = data;
+
+          if (securityType === "Equity") {
+            return <Link>{formattedValue}</Link>;
+          }
+        }
+
+        return formattedValue;
       },
     },
     {
