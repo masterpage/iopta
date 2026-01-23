@@ -13,6 +13,7 @@ export function Placeholder(props: PropsWithChildren<BoxProps>) {
   return (
     <Box
       height="500px"
+      textAlign="center"
       {...boxProps}
       sx={(theme) => {
         const {
