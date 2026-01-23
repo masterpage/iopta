@@ -17,14 +17,15 @@ import {
   cyan,
   lime,
 } from "@mui/material/colors";
-import { SecurityDialog } from "../SecurityDialog";
+import { SecurityDialog, SecurityDialogProps } from "../SecurityDialog";
 import { Link } from "@mui/material";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function OrdersTable() {
   const [rowData] = useState<Order[]>(orders);
-  const [selectedSecurity, setSelectedSecurity] = useState<string | null>(null);
+  const [selectedSecurity, setSelectedSecurity] =
+    useState<SecurityDialogProps["security"]>(null);
   const [columnDefs] = useState<ColDef<Order>[]>([
     {
       field: "orderId",
