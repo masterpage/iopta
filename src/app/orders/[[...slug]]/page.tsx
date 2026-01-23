@@ -3,11 +3,11 @@ import { notFound } from "next/navigation";
 
 import { StyledPage } from "@/components/StyledPage";
 import { Grid } from "@mui/material";
-import { ContentPage } from "@/app/ContentPage";
 import { gridSettings } from "@/components/GridWrap";
 import { OrdersPageProps } from "./types";
 import { getPageTitle } from "@/utils";
 import { pages } from "@/components/Layout/Header/consts";
+import { OrdersPage } from "./OrdersPage";
 
 const { label: ORDERS } = pages.find((p) => p.uri === "/orders") ?? {
   label: "Unkn.",
@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function OrdersPage({ params }: OrdersPageProps) {
+export default async function Orders({ params }: OrdersPageProps) {
   const { slug = [] } = (await params) || {};
   const [...restSlug] = slug.map((s) => s?.toLowerCase());
 
@@ -40,7 +40,7 @@ export default async function OrdersPage({ params }: OrdersPageProps) {
         </Grid>
       </header>
       <main>
-        <ContentPage />
+        <OrdersPage />
       </main>
     </StyledPage>
   );
