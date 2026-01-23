@@ -17,11 +17,13 @@ import {
   cyan,
   lime,
 } from "@mui/material/colors";
+import { SecurityDialog } from '../SecurityDialog';
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
 export function OrdersTable() {
   const [rowData] = useState<Order[]>(orders);
+  const [selectedSecurity, setSelectedSecurity] = useState<string | null>(null);
   const [columnDefs] = useState<ColDef<Order>[]>([
     {
       field: "orderId",
@@ -103,10 +105,21 @@ export function OrdersTable() {
     {
       field: "security",
       width: 140,
+      onCellClicked(event) {
+        setSelectedSecurity(event.value);
+      },
+
       cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
         if (!value) return "";
 
-        return Id({ value });
+        return Id({
+          value,
+
+          sx: {
+            cursor: "pointer",
+            textDecoration: "underline",
+          },
+        });
       },
     },
     {
@@ -124,6 +137,15 @@ export function OrdersTable() {
   ]);
 
   return (
-    <ThemedAgGrid<Order> {...{ columnDefs, rowData }} domLayout="autoHeight" />
+    <>
+      <ThemedAgGrid<Order>
+        {...{ columnDefs, rowData }}
+        domLayout="autoHeight"
+      />
+      <SecurityDialog
+        security={selectedSecurity}
+        onClose={() => setSelectedSecurity(null)}
+      />
+    </>
   );
 }
