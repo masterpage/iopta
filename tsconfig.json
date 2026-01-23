@@ -19,6 +19,8 @@
       "@/app/*": ["src/app/*"],
       "@/components": ["src/components"],
       "@/components/*": ["src/components/*"],
+      "@/features": ["src/features"],
+      "@/features/*": ["src/features/*"],
       "@/utils": ["src/utils"],
       "@/utils/*": ["src/utils/*"]
     },

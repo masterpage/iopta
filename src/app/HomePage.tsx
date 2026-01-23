@@ -8,6 +8,7 @@ import {
 
 import { Placeholder } from "@/components/Placeholder";
 import { Box, useTheme } from "@mui/material";
+import { DashboardTabs } from "@/features";
 
 export function HomePage() {
   const { breakpoints } = useTheme();
@@ -52,19 +53,22 @@ export function HomePage() {
   };
 
   return (
-    <Box ref={containerRef}>
-      <ResponsiveGridLayout
-        margin={[20, 20]}
-        breakpoints={b}
-        cols={{ xl: 18, lg: 12, md: 8, sm: 4, xs: 1 }}
-        {...{ layouts, width }}
-      >
-        <Placeholder key="ReturnsTD">Returns MTD/YTD</Placeholder>
-        <Placeholder key="Buy/Sell">Buy/Sell</Placeholder>
-        <Placeholder key="ReturnsLast">Returns last 12mo</Placeholder>
-        <Placeholder key="EquityAndLeverage">Equity and Leverage</Placeholder>
-        <Placeholder key="Categories">Categories</Placeholder>
-      </ResponsiveGridLayout>
-    </Box>
+    <>
+      <DashboardTabs />
+      <Box ref={containerRef}>
+        <ResponsiveGridLayout
+          margin={[20, 20]}
+          breakpoints={b}
+          cols={{ xl: 18, lg: 12, md: 8, sm: 4, xs: 1 }}
+          {...{ layouts, width }}
+        >
+          <Placeholder key="ReturnsTD">Returns MTD/YTD</Placeholder>
+          <Placeholder key="Buy/Sell">Buy/Sell</Placeholder>
+          <Placeholder key="ReturnsLast">Returns last 12mo</Placeholder>
+          <Placeholder key="EquityAndLeverage">Equity and Leverage</Placeholder>
+          <Placeholder key="Categories">Categories</Placeholder>
+        </ResponsiveGridLayout>
+      </Box>
+    </>
   );
 }
