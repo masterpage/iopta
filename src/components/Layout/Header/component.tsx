@@ -14,7 +14,7 @@ import {
 
 import { usePathname } from "next/navigation";
 
-import { PageUri } from "@/components/types";
+import { type PageUri } from "@/components";
 import { PageMenu } from "./PageMenu";
 import { PageTabs } from "./PageTabs";
 import { IoptaLogo } from "./IoptaLogo";

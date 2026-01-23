@@ -1,9 +1,7 @@
 import { Box, BoxProps } from "@mui/material";
 
-import { EnvBadge } from "@/components/EnvBadge";
+import { EnvBadge, GitCommitHash } from "@/components";
 import { getSx, isTest } from "@/utils";
-
-import { GitCommitHash } from "../GitCommitHash";
 
 interface VersionProps extends BoxProps {
   /**

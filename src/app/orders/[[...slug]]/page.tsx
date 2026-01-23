@@ -1,9 +1,8 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { StyledPage } from "@/components/StyledPage";
+import { StyledPage, gridSettings } from "@/components";
 import { Grid } from "@mui/material";
-import { gridSettings } from "@/components/GridWrap";
 import { OrdersPageProps } from "./types";
 import { getPageTitle } from "@/utils";
 import { pages } from "@/components/Layout/Header/consts";

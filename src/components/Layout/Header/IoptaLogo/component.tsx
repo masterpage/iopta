@@ -2,7 +2,7 @@ import { Button, CSSObject, useTheme } from "@mui/material";
 
 import NextLink from "next/link";
 
-import { EnvBadge } from "@/components/EnvBadge";
+import { EnvBadge } from "@/components";
 import { getSx } from "@/utils";
 
 import { Device, Wording } from "./SvgBox";

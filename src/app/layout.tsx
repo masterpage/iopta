@@ -6,7 +6,7 @@ import { Metadata, Viewport } from "next";
 import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { Organization, WithContext } from "schema-dts";
 
-import { Layout } from "@/components/Layout";
+import { Layout } from "@/components";
 import { getFaviconFileName } from "@/components/Layout/getFaviconFileName";
 
 import { IOPTA, MASTERPAGE } from "./consts";

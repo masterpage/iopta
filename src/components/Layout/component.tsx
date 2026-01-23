@@ -7,12 +7,8 @@ import { Container, CssBaseline, Grid, ThemeProvider } from "@mui/material";
 import { Global } from "@emotion/react";
 import { usePathname } from "next/navigation";
 
+import { Footer, getAppTheme, globalStyles, Header } from "@/components";
 import { usePaletteMode } from "@/utils";
-
-import { Footer } from "./Footer";
-import { globalStyles } from "./globalStyles";
-import { Header } from "./Header";
-import { getAppTheme } from "./appTheme";
 
 interface LayoutProps {
   pageClass?: string;

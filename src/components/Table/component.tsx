@@ -1,7 +1,8 @@
 import { useState } from "react";
 import type { ColDef } from "ag-grid-community";
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import { ThemedAgGrid } from "@/components/ThemedAgGrid";
+
+import { ThemedAgGrid } from "@/components";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
