@@ -10,6 +10,8 @@ import {
   useTheme,
 } from "@mui/material";
 import { Placeholder } from "../Placeholder";
+import { resolveSecurityDetails } from "@/utils/resolveSecurityDetails";
+import { useMemo } from "react";
 
 export interface SecurityDialogProps
   extends Omit<DialogProps, "security" | "open"> {
@@ -23,6 +25,11 @@ export function SecurityDialog(props: SecurityDialogProps) {
     palette: { text },
     typography: { fontFamilyMono },
   } = useTheme();
+
+ const securityDetails = useMemo(() => {
+  if (!security) return null
+  return resolveSecurityDetails(security)
+ }, [security])
 
   return (
     <Dialog
