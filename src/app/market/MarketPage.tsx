@@ -6,7 +6,7 @@ import { gridSettings } from "@/components/GridWrap";
 import { StyledPage } from "@/components/StyledPage";
 import { Placeholder } from "@/components/Placeholder";
 
-export default function ContactPage() {
+export default function MarketPage() {
   return (
     <StyledPage>
       <header>

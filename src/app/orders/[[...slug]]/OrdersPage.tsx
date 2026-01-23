@@ -2,6 +2,6 @@
 
 import { OrdersTable } from "@/components/OrdersTable";
 
-export function ContentPage() {
+export function OrdersPage() {
   return <OrdersTable />;
 }
