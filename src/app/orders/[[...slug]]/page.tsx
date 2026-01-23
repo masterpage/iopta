@@ -22,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function Orders({ params }: OrdersPageProps) {
+export default async function Page({ params }: OrdersPageProps) {
   const { slug = [] } = (await params) || {};
   const [...restSlug] = slug.map((s) => s?.toLowerCase());
 
