@@ -1,12 +1,15 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
-import { StyledPage, gridSettings } from "@/components";
 import { Grid } from "@mui/material";
-import { OrdersPageProps } from "./types";
+
+import { StyledPage, gridSettings } from "@/components";
+import { pages } from "@/consts";
 import { getPageTitle } from "@/utils";
-import { pages } from "@/components/Layout/Header/consts";
+
 import { OrdersPage } from "./OrdersPage";
+
+import { OrdersPageProps } from "./types";
 
 const { label: ORDERS } = pages.find((p) => p.uri === "/orders") ?? {
   label: "Unkn.",

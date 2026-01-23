@@ -8,8 +8,7 @@ import { Organization, WithContext } from "schema-dts";
 
 import { Layout } from "@/components";
 import { getFaviconFileName } from "@/components/Layout/getFaviconFileName";
-
-import { IOPTA, MASTERPAGE } from "./consts";
+import { IOPTA, MASTERPAGE } from "@/consts";
 
 export const viewport: Viewport = {
   initialScale: 1,

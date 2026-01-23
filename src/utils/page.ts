@@ -1,6 +1,6 @@
 import { decode } from "html-entities";
 
-import { IOPTA } from "@/app/consts";
+import { IOPTA } from "@/consts";
 
 export function getPageTitle(titles?: string[]): string {
   if (!titles || !titles.length) {
