@@ -33,13 +33,12 @@ export function SecurityDialog(props: SecurityDialogProps) {
     >
       <DialogTitle>
         <Box
-          component="span"
           sx={{
             fontFamily: fontFamilyMono,
           }}
         >
           {security}
-        </Box>{" "}
+        </Box>
         <Box sx={{ color: text.secondary, fontSize: "small" }}>
           [Security Name]
         </Box>
