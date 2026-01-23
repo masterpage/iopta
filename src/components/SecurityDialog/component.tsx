@@ -46,10 +46,22 @@ export function SecurityDialog(props: SecurityDialogProps) {
       </DialogTitle>
       <DialogContent>
         <Grid container spacing={3}>
-          <Grid size={{ md: 12 }}>
-            <Placeholder height={75} minWidth={600}>
-              Tiles
-            </Placeholder>
+          <Grid
+            columns={4}
+            container
+            minWidth={600}
+            size={{ md: 12 }}
+            spacing={1}
+          >
+            <Grid size={{ md: 1 }}>
+              <Placeholder height={75}>Last Price</Placeholder>
+            </Grid>
+            <Grid size={{ md: 1 }}>
+              <Placeholder height={75}>Day's Change</Placeholder>
+            </Grid>
+            <Grid size={{ md: 1 }}>
+              <Placeholder height={75}>Prior Day's Volume</Placeholder>
+            </Grid>
           </Grid>
           <Grid size={{ md: 4 }}>
             <Placeholder height={200}>A</Placeholder>
