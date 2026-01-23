@@ -17,7 +17,8 @@ import {
   cyan,
   lime,
 } from "@mui/material/colors";
-import { SecurityDialog } from '../SecurityDialog';
+import { SecurityDialog } from "../SecurityDialog";
+import { Link } from "@mui/material";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -111,13 +112,11 @@ export function OrdersTable() {
       cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
         if (!value) return "";
 
-        return Id({
-          value,
-          sx: {
-            cursor: "pointer",
-            textDecoration: "underline",
-          },
-        });
+        return (
+          <Link component="button">
+            <Id value={value} />
+          </Link>
+        );
       },
     },
     {
