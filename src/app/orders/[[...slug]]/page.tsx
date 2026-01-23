@@ -6,11 +6,19 @@ import { Grid } from "@mui/material";
 import { ContentPage } from "@/app/ContentPage";
 import { gridSettings } from "@/components/GridWrap";
 import { OrdersPageProps } from "./types";
+import { getPageTitle } from "@/utils";
+import { pages } from "@/components/Layout/Header/consts";
 
+const { label: ORDERS } = pages.find((p) => p.uri === "/orders") ?? {
+  label: "Unkn.",
+};
 export async function generateMetadata(): Promise<Metadata> {
+  const description: Metadata["description"] = ORDERS;
+  const title: Metadata["title"] = getPageTitle([ORDERS]);
+
   return {
-    description: "Orders",
-    title: "Orders",
+    description,
+    title,
   };
 }
 

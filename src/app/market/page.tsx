@@ -2,14 +2,19 @@ import { Metadata } from "next";
 
 import { getPageTitle } from "@/utils/page";
 
-import { IOPTA } from "../consts";
 import MarketPage from "./MarketPage";
+import { pages } from "@/components/Layout/Header/consts";
+
+const { label: MARKET } = pages.find((p) => p.uri === "/market") ?? {
+  label: "Unkn.",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
-  const title: Metadata["title"] = getPageTitle(["Contact"]);
+  const description: Metadata["description"] = MARKET;
+  const title: Metadata["title"] = getPageTitle([MARKET]);
 
   return {
-    description: `${IOPTA} Contact`,
+    description,
     title,
   };
 }
