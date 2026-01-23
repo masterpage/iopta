@@ -3,7 +3,7 @@ import { Metadata, Viewport } from "next";
 import { getPageTitle } from "src/utils/page";
 
 import { IOPTA, MASTERPAGE } from "./consts";
-import { Placeholder } from "@/components/Placeholder";
+import { HomePage } from "./HomePage";
 
 export async function generateMetadata(): Promise<Metadata> {
   const description: Metadata["description"] = `${MASTERPAGE} are the American boutique front-end and experience consultants. We design and build beautiful interfaces for web, mobile and desktop.`;
@@ -24,7 +24,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function Home() {
-  return <Placeholder>Dashboard placeholder</Placeholder>;
+  return <HomePage />;
 }
 
 export const viewport: Viewport = {
