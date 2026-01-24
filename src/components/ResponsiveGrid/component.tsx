@@ -13,7 +13,7 @@ interface ResponsiveGridProps
 
 export function ResponsiveGrid(props: ResponsiveGridProps) {
   const theme = useTheme();
-  const { width: calculatedWidth, containerRef } = useContainerWidth();
+  const { containerRef, mounted, width: calculatedWidth } = useContainerWidth();
   const {
     children,
     cols = { xl: 18, lg: 12, md: 8, sm: 4, xs: 1 },
@@ -25,6 +25,10 @@ export function ResponsiveGrid(props: ResponsiveGridProps) {
     ...rglProps
   } = props;
   const { mdUp, smDown, ...breakpoints } = theme.breakpoints.values;
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Box ref={containerRef}>
