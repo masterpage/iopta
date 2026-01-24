@@ -1,6 +1,6 @@
-import { Allocations } from "./Allocations";
-import { Traders } from "./Traders";
-import { Funds } from "./Funds";
+import { ResponsiveGrid } from "@/components";
+import { getDashboard } from "./widgets";
+import { useMemo } from "react";
 
 export enum DashType {
   "ALLOCATIONS" = "Allocations",
@@ -18,14 +18,7 @@ interface DashboardProps {
 
 export function Dashboard(props: DashboardProps) {
   const { type = DashType.FUNDS } = props;
+  const { cols, layouts, widgets } = useMemo(() => getDashboard(type), [type]);
 
-  if (type === DashType.ALLOCATIONS) {
-    return <Allocations />;
-  }
-
-  if (type === DashType.TRADERS) {
-    return <Traders />;
-  }
-
-  return <Funds />;
+  return <ResponsiveGrid {...{ cols, layouts }}>{widgets}</ResponsiveGrid>;
 }
