@@ -17,7 +17,10 @@ export function ResponsiveGrid(props: ResponsiveGridProps) {
   const {
     children,
     cols = { xl: 18, lg: 12, md: 8, sm: 4, xs: 1 },
-    margin = [20, 20],
+    margin = {
+      sm: [24, 24],
+      xs: [16, 16],
+    },
     width = calculatedWidth,
     ...rglProps
   } = props;
@@ -26,8 +29,7 @@ export function ResponsiveGrid(props: ResponsiveGridProps) {
   return (
     <Box ref={containerRef}>
       <ResponsiveGridLayout
-        margin={[20, 20]}
-        {...{ breakpoints, cols, width, ...rglProps }}
+        {...{ breakpoints, cols, margin, width, ...rglProps }}
       >
         {children}
       </ResponsiveGridLayout>
