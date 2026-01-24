@@ -1,6 +1,6 @@
-import { ButtonProps } from "@mui/material";
+import { type ButtonProps } from "@mui/material";
 
-import { UseIoptaLogoParams } from "./useIoptaLogo/types";
+import { type UseIoptaLogoParams } from "./useIoptaLogo/types";
 
 export interface IoptaLogoProps extends Omit<ButtonProps, "size" | "variant"> {
   deviceOnly?: boolean;
@@ -22,3 +22,7 @@ export interface IoptaLogoProps extends Omit<ButtonProps, "size" | "variant"> {
 }
 
 export type IoptaLogoVariant = "mono";
+
+export * from "./SvgBox/types";
+
+export * from "./useIoptaLogo/types";

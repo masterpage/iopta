@@ -8,7 +8,6 @@ import { pages } from "@/consts";
 import { getPageTitle } from "@/utils";
 
 import { OrdersPage } from "./OrdersPage";
-
 import { OrdersPageProps } from "./types";
 
 const { label: ORDERS } = pages.find((p) => p.uri === "/orders") ?? {

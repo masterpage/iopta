@@ -1,8 +1,6 @@
 import { ReactElement } from "react";
 
-import { IoptaLogoProps } from "../types";
-import { SvgBox } from "./component";
-import { SvgBoxProps } from "./types";
+import { SvgBox, type IoptaLogoProps, type SvgBoxProps } from "@/components";
 
 type DeviceProps = Omit<SvgBoxProps, "color"> &
   Required<Pick<IoptaLogoProps, "variant">>;

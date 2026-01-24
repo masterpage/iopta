@@ -3,9 +3,8 @@ import { green, grey, orange, red } from "@mui/material/colors";
 
 import { CSSObject } from "@emotion/react";
 
+import { AllowedColor, EnvBadgeDictionary } from "@/components";
 import { CURRENT_ENV, EnvKey } from "@/utils";
-
-import { AllowedColor, EnvBadgeDictionary } from "./types";
 
 export const envBadgeDictionary: EnvBadgeDictionary = {
   development: "DEV",
