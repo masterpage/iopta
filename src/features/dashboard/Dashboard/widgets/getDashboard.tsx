@@ -78,7 +78,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
     ];
   }
 
-  if (dashType === DashType.TRADERS) {
+  if (dashType === DashType.DEALERS) {
     layouts = {
       xl: [
         { i: "Buy/Sell", x: 0, y: 0, w: 9, h: 2 },

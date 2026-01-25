@@ -10,7 +10,7 @@ export interface DashboardTabsProps extends Omit<TabsProps, "onChange"> {
 
 const dashTabs: DashType[] = [
   DashType.FUNDS,
-  DashType.TRADERS,
+  DashType.DEALERS,
   DashType.ALLOCATIONS,
 ];
 
