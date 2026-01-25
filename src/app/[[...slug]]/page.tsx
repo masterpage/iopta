@@ -1,8 +1,8 @@
 import { Metadata, Viewport } from "next";
 
-import { getPageTitle } from "src/utils/page";
+import { IOPTA, MASTERPAGE } from "@/consts";
+import { getPageTitle } from "@/utils";
 
-import { IOPTA, MASTERPAGE } from "./consts";
 import { HomePage } from "./HomePage";
 
 export async function generateMetadata(): Promise<Metadata> {
