@@ -1,24 +1,16 @@
-import { ResponsiveGrid } from "@/components";
-import { getDashboard } from "./widgets";
 import { useMemo } from "react";
 
-export enum DashType {
-  "ALLOCATIONS" = "Allocations",
-  "DEALERS" = "Dealers",
-  "FUNDS" = "Funds",
-}
+import { useHomeContext } from "@/app/[[...slug]]/contextHome";
+import { ResponsiveGrid } from "@/components";
 
-interface DashboardProps {
-  /**
-   * Dashboard type
-   * @default 'funds'
-   */
-  type?: DashType;
-}
+import { getDashboard } from "./widgets";
 
-export function Dashboard(props: DashboardProps) {
-  const { type = DashType.FUNDS } = props;
-  const { cols, layouts, widgets } = useMemo(() => getDashboard(type), [type]);
+export function Dashboard() {
+  const { currentDashType } = useHomeContext();
+  const { cols, layouts, widgets } = useMemo(
+    () => getDashboard(currentDashType),
+    [currentDashType]
+  );
 
   return <ResponsiveGrid {...{ cols, layouts }}>{widgets}</ResponsiveGrid>;
 }
