@@ -18,7 +18,12 @@ export function Layout(props: PropsWithChildren<LayoutProps>) {
   const { children, pageClass } = props;
   const paletteMode = usePaletteMode();
   const pathname = usePathname();
-  const fullBleedPageUris: string[] = ["/"];
+  const fullBleedPageUris: string[] = [
+    "/",
+    "/funds",
+    "/dealers",
+    "/allocations",
+  ];
   const isFullBleed = fullBleedPageUris.includes(pathname);
   const main = isFullBleed ? (
     children

@@ -1,4 +1,8 @@
-import { Tab, Tabs } from "@mui/material";
+"use client";
+
+import NextLink from "next/link";
+
+import { Box, Tab, Tabs } from "@mui/material";
 
 import { useHomeContext } from "@/app/[[...slug]]/contextHome";
 import { DashType } from "@/features";
@@ -10,17 +14,23 @@ const dashTabs: DashType[] = [
 ];
 
 export function DashboardTabs() {
-  const { currentDashType, setCurrentDashType } = useHomeContext();
+  const { currentDashType } = useHomeContext();
 
   return (
     <Tabs centered component="nav" value={dashTabs.indexOf(currentDashType)}>
-      {dashTabs.map((t, i) => {
+      {dashTabs.map((dashTab, i) => {
+        const href = dashTab ? `/${dashTab.toLowerCase()}` : "";
+        const isCurrentDashType = currentDashType === dashTab;
+
         return (
           <Tab
-            key={t}
-            label={t}
-            onClick={() => {
-              setCurrentDashType(dashTabs[i]);
+            key={dashTab}
+            disableTouchRipple={isCurrentDashType}
+            {...(isCurrentDashType ? {} : { href })}
+            label={dashTab}
+            LinkComponent={isCurrentDashType ? Box : NextLink}
+            sx={{
+              ...(isCurrentDashType ? { cursor: "default" } : {}),
             }}
           />
         );
