@@ -18,7 +18,7 @@ export function DashboardTabs() {
 
   return (
     <Tabs centered component="nav" value={dashTabs.indexOf(currentDashType)}>
-      {dashTabs.map((dashTab, i) => {
+      {dashTabs.map((dashTab) => {
         const href = dashTab ? `/${dashTab.toLowerCase()}` : "";
         const isCurrentDashType = currentDashType === dashTab;
 
