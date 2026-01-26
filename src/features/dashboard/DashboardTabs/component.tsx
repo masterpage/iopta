@@ -4,11 +4,11 @@ import NextLink from "next/link";
 
 import { Box, Tab, Tabs } from "@mui/material";
 
-import { useHomeContext } from "@/app/[[...slug]]/contextHome";
 import { dashTabs } from "@/consts";
+import { useContextUi } from "@/context";
 
 export function DashboardTabs() {
-  const { currentDashType, setCurrentDashType } = useHomeContext();
+  const { currentDashType, setCurrentDashType } = useContextUi();
   const dashTabIndex = dashTabs.indexOf(currentDashType);
 
   return (

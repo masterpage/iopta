@@ -1,12 +1,12 @@
 import { useMemo } from "react";
 
-import { useHomeContext } from "@/app/[[...slug]]/contextHome";
 import { ResponsiveGrid } from "@/components";
+import { useContextUi } from "@/context";
 
 import { getDashboard } from "./widgets";
 
 export function Dashboard() {
-  const { currentDashType } = useHomeContext();
+  const { currentDashType } = useContextUi();
   const { cols, layouts, widgets } = useMemo(
     () => getDashboard(currentDashType),
     [currentDashType]

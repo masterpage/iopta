@@ -20,6 +20,8 @@
       "@/components": ["src/components"],
       "@/components/*": ["src/components/*"],
       "@/consts": ["src/app/consts"],
+      "@/context": ["src/context"],
+      "@/context/*": ["src/context/*"],
       "@/features": ["src/features"],
       "@/features/*": ["src/features/*"],
       "@/hooks": ["src/hooks"],
