@@ -5,19 +5,14 @@ import NextLink from "next/link";
 import { Box, Tab, Tabs } from "@mui/material";
 
 import { useHomeContext } from "@/app/[[...slug]]/contextHome";
-import { DashType } from "@/features";
-
-const dashTabs: DashType[] = [
-  DashType.FUNDS,
-  DashType.DEALERS,
-  DashType.ALLOCATIONS,
-];
+import { dashTabs } from "@/consts";
 
 export function DashboardTabs() {
-  const { currentDashType } = useHomeContext();
+  const { currentDashType, setCurrentDashType } = useHomeContext();
+  const dashTabIndex = dashTabs.indexOf(currentDashType);
 
   return (
-    <Tabs centered component="nav" value={dashTabs.indexOf(currentDashType)}>
+    <Tabs centered component="nav" value={dashTabIndex}>
       {dashTabs.map((dashTab) => {
         const href = dashTab ? `/${dashTab.toLowerCase()}` : "";
         const isCurrentDashType = currentDashType === dashTab;
@@ -29,6 +24,9 @@ export function DashboardTabs() {
             {...(isCurrentDashType ? {} : { href })}
             label={dashTab}
             LinkComponent={isCurrentDashType ? Box : NextLink}
+            onClick={() => {
+              setCurrentDashType(dashTab);
+            }}
             sx={{
               ...(isCurrentDashType ? { cursor: "default" } : {}),
             }}

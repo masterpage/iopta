@@ -10,3 +10,9 @@ export const pages: Page[] = [
 ];
 
 export const DEFAULT_DASHTYPE = DashType.FUNDS;
+
+export const dashTabs: DashType[] = [
+  DashType.FUNDS,
+  DashType.DEALERS,
+  DashType.ALLOCATIONS,
+];
