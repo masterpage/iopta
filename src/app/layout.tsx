@@ -6,10 +6,10 @@ import { Metadata, Viewport } from "next";
 import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { Organization, WithContext } from "schema-dts";
 
-import { Layout } from "@/components/Layout";
 import { getFaviconFileName } from "@/components/Layout/getFaviconFileName";
-
-import { IOPTA, MASTERPAGE } from "./consts";
+import { IOPTA, MASTERPAGE } from "@/consts";
+import { Layout } from "@/components";
+import { Providers } from "@/context";
 
 export const viewport: Viewport = {
   initialScale: 1,
@@ -67,7 +67,9 @@ export default async function RootLayout(props: PropsWithChildren) {
         />
       </head>
       <body>
-        <Layout>{children}</Layout>
+        <Providers>
+          <Layout>{children}</Layout>
+        </Providers>
       </body>
     </html>
   );

@@ -7,12 +7,8 @@ import { Container, CssBaseline, Grid, ThemeProvider } from "@mui/material";
 import { Global } from "@emotion/react";
 import { usePathname } from "next/navigation";
 
+import { Footer, getAppTheme, globalStyles, Header } from "@/components";
 import { usePaletteMode } from "@/utils";
-
-import { Footer } from "./Footer";
-import { globalStyles } from "./globalStyles";
-import { Header } from "./Header";
-import { getAppTheme } from "./appTheme";
 
 interface LayoutProps {
   pageClass?: string;
@@ -22,7 +18,12 @@ export function Layout(props: PropsWithChildren<LayoutProps>) {
   const { children, pageClass } = props;
   const paletteMode = usePaletteMode();
   const pathname = usePathname();
-  const fullBleedPageUris: string[] = [""];
+  const fullBleedPageUris: string[] = [
+    "/",
+    "/funds",
+    "/dealers",
+    "/allocations",
+  ];
   const isFullBleed = fullBleedPageUris.includes(pathname);
   const main = isFullBleed ? (
     children

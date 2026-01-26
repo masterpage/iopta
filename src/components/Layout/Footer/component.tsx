@@ -4,8 +4,8 @@ import { Box, Container, Grid, useTheme } from "@mui/material";
 
 import { Global } from "@emotion/react";
 
-import { IOPTA } from "@/app/consts";
-import { Version } from "@/components/Version";
+import { Version } from "@/components";
+import { IOPTA } from "@/consts";
 import { isTest } from "@/utils";
 
 type Rect = Record<"height" | "width", number>;
@@ -36,7 +36,7 @@ export function Footer() {
         if (!clientHeight) return;
 
         const footerHeight = Math.ceil(
-          footerRect ? footerRect.height : clientHeight,
+          footerRect ? footerRect.height : clientHeight
         );
 
         setBodyMarginOffset(footerHeight);

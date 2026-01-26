@@ -2,9 +2,7 @@
 
 import { Grid } from "@mui/material";
 
-import { gridSettings } from "@/components/GridWrap";
-import { StyledPage } from "@/components/StyledPage";
-import { Placeholder } from "@/components/Placeholder";
+import { gridSettings, Placeholder, StyledPage } from "@/components";
 
 export default function MarketPage() {
   return (

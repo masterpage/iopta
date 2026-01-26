@@ -2,12 +2,14 @@ import { Button, CSSObject, useTheme } from "@mui/material";
 
 import NextLink from "next/link";
 
-import { EnvBadge } from "@/components/EnvBadge";
+import {
+  Device,
+  EnvBadge,
+  type IoptaLogoProps,
+  useIoptaLogo,
+  Wording,
+} from "@/components";
 import { getSx } from "@/utils";
-
-import { Device, Wording } from "./SvgBox";
-import { IoptaLogoProps } from "./types";
-import { useIoptaLogo } from "./useIoptaLogo";
 
 export function IoptaLogo(props: Readonly<IoptaLogoProps>) {
   const {

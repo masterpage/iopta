@@ -1,3 +1,5 @@
+export * from "./IoptaLogo/types";
+
 export interface Page {
   label: string;
   uri: PageUri;

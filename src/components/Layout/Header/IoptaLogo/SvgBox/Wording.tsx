@@ -1,7 +1,6 @@
 import { ReactElement } from "react";
 
-import { SvgBox } from "./component";
-import { SvgBoxProps } from "./types";
+import { SvgBox, type SvgBoxProps } from "@/components";
 
 export function Wording(localSvgProps: SvgBoxProps): ReactElement<SvgBoxProps> {
   return (

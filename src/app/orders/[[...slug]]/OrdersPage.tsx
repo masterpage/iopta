@@ -1,6 +1,4 @@
-"use client";
-
-import { OrdersTable } from "@/components/OrdersTable";
+import { OrdersTable } from "@/components";
 
 export function OrdersPage() {
   return <OrdersTable />;

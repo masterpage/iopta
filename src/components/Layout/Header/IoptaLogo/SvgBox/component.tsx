@@ -1,6 +1,6 @@
-import { Box } from '@mui/material';
+import { Box } from "@mui/material";
 
-import { SvgBoxProps } from './types';
+import { type SvgBoxProps } from "./types";
 
 export function SvgBox(props: SvgBoxProps) {
   return (

@@ -1,11 +1,10 @@
-import { Box, Tab, Tabs, TabsProps } from "@mui/material";
+import { Box, Tab, Tabs, type TabsProps } from "@mui/material";
 
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 
-import { PageUri } from "@/components/types";
-
-import { pages } from "../consts";
+import { type PageUri } from "@/components";
+import { pages } from "@/consts";
 
 export function PageTabs(props: Readonly<TabsProps>) {
   const { orientation, slotProps, ...restProps } = props;

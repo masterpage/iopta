@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 
-import { getPageTitle } from "@/utils/page";
+import { pages } from "@/consts";
+import { getPageTitle } from "@/utils";
 
 import MarketPage from "./MarketPage";
-import { pages } from "@/components/Layout/Header/consts";
 
 const { label: MARKET } = pages.find((p) => p.uri === "/market") ?? {
   label: "Unkn.",

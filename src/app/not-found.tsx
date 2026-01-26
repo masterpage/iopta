@@ -1,6 +1,6 @@
-import status from 'http-status';
+import status from "http-status";
 
-import { HttpError } from '@/components/HttpError';
+import { HttpError } from "@/components";
 
 export default function NotFound() {
   return (
