@@ -31,27 +31,27 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
   if (dashType === DashType.ALLOCATIONS) {
     layouts = {
       xl: [
-        { i: "Allocations", x: 0, y: 0, w: 18, h: 2 },
+        { i: "Allocations", x: 0, y: 0, w: 18, h: 3 },
         { i: "Analytics", x: 0, y: 1, w: 18, h: 2 },
         { i: "HypotheticalTrades", x: 0, y: 2, w: 18, h: 2 },
       ],
       lg: [
-        { i: "Allocations", x: 0, y: 0, w: 12, h: 2 },
+        { i: "Allocations", x: 0, y: 0, w: 12, h: 3 },
         { i: "Analytics", x: 0, y: 1, w: 12, h: 2 },
         { i: "HypotheticalTrades", x: 0, y: 2, w: 12, h: 2 },
       ],
       md: [
-        { i: "Allocations", x: 0, y: 0, w: 8, h: 2 },
+        { i: "Allocations", x: 0, y: 0, w: 8, h: 3 },
         { i: "Analytics", x: 0, y: 1, w: 8, h: 2 },
         { i: "HypotheticalTrades", x: 0, y: 2, w: 8, h: 2 },
       ],
       sm: [
-        { i: "Allocations", x: 0, y: 0, w: 4, h: 2 },
+        { i: "Allocations", x: 0, y: 0, w: 4, h: 3 },
         { i: "Analytics", x: 0, y: 1, w: 4, h: 2 },
         { i: "HypotheticalTrades", x: 0, y: 2, w: 4, h: 2 },
       ],
       xs: [
-        { i: "Allocations", x: 0, y: 0, w: 1, h: 2 },
+        { i: "Allocations", x: 0, y: 0, w: 1, h: 3 },
         { i: "Analytics", x: 0, y: 0, w: 9, h: 2 },
         { i: "HypotheticalTrades", x: 0, y: 0, w: 9, h: 2 },
       ],
