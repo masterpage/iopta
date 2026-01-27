@@ -10,7 +10,7 @@ import {
   ReturnsLast,
   ReturnsTD,
 } from "./funds";
-import { Allocations } from "./allocations";
+import { Allocations, Analytics } from "./allocations";
 
 interface GetDashboardReturn
   extends Pick<ResponsiveGridLayoutProps, "cols" | "layouts"> {
@@ -58,7 +58,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
     };
     widgets = [
       <Allocations key="Allocations" />,
-      <Placeholder key="Analytics">Analytics</Placeholder>,
+      <Analytics key="Analytics" />,
       <Placeholder key="HypotheticalTrades">Hypothetical Trades</Placeholder>,
     ];
   }
