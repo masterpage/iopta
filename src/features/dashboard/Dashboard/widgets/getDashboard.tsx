@@ -3,7 +3,7 @@ import { type ResponsiveGridLayoutProps } from "react-grid-layout";
 
 import { Placeholder } from "@/components";
 import { DashType } from "@/features";
-import { ReturnsTD } from "./funds";
+import { BuySell, ReturnsTD } from "./funds";
 
 interface GetDashboardReturn
   extends Pick<ResponsiveGridLayoutProps, "cols" | "layouts"> {
@@ -72,7 +72,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
     };
     widgets = [
       <ReturnsTD key="ReturnsTD" />,
-      <Placeholder key="Buy/Sell">Buy/Sell</Placeholder>,
+      <BuySell key="Buy/Sell" />,
       <Placeholder key="ReturnsLast">Returns last 12mo</Placeholder>,
       <Placeholder key="EquityAndLeverage">Equity and Leverage</Placeholder>,
       <Placeholder key="Categories">Categories</Placeholder>,
