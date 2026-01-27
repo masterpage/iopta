@@ -195,7 +195,7 @@ export const getAppTheme = (mode: PaletteMode) => {
       fontFamilySerif,
       fontWeightBold: 700,
       fontWeightLight: 300,
-      fontWeightMedium: 600,
+      fontWeightMedium: 500,
       fontWeightRegular: 400,
     },
   };

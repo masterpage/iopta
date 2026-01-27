@@ -1,8 +1,16 @@
 import { type ReactNode } from "react";
 import { type ResponsiveGridLayoutProps } from "react-grid-layout";
 
-import { Placeholder } from "@/components";
 import { DashType } from "@/features";
+import {
+  BuySell,
+  EquityAndLeverage,
+  FirmCategories,
+  ReturnsLast,
+  ReturnsTD,
+} from "./funds";
+import { Allocations, Analytics, HypoTrades } from "./allocations";
+import { DealersBuySell, Liability } from "./dealers";
 
 interface GetDashboardReturn
   extends Pick<ResponsiveGridLayoutProps, "cols" | "layouts"> {
@@ -22,13 +30,37 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
 
   if (dashType === DashType.ALLOCATIONS) {
     layouts = {
-      xl: [{ i: "Allocations", x: 0, y: 0, w: 9, h: 2 }],
-      lg: [{ i: "Allocations", x: 0, y: 0, w: 6, h: 2 }],
-      md: [{ i: "Allocations", x: 0, y: 0, w: 4, h: 2 }],
-      sm: [{ i: "Allocations", x: 0, y: 0, w: 4, h: 2 }],
-      xs: [{ i: "Allocations", x: 0, y: 0, w: 1, h: 2 }],
+      xl: [
+        { i: "Allocations", x: 0, y: 0, w: 18, h: 3 },
+        { i: "Analytics", x: 0, y: 1, w: 18, h: 2 },
+        { i: "HypotheticalTrades", x: 0, y: 2, w: 18, h: 2 },
+      ],
+      lg: [
+        { i: "Allocations", x: 0, y: 0, w: 12, h: 3 },
+        { i: "Analytics", x: 0, y: 1, w: 12, h: 2 },
+        { i: "HypotheticalTrades", x: 0, y: 2, w: 12, h: 2 },
+      ],
+      md: [
+        { i: "Allocations", x: 0, y: 0, w: 8, h: 3 },
+        { i: "Analytics", x: 0, y: 1, w: 8, h: 2 },
+        { i: "HypotheticalTrades", x: 0, y: 2, w: 8, h: 2 },
+      ],
+      sm: [
+        { i: "Allocations", x: 0, y: 0, w: 4, h: 3 },
+        { i: "Analytics", x: 0, y: 1, w: 4, h: 2 },
+        { i: "HypotheticalTrades", x: 0, y: 2, w: 4, h: 2 },
+      ],
+      xs: [
+        { i: "Allocations", x: 0, y: 0, w: 1, h: 3 },
+        { i: "Analytics", x: 0, y: 0, w: 9, h: 2 },
+        { i: "HypotheticalTrades", x: 0, y: 0, w: 9, h: 2 },
+      ],
     };
-    widgets = [<Placeholder key="Allocations">Allocations</Placeholder>];
+    widgets = [
+      <Allocations key="Allocations" />,
+      <Analytics key="Analytics" />,
+      <HypoTrades key="HypotheticalTrades" />,
+    ];
   }
 
   if (dashType === DashType.FUNDS) {
@@ -70,40 +102,40 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
       ],
     };
     widgets = [
-      <Placeholder key="ReturnsTD">Returns MTD/YTD</Placeholder>,
-      <Placeholder key="Buy/Sell">Buy/Sell</Placeholder>,
-      <Placeholder key="ReturnsLast">Returns last 12mo</Placeholder>,
-      <Placeholder key="EquityAndLeverage">Equity and Leverage</Placeholder>,
-      <Placeholder key="Categories">Categories</Placeholder>,
+      <ReturnsTD key="ReturnsTD" />,
+      <BuySell key="Buy/Sell" />,
+      <ReturnsLast key="ReturnsLast" />,
+      <EquityAndLeverage key="EquityAndLeverage" />,
+      <FirmCategories key="Categories" />,
     ];
   }
 
   if (dashType === DashType.DEALERS) {
     layouts = {
       xl: [
-        { i: "Buy/Sell", x: 0, y: 0, w: 9, h: 2 },
+        { i: "DealersBuySell", x: 0, y: 0, w: 9, h: 2 },
         { i: "Liability", x: 9, y: 0, w: 9, h: 2 },
       ],
       lg: [
-        { i: "Buy/Sell", x: 0, y: 0, w: 6, h: 2 },
+        { i: "DealersBuySell", x: 0, y: 0, w: 6, h: 2 },
         { i: "Liability", x: 6, y: 0, w: 6, h: 2 },
       ],
       md: [
-        { i: "Buy/Sell", x: 0, y: 0, w: 4, h: 2 },
+        { i: "DealersBuySell", x: 0, y: 0, w: 4, h: 2 },
         { i: "Liability", x: 4, y: 0, w: 4, h: 2 },
       ],
       sm: [
-        { i: "Buy/Sell", x: 0, y: 0, w: 4, h: 2 },
+        { i: "DealersBuySell", x: 0, y: 0, w: 4, h: 2 },
         { i: "Liability", x: 0, y: 1, w: 4, h: 3 },
       ],
       xs: [
-        { i: "Buy/Sell", x: 0, y: 0, w: 1, h: 2 },
+        { i: "DealersBuySell", x: 0, y: 0, w: 1, h: 2 },
         { i: "Liability", x: 0, y: 1, w: 1, h: 2 },
       ],
     };
     widgets = [
-      <Placeholder key="Buy/Sell">Buy/Sell</Placeholder>,
-      <Placeholder key="Liability">Liability</Placeholder>,
+      <DealersBuySell key="DealersBuySell" />,
+      <Liability key="Liability" />,
     ];
   }
 
