@@ -1,6 +1,6 @@
 "use client";
 
-import { useTheme } from "@mui/material";
+import { Box, useTheme } from "@mui/material";
 import {
   type ResponsiveGridLayoutProps,
   ResponsiveGridLayout,
@@ -8,6 +8,8 @@ import {
 } from "react-grid-layout";
 
 import { useViewportSize } from "@/hooks";
+
+import { reactGridLayout } from "./styles";
 
 interface ResponsiveGridProps
   extends Omit<ResponsiveGridLayoutProps, "width">,
@@ -34,10 +36,16 @@ export function ResponsiveGrid(props: ResponsiveGridProps) {
   }
 
   return (
-    <ResponsiveGridLayout
-      {...{ breakpoints, cols, margin, width, ...rglProps }}
-    >
-      {children}
-    </ResponsiveGridLayout>
+    <Box sx={reactGridLayout}>
+      <ResponsiveGridLayout
+        dragConfig={{
+          cancel: ".no-drag, .MuiButtonBase-root, input, textarea, select",
+          handle: ".widget-drag-handle",
+        }}
+        {...{ breakpoints, cols, margin, width, ...rglProps }}
+      >
+        {children}
+      </ResponsiveGridLayout>
+    </Box>
   );
 }

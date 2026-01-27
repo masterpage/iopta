@@ -3,7 +3,7 @@ import { Widget, WidgetProps } from "@/features";
 
 export function ReturnsLast(props: Omit<WidgetProps, "title">) {
   return (
-    <Widget {...props} title="Returns Last 12mo">
+    <Widget {...props} title="Returns">
       <Placeholder sx={{ backgroundColor: "unset", flex: 1 }}>
         Returns last 12mo
       </Placeholder>
