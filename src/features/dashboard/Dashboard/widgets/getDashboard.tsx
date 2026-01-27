@@ -1,7 +1,6 @@
 import { type ReactNode } from "react";
 import { type ResponsiveGridLayoutProps } from "react-grid-layout";
 
-import { Placeholder } from "@/components";
 import { DashType } from "@/features";
 import {
   BuySell,
@@ -11,7 +10,7 @@ import {
   ReturnsTD,
 } from "./funds";
 import { Allocations, Analytics, HypoTrades } from "./allocations";
-import { DealersBuySell } from "./dealers";
+import { DealersBuySell, Liability } from "./dealers";
 
 interface GetDashboardReturn
   extends Pick<ResponsiveGridLayoutProps, "cols" | "layouts"> {
@@ -136,7 +135,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
     };
     widgets = [
       <DealersBuySell key="DealersBuySell" />,
-      <Placeholder key="Liability">Liability</Placeholder>,
+      <Liability key="Liability" />,
     ];
   }
 
