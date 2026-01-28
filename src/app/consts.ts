@@ -1,5 +1,5 @@
 import { type Page } from "@/components";
-import { DashType } from "@/features";
+import { DashType, MarketType } from "@/features";
 
 export const MASTERPAGE = "Masterpage";
 export const IOPTA = "iOpta";
@@ -16,3 +16,7 @@ export const dashTabs: DashType[] = [
   DashType.DEALERS,
   DashType.ALLOCATIONS,
 ];
+
+export const DEFAULT_MARKETTYPE = MarketType.DASH;
+
+export const marketTabs: MarketType[] = [MarketType.DASH, MarketType.WATCHLIST];
