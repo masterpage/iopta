@@ -22,7 +22,7 @@ export function getDefaultDashType(): DashType {
   return DEFAULT_DASHTYPE;
 }
 
-export function getDashName(looseDashType: string): DashType | null {
+export function getDashName(looseDashType?: string): DashType | null {
   if (!(looseDashType && looseDashType.length)) return null;
 
   const dashTypes = getDashTypeValues();
