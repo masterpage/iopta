@@ -20,9 +20,11 @@ export function Layout(props: PropsWithChildren<LayoutProps>) {
   const pathname = usePathname();
   const fullBleedPageUris: string[] = [
     "/",
-    "/funds",
-    "/dealers",
     "/allocations",
+    "/dealers",
+    "/funds",
+    "/market/monitor",
+    "/market/watchlist",
   ];
   const isFullBleed = fullBleedPageUris.includes(pathname);
   const main = isFullBleed ? (
