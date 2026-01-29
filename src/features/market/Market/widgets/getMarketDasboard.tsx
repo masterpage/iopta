@@ -31,7 +31,7 @@ export function getMarketDashboard(
   if (marketType === MarketType.MONITOR) {
     layouts = {
       xl: [
-        { i: 'MarketOverview', x: 0, y: 0, w: 18, h: 1 },
+        { i: 'MarketOverview', x: 0, y: 0, w: 18, h: 1, static: true },
         { i: 'AllInstruments', x: 0, y: 2, w: 14, h: 4 },
         { i: 'Alerts', x: 14, y: 2, w: 4, h: 2 },
         { i: 'UpcomingEvents', x: 14, y: 4, w: 4, h: 2 },
@@ -40,7 +40,7 @@ export function getMarketDashboard(
         { i: 'CorrelationMatrix', x: 12, y: 6, w: 6, h: 2 },
       ],
       lg: [
-        { i: 'MarketOverview', x: 0, y: 0, w: 12, h: 1 },
+        { i: 'MarketOverview', x: 0, y: 0, w: 12, h: 1, static: true },
         { i: 'AllInstruments', x: 0, y: 2, w: 12, h: 4 },
         { i: 'Alerts', x: 0, y: 2, w: 6, h: 2 },
         { i: 'UpcomingEvents', x: 6, y: 2, w: 6, h: 2 },
@@ -49,13 +49,7 @@ export function getMarketDashboard(
         { i: 'CorrelationMatrix', x: 0, y: 6, w: 6, h: 2 },
       ],
       md: [
-        {
-          i: 'MarketOverview',
-          x: 0,
-          y: 0,
-          w: 8,
-          h: 1,
-        },
+        { i: 'MarketOverview', x: 0, y: 0, w: 8, h: 1, static: true },
         { i: 'AllInstruments', x: 0, y: 1, w: 8, h: 3 },
         { i: 'Alerts', x: 0, y: 2, w: 4, h: 1 },
         { i: 'UpcomingEvents', x: 4, y: 2, w: 4, h: 1 },
@@ -64,7 +58,7 @@ export function getMarketDashboard(
         { i: 'CorrelationMatrix', x: 0, y: 6, w: 8, h: 1 },
       ],
       sm: [
-        { i: 'MarketOverview', x: 0, y: 0, w: 4, h: 1 },
+        { i: 'MarketOverview', x: 0, y: 0, w: 4, h: 1, static: true },
         { i: 'AllInstruments', x: 0, y: 1, w: 4, h: 3 },
         { i: 'Alerts', x: 0, y: 2, w: 4, h: 1 },
         { i: 'UpcomingEvents', x: 0, y: 3, w: 4, h: 1 },
@@ -73,7 +67,7 @@ export function getMarketDashboard(
         { i: 'CorrelationMatrix', x: 0, y: 6, w: 4, h: 1 },
       ],
       xs: [
-        { i: 'MarketOverview', x: 0, y: 0, w: 1, h: 1 },
+        { i: 'MarketOverview', x: 0, y: 0, w: 1, h: 1, static: true },
         { i: 'AllInstruments', x: 0, y: 1, w: 1, h: 1 },
         { i: 'Alerts', x: 0, y: 2, w: 1, h: 1 },
         { i: 'UpcomingEvents', x: 0, y: 3, w: 1, h: 1 },
