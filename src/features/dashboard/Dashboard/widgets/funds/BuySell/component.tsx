@@ -1,5 +1,4 @@
-import { Placeholder } from "@/components";
-import { Widget, WidgetProps } from "@/features";
+import { Placeholder, Widget, WidgetProps } from "@/components";
 
 export function BuySell(props: Omit<WidgetProps, "title">) {
   return (
