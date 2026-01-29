@@ -2,13 +2,17 @@
 
 import { Container, Grid } from "@mui/material";
 
-import { StyledPage, gridSettings, Placeholder } from "@/components";
+import { StyledPage, gridSettings, ResponsiveGrid } from "@/components";
 import { useContextUi } from "@/context";
+import { getMarketDashboard } from "./widgets/getMarketDasboard";
+import { useMemo } from "react";
 
 export function Market() {
   const {
     market: { currentMarketType },
   } = useContextUi();
+
+  const { cols, layouts, widgets } = useMemo(() => getMarketDashboard(currentMarketType), [currentMarketType]);
 
   return (
     <StyledPage fullBleed>
@@ -19,11 +23,7 @@ export function Market() {
           </Grid>
         </Grid>
       </Container>
-      <Grid component="main" container spacing={4}>
-        <Grid size={12}>
-          <Placeholder>{currentMarketType} placeholder</Placeholder>
-        </Grid>
-      </Grid>
+      <ResponsiveGrid {...{ cols, layouts }}>{widgets}</ResponsiveGrid>
     </StyledPage>
   );
 }
