@@ -1,16 +1,22 @@
 import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
-import { pages } from "@/consts";
+import { type Page } from "@/components";
+import { DEFAULT_MARKETTYPE, pages } from "@/consts";
 import { isLooseMarketTypeExist, MarketType } from "@/features";
 import { getPageTitle } from "@/utils";
 
 import MarketPage from "./MarketPage";
 import { MarketPageProps } from "./types";
 
-const { label: MARKET } = pages.find((p) => p.uri === "/market") ?? {
-  label: "Unkn.",
-};
+const pageMarket =
+  pages.find((p) => p.label === "Market") ??
+  ({
+    label: "Market",
+    uri: "/market",
+  } satisfies Page);
+
+const { label: MARKET, uri: marketUri } = pageMarket;
 
 export async function generateMetadata({
   params,
@@ -40,5 +46,16 @@ export default async function Page({ params }: MarketPageProps) {
   if (!isMarketMarketType || restSlug.length) {
     notFound();
   }
+
+  /**
+   * Undefined `slugMarketType` refers to _Market_ home (or DEFAULT_MARKETTYPE).
+   */
+  if (!slugMarketType) {
+    const defaultMarketType = DEFAULT_MARKETTYPE.toLowerCase();
+    const defaultMarketPath = [marketUri, defaultMarketType].join("/");
+
+    redirect(defaultMarketPath);
+  }
+
   return <MarketPage />;
 }
