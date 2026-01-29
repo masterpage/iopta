@@ -13,19 +13,36 @@ import { getSx } from "@/utils";
 import { DragHandle } from "./DragIndicator";
 
 export interface WidgetProps extends Omit<CardProps, "title"> {
-  title: ReactNode;
+  /**
+   * If `true`, enables content padding to `WIDGET_PADDING`.
+   * Otherwise, padding is set to 0.
+   * @default false
+   */
+  fullBleed?: boolean;
   subTitle?: ReactNode;
+  title: ReactNode;
 }
 
 export const WIDGET_PADDING: number = 0.625;
 
 export function Widget(props: WidgetProps) {
-  const { children, sx, subTitle, title, ...cardProps } = props;
+  const {
+    children,
+    fullBleed = false,
+    subTitle,
+    sx,
+    title,
+    ...cardProps
+  } = props;
   const theme = useTheme();
   const {
     palette: { text },
     typography: { fontWeightMedium },
   } = theme;
+  const contentPadding = fullBleed
+    ? 0
+    : `0 ${WIDGET_PADDING}rem ${WIDGET_PADDING}rem`;
+  const contentPaddingBottom = fullBleed ? 0 : `${WIDGET_PADDING}rem`;
 
   return (
     <Card
@@ -84,9 +101,9 @@ export function Widget(props: WidgetProps) {
           display: "flex",
           flex: 1,
           flexDirection: "column",
-          padding: `0 ${WIDGET_PADDING}rem ${WIDGET_PADDING}rem`,
+          padding: contentPadding,
           "&:last-child": {
-            paddingBottom: `${WIDGET_PADDING}rem`,
+            paddingBottom: contentPaddingBottom,
           },
         }}
       >
