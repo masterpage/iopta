@@ -2,7 +2,7 @@
 
 import { createContext, PropsWithChildren, useMemo, useState } from "react";
 
-import { MarketType, DashType, getDashName } from "@/features";
+import { MarketType, DashType, getDashName, getMarketName } from "@/features";
 import { DEFAULT_DASHTYPE, DEFAULT_MARKETTYPE } from "@/app/consts";
 import { type ContextUi, type UiProviderProps } from "./types";
 
@@ -12,9 +12,7 @@ export function UiProvider(props: PropsWithChildren<UiProviderProps>) {
   const { children, slugDashType } = props;
   const dashType: DashType = getDashName(slugDashType) ?? DEFAULT_DASHTYPE;
   const marketType: MarketType =
-    Object.values(MarketType).find(
-      (t) => t.toLowerCase() === slugDashType?.toLowerCase()
-    ) ?? DEFAULT_MARKETTYPE;
+    getMarketName(slugDashType) ?? DEFAULT_MARKETTYPE;
 
   const [currentDashType, setCurrentDashType] = useState<DashType>(dashType);
   const [currentMarketType, setCurrentMarketType] =
