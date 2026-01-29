@@ -17,6 +17,9 @@ export const dashTabs: DashType[] = [
   DashType.ALLOCATIONS,
 ];
 
-export const DEFAULT_MARKETTYPE = MarketType.DASH;
+export const DEFAULT_MARKETTYPE = MarketType.MONITOR;
 
-export const marketTabs: MarketType[] = [MarketType.DASH, MarketType.WATCHLIST];
+export const marketTabs: MarketType[] = [
+  MarketType.MONITOR,
+  MarketType.WATCHLIST,
+];

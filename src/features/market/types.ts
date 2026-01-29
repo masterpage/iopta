@@ -1,4 +1,4 @@
 export enum MarketType {
-  DASH = "Dashboard",
+  MONITOR = "Monitor",
   WATCHLIST = "Watchlist",
 }
