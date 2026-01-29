@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { pages } from "@/consts";
-import { MarketType } from "@/features";
+import { isLooseMarketTypeExist, MarketType } from "@/features";
 import { getPageTitle } from "@/utils";
 
 import MarketPage from "./MarketPage";
@@ -31,12 +31,13 @@ export async function generateMetadata({
 
 export default async function Page({ params }: MarketPageProps) {
   const { slug = [] } = (await params) || {};
-  const [, ...restSlug] = slug.map((s) => s?.toLowerCase()) as [
+  const [slugMarketType, ...restSlug] = slug.map((s) => s?.toLowerCase()) as [
     MarketType,
     string
   ];
+  const isMarketMarketType = isLooseMarketTypeExist(slugMarketType);
 
-  if (restSlug.length) {
+  if (!isMarketMarketType || restSlug.length) {
     notFound();
   }
   return <MarketPage />;
