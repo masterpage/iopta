@@ -16,12 +16,12 @@ export async function generateMetadata({
   params,
 }: MarketPageProps): Promise<Metadata> {
   const { slug = [] } = (await params) || {};
-  const [slugMarketType, ...restSlug] = slug.map((s) => s?.toLowerCase()) as [
+  const [slugMarketType] = slug.map((s) => s?.toLowerCase()) as [
     MarketType,
     string
   ];
   const description: Metadata["description"] = MARKET;
-  const title: Metadata["title"] = getPageTitle([MARKET]);
+  const title: Metadata["title"] = getPageTitle([MARKET, slugMarketType]);
 
   return {
     description,
@@ -31,7 +31,7 @@ export async function generateMetadata({
 
 export default async function Page({ params }: MarketPageProps) {
   const { slug = [] } = (await params) || {};
-  const [slugMarketType, ...restSlug] = slug.map((s) => s?.toLowerCase()) as [
+  const [, ...restSlug] = slug.map((s) => s?.toLowerCase()) as [
     MarketType,
     string
   ];
