@@ -9,10 +9,9 @@ import { type ContextUi, type UiProviderProps } from "./types";
 export const UiContext = createContext<ContextUi | null>(null);
 
 export function UiProvider(props: PropsWithChildren<UiProviderProps>) {
-  const { children, slugDashType } = props;
-  const dashType: DashType = getDashName(slugDashType) ?? DEFAULT_DASHTYPE;
-  const marketType: MarketType =
-    getMarketName(slugDashType) ?? DEFAULT_MARKETTYPE;
+  const { children, slug } = props;
+  const dashType: DashType = getDashName(slug) ?? DEFAULT_DASHTYPE;
+  const marketType: MarketType = getMarketName(slug) ?? DEFAULT_MARKETTYPE;
 
   const [currentDashType, setCurrentDashType] = useState<DashType>(dashType);
   const [currentMarketType, setCurrentMarketType] =
@@ -24,7 +23,7 @@ export function UiProvider(props: PropsWithChildren<UiProviderProps>) {
       setCurrentDashType,
       market: { currentMarketType, setCurrentMarketType },
     }),
-    [currentDashType]
+    [currentDashType, currentMarketType]
   );
 
   return <UiContext.Provider {...{ value }}>{children}</UiContext.Provider>;

@@ -16,5 +16,5 @@ export interface ContextUi {
 }
 
 export interface UiProviderProps {
-  slugDashType?: DashType;
+  slug?: string;
 }
