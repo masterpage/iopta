@@ -23,7 +23,7 @@ export interface WidgetProps extends Omit<CardProps, "title"> {
   title: ReactNode;
 }
 
-export const WIDGET_PADDING: number = 0.625;
+export const WIDGET_PADDING_CONTENT: number = 0.625;
 
 export function Widget(props: WidgetProps) {
   const {
@@ -41,8 +41,8 @@ export function Widget(props: WidgetProps) {
   } = theme;
   const contentPadding = fullBleed
     ? 0
-    : `0 ${WIDGET_PADDING}rem ${WIDGET_PADDING}rem`;
-  const contentPaddingBottom = fullBleed ? 0 : `${WIDGET_PADDING}rem`;
+    : `0 ${WIDGET_PADDING_CONTENT}rem ${WIDGET_PADDING_CONTENT}rem`;
+  const contentPaddingBottom = fullBleed ? 0 : `${WIDGET_PADDING_CONTENT}rem`;
 
   return (
     <Card
@@ -54,8 +54,8 @@ export function Widget(props: WidgetProps) {
         slotProps={{
           root: {
             sx: {
-              padding: `${WIDGET_PADDING}rem`,
-              paddingLeft: `${WIDGET_PADDING}rem`,
+              padding: `${WIDGET_PADDING_CONTENT}rem`,
+              paddingLeft: `${WIDGET_PADDING_CONTENT}rem`,
               userSelect: "none",
             },
           },

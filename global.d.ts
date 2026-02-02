@@ -84,3 +84,9 @@ declare module "node_modules/@mui/material/styles/createTypography" {
     fontFamilySerif: React.CSSProperties["fontFamily"];
   }
 }
+
+declare module "@tanstack/react-table" {
+  interface ColumnMeta {
+    align?: "left" | "right";
+  }
+}
