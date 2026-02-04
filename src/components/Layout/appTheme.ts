@@ -1,5 +1,5 @@
 import {
-  Breakpoint,
+  Breakpoints,
   createTheme,
   CSSProperties,
   PaletteMode,
@@ -25,10 +25,8 @@ const fontVariantNumeric = (
   ["normal"] satisfies CSSProperties["fontVariantNumeric"]
 ).join(" ");
 
-type appBreakpoint = "mdUp" | "smDown" | Breakpoint;
-
 function getSafeAreaInsetGutters(
-  params: Pick<Theme, "breakpoints" | "typography">
+  params: Pick<Theme, "breakpoints" | "typography">,
 ) {
   const {
     breakpoints,
@@ -45,19 +43,24 @@ function getSafeAreaInsetGutters(
   };
 }
 
+export const breakpointsValues: Omit<Breakpoints["values"], "mdUp" | "smDown"> =
+  {
+    lg: 1200,
+    md: 900,
+    sm: 600,
+    xl: 1536,
+    xs: 0,
+  };
+
 export const getAppTheme = (mode: PaletteMode) => {
   const themeOptions: ThemeOptions = {
     breakpoints: {
-      keys: ["xs", "sm", "mdUp", "md", "lg", "xl"] satisfies appBreakpoint[],
+      keys: ["xs", "sm", "mdUp", "md", "lg", "xl"],
       values: {
-        lg: 1200,
-        md: 900,
+        ...breakpointsValues,
         mdUp: 1050,
-        sm: 600,
         smDown: 400,
-        xl: 1536,
-        xs: 0,
-      } satisfies Record<appBreakpoint, number>,
+      },
     },
     components: {
       MuiAlert: {
