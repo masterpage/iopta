@@ -154,8 +154,29 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     },
     {
       accessorKey: "leverage",
+      cell: ({ getValue }) => {
+        const value = getValue();
+        const v = Number(value);
+
+        return (
+          <Box
+            sx={{
+              fontFamily: fontFamilyMono,
+              fontSize: "round(92%, 1px)",
+              textAlign: "right",
+            }}
+          >
+            {v.toFixed(2)}
+            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
+              &times;
+            </Box>
+          </Box>
+        );
+      },
       header: "Leverage",
-      size: 100,
+      meta: { align: "right" },
+      size: 66,
+    },
       meta: { align: "right" },
     },
     { accessorKey: "aum", header: "AUM", size: 100, meta: { align: "right" } },
