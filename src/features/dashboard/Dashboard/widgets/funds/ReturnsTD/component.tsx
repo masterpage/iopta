@@ -23,7 +23,6 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "strategy",
       header: "Strategy",
       size: 140,
-      enableResizing: false,
     },
     {
       accessorKey: "mtd",
@@ -48,7 +47,6 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
           </Box>
         );
       },
-      enableResizing: true,
       meta: { align: "right" },
     },
     {
