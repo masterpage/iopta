@@ -28,17 +28,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     {
       accessorKey: "mtd",
       size: 66,
-      header: () => {
-        return (
-          <Box
-            sx={{
-              justifyContent: "right",
-            }}
-          >
-            MTD
-          </Box>
-        );
-      },
+      header: "MTD",
       cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
@@ -86,17 +76,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     },
     {
       accessorKey: "ytd",
-      header: () => {
-        return (
-          <Box
-            sx={{
-              textAlign: "right",
-            }}
-          >
-            YTD
-          </Box>
-        );
-      },
+      header: "YTD",
       size: 66,
       cell: ({ column, getValue }) => {
         const value = getValue();
