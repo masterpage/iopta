@@ -78,10 +78,9 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "ytd",
       header: "YTD",
       size: 66,
-      cell: ({ column, getValue }) => {
+      cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
-        const {} = column;
 
         return (
           <Box
@@ -104,10 +103,9 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "ltm",
       header: "LTM",
       size: 66,
-      cell: ({ column, getValue }) => {
+      cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
-        const {} = column;
 
         return (
           <Box
@@ -130,10 +128,9 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "duration",
       header: "Duration",
       size: 66,
-      cell: ({ column, getValue }) => {
+      cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
-        const {} = column;
 
         return (
           <Box
