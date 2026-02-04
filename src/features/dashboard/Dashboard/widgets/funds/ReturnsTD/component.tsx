@@ -177,9 +177,34 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       meta: { align: "right" },
       size: 66,
     },
+    {
+      accessorKey: "aum",
+      cell: ({ getValue }) => {
+        const value = getValue();
+        const v = Number(value).toLocaleString("en-US", {
+          style: "decimal",
+          maximumFractionDigits: 0,
+        });
+
+        return (
+          <Box
+            sx={{
+              fontFamily: fontFamilyMono,
+              fontSize: "round(92%, 1px)",
+              textAlign: "right",
+            }}
+          >
+            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
+              $
+            </Box>
+            {v}
+          </Box>
+        );
+      },
+      header: "AUM",
       meta: { align: "right" },
+      size: 120,
     },
-    { accessorKey: "aum", header: "AUM", size: 100, meta: { align: "right" } },
   ];
 
   return (
