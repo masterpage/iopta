@@ -82,6 +82,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
           />
         );
       },
+      enableResizing: false,
     },
     {
       accessorKey: "ytd",

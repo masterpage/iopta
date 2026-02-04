@@ -1,5 +1,8 @@
 "use client";
 
+import { useState } from "react";
+
+import { Box, useTheme } from "@mui/material";
 import {
   flexRender,
   getCoreRowModel,
@@ -10,12 +13,17 @@ import {
   type ColumnDef,
 } from "@tanstack/react-table";
 
-import { Widget, WIDGET_PADDING_CONTENT, type WidgetProps } from "@/components";
-import { Box, useTheme } from "@mui/material";
-import { useState } from "react";
+import {
+  defaultRglProps,
+  Widget,
+  WIDGET_PADDING_CONTENT,
+  type WidgetProps,
+} from "@/components";
 
-export interface TableWidgetProps<D extends object>
-  extends Omit<WidgetProps, "children"> {
+export interface TableWidgetProps<D extends object> extends Omit<
+  WidgetProps,
+  "children"
+> {
   columns: ColumnDef<D>[];
   data: D[];
 }
@@ -28,6 +36,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
     palette: { grey, mode, text },
     typography: { htmlFontSize },
   } = theme;
+  const { rowHeight } = defaultRglProps;
   const borderColor = grey[mode === "light" ? 300 : 700];
   const table = useReactTable({
     columnResizeMode: "onChange",
@@ -42,13 +51,10 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
     state: { columnSizing },
   });
   const widgetFontSizeEm: number = 0.825;
-  const widgetHeaderFontSizeEm: number = 0.75;
-  const widgetHeaderFontSizePx: number = Math.ceil(
-    widgetHeaderFontSizeEm * htmlFontSize
-  );
+  const widgetHeaderFontSizePx: number = Math.ceil(0.75 * htmlFontSize);
   const paddingPx: number = Math.ceil((htmlFontSize * widgetFontSizeEm) / 2);
   const utmostPadding = `${WIDGET_PADDING_CONTENT}rem`;
-  const tableHeaderHeight = Math.ceil(widgetHeaderFontSizePx * 2.3);
+  const twoLineHeaderHeight = Math.ceil(widgetHeaderFontSizePx * 2.3);
 
   return (
     <Widget {...widgetProps}>
@@ -69,9 +75,8 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
               sx={{
                 color: text.secondary,
                 fontSize: `${widgetHeaderFontSizePx}px`,
-                lineHeight: "normal",
+                height: rowHeight,
                 letterSpacing: "0.5px",
-                textAlign: "left",
               }}
             >
               {hg.headers.map((h, i, headers) => {
@@ -87,7 +92,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                     key={h.id}
                     sx={{
                       borderBottom: `1px solid ${text.secondary}`,
-                      padding: `${paddingPx}px 0 ${paddingPx}px ${paddingPx}px`,
+                      paddingLeft: `${paddingPx}px`,
                       width: h.getSize(),
                       ...(isFirst ? { paddingLeft: utmostPadding } : {}),
                       ...(isLast ? { paddingRight: utmostPadding } : {}),
@@ -98,7 +103,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                         alignItems: "center",
                         display: "flex",
                         gap: "7px",
-                        height: tableHeaderHeight,
+                        height: twoLineHeaderHeight,
                         justifyContent: headerAlign,
                       }}
                     >
@@ -110,7 +115,6 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                           onMouseDown={h.getResizeHandler()}
                           onTouchStart={h.getResizeHandler()}
                           sx={{
-                            // backgroundColor: borderColor,
                             borderRight: `2px ${
                               canResize ? "solid" : "dotted"
                             } ${borderColor}`,
@@ -118,7 +122,6 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                             height: "100%",
                             touchAction: "none",
                             userSelect: "none",
-                            // width: `${canResize ? 2 : 1}px`,
                           }}
                         />
                       )}
@@ -130,33 +133,48 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
           ))}
         </Box>
         <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell, i, cells) => {
-                const isFirst = i === 0;
-                const isLast = i === cells.length - 1;
+          {table.getRowModel().rows.map((row, r, rows) => {
+            const isLastRow = r === rows.length - 1;
 
-                return (
-                  <Box
-                    component="td"
-                    key={cell.id}
-                    sx={{
-                      borderBottom: `1px solid ${borderColor}`,
-                      lineHeight: "initial",
-                      overflow: "hidden",
-                      padding: `${paddingPx}px`,
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                      ...(isFirst ? { paddingLeft: utmostPadding } : {}),
-                      ...(isLast ? { paddingRight: utmostPadding } : {}),
-                    }}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </Box>
-                );
-              })}
-            </tr>
-          ))}
+            return (
+              <Box
+                component="tr"
+                key={row.id}
+                sx={{
+                  ...(isLastRow
+                    ? {}
+                    : { borderBottom: `1px solid ${borderColor}` }),
+                  height: rowHeight,
+                }}
+              >
+                {row.getVisibleCells().map((cell, i, cells) => {
+                  const isFirst = i === 0;
+                  const isLast = i === cells.length - 1;
+
+                  return (
+                    <Box
+                      component="td"
+                      key={cell.id}
+                      sx={{
+                        lineHeight: "initial",
+                        overflow: "hidden",
+                        padding: `${paddingPx}px`,
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        ...(isFirst ? { paddingLeft: utmostPadding } : {}),
+                        ...(isLast ? { paddingRight: utmostPadding } : {}),
+                      }}
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
+                    </Box>
+                  );
+                })}
+              </Box>
+            );
+          })}
         </tbody>
       </Box>
     </Widget>
