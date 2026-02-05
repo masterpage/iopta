@@ -4,11 +4,13 @@ import { useState } from "react";
 
 import { Box, useTheme } from "@mui/material";
 import {
+  ColumnSizingState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
   getPaginationRowModel,
   getSortedRowModel,
+  SortingState,
   useReactTable,
   type ColumnDef,
 } from "@tanstack/react-table";
@@ -30,7 +32,10 @@ export interface TableWidgetProps<D extends object> extends Omit<
 
 export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
   const { columns, data, ...widgetProps } = props;
-  const [columnSizing, setColumnSizing] = useState({});
+  const [columnSizing, setColumnSizing] = useState<ColumnSizingState>({});
+  const [sorting, setSorting] = useState<SortingState>([
+    { id: "fund", desc: false },
+  ]);
   const theme = useTheme();
   const {
     palette: { grey, mode, text },
@@ -43,12 +48,14 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
     columns,
     data,
     enableColumnResizing: true,
+    enableSorting: true,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     onColumnSizingChange: setColumnSizing,
-    state: { columnSizing },
+    onSortingChange: setSorting,
+    state: { columnSizing, sorting },
   });
   const widgetFontSizeEm: number = 0.825;
   const widgetHeaderFontSizePx: number = Math.ceil(0.75 * htmlFontSize);
@@ -83,6 +90,10 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                 const isLast = i === headers.length - 1;
                 const { align = "left" } = h.column.columnDef.meta || {};
                 const headerAlign = align === "left" ? "space-between" : align;
+                /**
+                 * false | 'asc' | 'desc'
+                 */
+                const isSorted = h.column.getIsSorted();
 
                 return (
                   <Box
@@ -97,6 +108,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                     }}
                   >
                     <Box
+                      onClick={h.column.getToggleSortingHandler()}
                       sx={{
                         alignItems: "center",
                         display: "flex",
@@ -107,6 +119,16 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                     >
                       <Box component="span">
                         {flexRender(h.column.columnDef.header, h.getContext())}
+                        {h.column.getCanSort() && (
+                          <Box component="span">
+                            {" "}
+                            {isSorted === "asc"
+                              ? "🔼"
+                              : isSorted === "desc"
+                                ? "🔽"
+                                : "↕️"}
+                          </Box>
+                        )}
                       </Box>
                       {!isLast && (
                         <Box

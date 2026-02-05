@@ -20,11 +20,17 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     typography: { fontFamilyMono },
   } = theme;
   const columns: TableWidgetProps<ReturnsTDData>["columns"] = [
-    { accessorKey: "fund", header: "Fund", minSize: 180 },
+    {
+      accessorKey: "fund",
+      header: "Fund",
+      minSize: 180,
+      sortingFn: "alphanumeric",
+    },
     {
       accessorKey: "strategy",
       header: "Strategy",
       minSize: 180,
+      sortingFn: "alphanumeric",
     },
     {
       accessorKey: "mtd",
@@ -34,6 +40,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
         <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
       ),
       meta: { align: "right" },
+      sortingFn: "alphanumeric",
     },
     {
       header: "Last 18mo",
@@ -69,6 +76,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
         />
       ),
       meta: { align: "right" },
+      sortingFn: "alphanumeric",
     },
     {
       accessorKey: "ltm",
@@ -78,6 +86,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
         <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
       ),
       meta: { align: "right" },
+      sortingFn: "alphanumeric",
     },
     {
       accessorKey: "duration",
@@ -87,6 +96,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
         <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
       ),
       meta: { align: "right" },
+      sortingFn: "alphanumeric",
     },
     {
       accessorKey: "leverage",
@@ -99,6 +109,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       header: "Leverage",
       meta: { align: "right" },
       minSize: 66,
+      sortingFn: "alphanumeric",
     },
     {
       accessorKey: "aum",
@@ -127,6 +138,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       header: "AUM",
       meta: { align: "right" },
       minSize: 180,
+      sortingFn: "alphanumeric",
     },
   ];
 
