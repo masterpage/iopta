@@ -1,6 +1,7 @@
 import { Box, useTheme } from "@mui/material";
 
 import {
+  Last18mBars,
   parsePctArray,
   TableWidget,
   type TableWidgetProps,
@@ -11,7 +12,6 @@ import { BaseNumber } from "@/utils";
 
 import { dataReturnsTD } from "./data";
 import { ReturnsTDData } from "./types";
-import { Last18mBars } from "@/components/TableWidget/charts";
 
 export function ReturnsTD(props: Omit<WidgetProps, "title">) {
   const theme = useTheme();
