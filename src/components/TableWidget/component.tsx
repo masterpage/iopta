@@ -146,8 +146,11 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                 }}
               >
                 {row.getVisibleCells().map((cell, i, cells) => {
+                  const { column, getContext } = cell;
+                  const { columnDef } = column;
                   const isFirst = i === 0;
                   const isLast = i === cells.length - 1;
+                  const { align: textAlign = "left" } = columnDef.meta || {};
 
                   return (
                     <Box
@@ -157,17 +160,15 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                         lineHeight: "initial",
                         overflow: "hidden",
                         padding: `${paddingPx}px`,
+                        textAlign,
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
-                        width: cell.column.getSize(),
+                        width: column.getSize(),
                         ...(isFirst ? { paddingLeft: utmostPadding } : {}),
                         ...(isLast ? { paddingRight: utmostPadding } : {}),
                       }}
                     >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext(),
-                      )}
+                      {flexRender(columnDef.cell, getContext())}
                     </Box>
                   );
                 })}

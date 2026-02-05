@@ -7,6 +7,8 @@ import {
   type WidgetProps,
 } from "@/components";
 
+import { BaseNumber } from "@/utils";
+
 import { dataReturnsTD } from "./data";
 import { ReturnsTDData } from "./types";
 import { Last18mBars } from "@/components/TableWidget/charts";
@@ -28,25 +30,9 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "mtd",
       minSize: 66,
       header: "MTD",
-      cell: ({ getValue }) => {
-        const value = getValue();
-        const v = Number(value);
-
-        return (
-          <Box
-            sx={{
-              fontFamily: fontFamilyMono,
-              fontSize: "round(92%, 1px)",
-              textAlign: "right",
-            }}
-          >
-            {v.toFixed(2)}
-            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
-              %
-            </Box>
-          </Box>
-        );
-      },
+      cell: ({ getValue }) => (
+        <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
+      ),
       meta: { align: "right" },
     },
     {
@@ -76,98 +62,37 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       accessorKey: "ytd",
       header: "YTD",
       minSize: 66,
-      cell: ({ getValue }) => {
-        const value = getValue();
-        const v = Number(value);
-
-        return (
-          <Box
-            sx={{
-              fontFamily: fontFamilyMono,
-              fontSize: "round(92%, 1px)",
-              textAlign: "right",
-            }}
-          >
-            {v.toFixed(2)}
-            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
-              %
-            </Box>
-          </Box>
-        );
-      },
+      cell: ({ getValue }) => (
+        <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
+      ),
       meta: { align: "right" },
     },
     {
       accessorKey: "ltm",
       header: "LTM",
       minSize: 66,
-      cell: ({ getValue }) => {
-        const value = getValue();
-        const v = Number(value);
-
-        return (
-          <Box
-            sx={{
-              fontFamily: fontFamilyMono,
-              fontSize: "round(92%, 1px)",
-              textAlign: "right",
-            }}
-          >
-            {v.toFixed(2)}
-            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
-              %
-            </Box>
-          </Box>
-        );
-      },
+      cell: ({ getValue }) => (
+        <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
+      ),
       meta: { align: "right" },
     },
     {
       accessorKey: "duration",
       header: "Duration",
       minSize: 66,
-      cell: ({ getValue }) => {
-        const value = getValue();
-        const v = Number(value);
-
-        return (
-          <Box
-            sx={{
-              fontFamily: fontFamilyMono,
-              fontSize: "round(92%, 1px)",
-              textAlign: "right",
-            }}
-          >
-            {v.toFixed(2)}
-            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
-              %
-            </Box>
-          </Box>
-        );
-      },
+      cell: ({ getValue }) => (
+        <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
+      ),
       meta: { align: "right" },
     },
     {
       accessorKey: "leverage",
-      cell: ({ getValue }) => {
-        const value = getValue();
-        const v = Number(value);
-
-        return (
-          <Box
-            sx={{
-              fontFamily: fontFamilyMono,
-              fontSize: "round(92%, 1px)",
-              textAlign: "right",
-            }}
-          >
-            {v.toFixed(2)}
-            <Box component="span" sx={{ color: text.secondary, opacity: 0.75 }}>
-              &times;
-            </Box>
-          </Box>
-        );
-      },
+      cell: ({ getValue }) => (
+        <BaseNumber
+          value={getValue()}
+          options={{ unit: { name: "&times;" } }}
+        />
+      ),
       header: "Leverage",
       meta: { align: "right" },
       minSize: 66,
