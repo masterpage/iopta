@@ -21,6 +21,7 @@ export interface MarketOverviewTileProps
     | 'low'
     | 'formatValue'
   > {
+  // Enables the sparkles icon + warning border for VIX tiles.
   isVix?: boolean
 }
 
@@ -37,7 +38,7 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
     formatValue,
   } = props
 
-  const theme = useTheme()
+  const { palette, typography } = useTheme()
   const [direction, setDirection] = useState<FlashDirection>(null)
   const prevValueRef = useRef<number | null>(null)
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -72,59 +73,110 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
     }
   }, [])
 
+  const flashColorByDirection = {
+    up: palette.success.main,
+    down: palette.error.main,
+    none: palette.text.primary,
+  }
   const flashColor =
-    direction === 'up'
-      ? theme.palette.success.main
-      : direction === 'down'
-      ? theme.palette.error.main
-      : theme.palette.text.primary
+    flashColorByDirection[direction ?? 'none'] ?? palette.text.primary
 
   const displayValue =
     formatValue?.(value) ??
     value.toLocaleString('en-US', { maximumFractionDigits: 2 })
 
-  const changeColor =
-    change === 0
-      ? theme.palette.text.secondary
-      : change > 0
-      ? theme.palette.success.main
-      : theme.palette.error.main
+  const changeColorByDirection = {
+    up: palette.success.main,
+    down: palette.error.main,
+    flat: palette.text.secondary,
+  }
+  let changeDirection: 'up' | 'down' | 'flat' = 'flat'
+  if (change > 0) {
+    changeDirection = 'up'
+  } else if (change < 0) {
+    changeDirection = 'down'
+  }
+  const changeColor = changeColorByDirection[changeDirection]
 
   const changeDisplay = useMemo(() => {
-    const sign = change > 0 ? '+' : change < 0 ? '-' : ''
+    let sign = ''
+    if (change > 0) {
+      sign = '+'
+    } else if (change < 0) {
+      sign = '-'
+    }
     return `${sign}${Math.abs(change).toLocaleString('en-US', {
       maximumFractionDigits: 2,
     })}`
   }, [change])
 
   const percentDisplay = useMemo(() => {
-    const sign = changePercent > 0 ? '+' : changePercent < 0 ? '-' : ''
+    let sign = ''
+    if (changePercent > 0) {
+      sign = '+'
+    } else if (changePercent < 0) {
+      sign = '-'
+    }
     return `${sign}${Math.abs(changePercent).toFixed(2)}%`
   }, [changePercent])
 
-  const stateColor =
-    marketState === 'STRESSED'
-      ? theme.palette.error.main
-      : marketState === 'ELEVATED'
-      ? theme.palette.warning.main
-      : theme.palette.success.main
+  const stateColorByState = {
+    STRESSED: palette.error.main,
+    ELEVATED: palette.warning.main,
+    NORMAL: palette.success.main,
+  }
+  const stateColor = stateColorByState[marketState]
+
+  const isFlashing = direction != null
+  const cardBorderColor = isVix
+    ? alpha(palette.warning.main, 0.4)
+    : palette.divider
+  const cardBackgroundColor = isFlashing
+    ? alpha(flashColor, 0.08)
+    : palette.action.hover
+  const cardBoxShadow = isFlashing
+    ? `0 0 0 2px ${alpha(flashColor, 0.25)}`
+    : 'none'
+  const priceColor = isFlashing ? flashColor : palette.text.primary
+  const priceBackgroundColor = isFlashing
+    ? alpha(flashColor, 0.2)
+    : alpha(palette.text.primary, 0.0)
+  const priceBorderRadius = isFlashing ? 1 : undefined
+
+  const isPositiveChange = changePercent >= 0
+  const gradientColor = isPositiveChange
+    ? palette.success.main
+    : palette.error.main
+  const backgroundGradient = `linear-gradient(135deg, ${alpha(
+    gradientColor,
+    0.25
+  )}, transparent)`
+
+  const vixIcon = isVix ? (
+    <AutoAwesomeIcon sx={{ fontSize: 16, color: palette.warning.main }} />
+  ) : null
+
+  let trendIcon: React.ReactNode = null
+  if (changePercent > 0) {
+    trendIcon = (
+      <TrendingUpIcon sx={{ fontSize: 16, color: palette.success.main }} />
+    )
+  } else if (changePercent < 0) {
+    trendIcon = (
+      <TrendingDownIcon sx={{ fontSize: 16, color: palette.error.main }} />
+    )
+  }
 
   return (
     <Box
       sx={{
         overflow: 'hidden',
-        border: `1px solid ${
-          isVix ? alpha(theme.palette.warning.main, 0.4) : theme.palette.divider
-        }`,
+        border: `1px solid ${cardBorderColor}`,
         borderRadius: 1,
         px: 2,
         py: 1.5,
-        backgroundColor:
-          direction == null
-            ? theme.palette.action.hover
-            : alpha(flashColor, 0.08),
-        boxShadow:
-          direction == null ? 'none' : `0 0 0 2px ${alpha(flashColor, 0.25)}`,
+        backgroundColor: cardBackgroundColor,
+        boxShadow: cardBoxShadow,
         transition:
           'border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease',
       }}
@@ -134,16 +186,7 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
           position: 'absolute',
           inset: 0,
           opacity: 0.08,
-          background:
-            changePercent >= 0
-              ? `linear-gradient(135deg, ${alpha(
-                  theme.palette.success.main,
-                  0.25,
-                )}, transparent)`
-              : `linear-gradient(135deg, ${alpha(
-                  theme.palette.error.main,
-                  0.25,
-                )}, transparent)`,
+          background: backgroundGradient,
         }}
       />
 
@@ -157,17 +200,17 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
           }}
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            {isVix ? (
-              <AutoAwesomeIcon
-                sx={{ fontSize: 16, color: theme.palette.warning.main }}
-              />
-            ) : null}
+            {vixIcon}
             <Typography
               sx={{
-                fontFamily: theme.typography.fontFamilyMono,
+                fontFamily: typography.fontFamilyMono,
                 fontWeight: 700,
                 fontSize: '1rem',
                 letterSpacing: '0.08em',
+                color:
+                  changeDirection === 'flat'
+                    ? palette.text.primary
+                    : changeColor,
               }}
             >
               {symbol}
@@ -187,22 +230,15 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
         <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, mb: 0.5 }}>
           <Typography
             sx={{
-              fontFamily: theme.typography.fontFamilyMono,
+              fontFamily: typography.fontFamilyMono,
               fontSize: '1.25rem',
               fontWeight: 700,
               lineHeight: 1.2,
               padding: 0.5,
-              color:
-                direction == null ? theme.palette.text.primary : flashColor,
+              color: priceColor,
               transition: 'color 150ms ease',
-              ...(direction == null
-                ? {
-                    backgroundColor: alpha(theme.palette.text.primary, 0.0),
-                  }
-                : {
-                    backgroundColor: alpha(flashColor, 0.2),
-                    borderRadius: 1,
-                  }),
+              backgroundColor: priceBackgroundColor,
+              borderRadius: priceBorderRadius,
             }}
           >
             {displayValue}
@@ -210,18 +246,10 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          {changePercent > 0 ? (
-            <TrendingUpIcon
-              sx={{ fontSize: 16, color: theme.palette.success.main }}
-            />
-          ) : changePercent < 0 ? (
-            <TrendingDownIcon
-              sx={{ fontSize: 16, color: theme.palette.error.main }}
-            />
-          ) : null}
+          {trendIcon}
           <Typography
             sx={{
-              fontFamily: theme.typography.fontFamilyMono,
+              fontFamily: typography.fontFamilyMono,
               fontSize: '0.85rem',
               color: changeColor,
             }}
@@ -230,7 +258,7 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
           </Typography>
           <Typography
             sx={{
-              fontFamily: theme.typography.fontFamilyMono,
+              fontFamily: typography.fontFamilyMono,
               fontSize: '0.85rem',
               color: changeColor,
             }}
@@ -239,22 +267,20 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
           </Typography>
         </Box>
 
-        <Divider
-          sx={{ my: 1.5, borderColor: alpha(theme.palette.divider, 0.1) }}
-        />
+        <Divider sx={{ my: 1.5, borderColor: alpha(palette.divider, 0.1) }} />
 
         <Grid container spacing={1}>
           <Grid size={{ xs: 6 }}>
             <Typography
-              sx={{ fontSize: '0.7rem', color: theme.palette.text.secondary }}
+              sx={{ fontSize: '0.7rem', color: palette.text.secondary }}
             >
               H:
               <Box
                 component="span"
                 sx={{
                   ml: 0.5,
-                  fontFamily: theme.typography.fontFamilyMono,
-                  color: theme.palette.text.primary,
+                  fontFamily: typography.fontFamilyMono,
+                  color: palette.text.primary,
                 }}
               >
                 {high.toLocaleString('en-US', { maximumFractionDigits: 2 })}
@@ -263,15 +289,15 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
           </Grid>
           <Grid size={{ xs: 6 }}>
             <Typography
-              sx={{ fontSize: '0.7rem', color: theme.palette.text.secondary }}
+              sx={{ fontSize: '0.7rem', color: palette.text.secondary }}
             >
               L:
               <Box
                 component="span"
                 sx={{
                   ml: 0.5,
-                  fontFamily: theme.typography.fontFamilyMono,
-                  color: theme.palette.text.primary,
+                  fontFamily: typography.fontFamilyMono,
+                  color: palette.text.primary,
                 }}
               >
                 {low.toLocaleString('en-US', { maximumFractionDigits: 2 })}
