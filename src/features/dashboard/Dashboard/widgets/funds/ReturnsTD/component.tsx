@@ -18,15 +18,15 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     typography: { fontFamilyMono },
   } = theme;
   const columns: TableWidgetProps<ReturnsTDData>["columns"] = [
-    { accessorKey: "fund", header: "Fund", size: 140 },
+    { accessorKey: "fund", header: "Fund", minSize: 180 },
     {
       accessorKey: "strategy",
       header: "Strategy",
-      size: 140,
+      minSize: 180,
     },
     {
       accessorKey: "mtd",
-      size: 66,
+      minSize: 66,
       header: "MTD",
       cell: ({ getValue }) => {
         const value = getValue();
@@ -75,7 +75,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     {
       accessorKey: "ytd",
       header: "YTD",
-      size: 66,
+      minSize: 66,
       cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
@@ -100,7 +100,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     {
       accessorKey: "ltm",
       header: "LTM",
-      size: 66,
+      minSize: 66,
       cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
@@ -125,7 +125,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
     {
       accessorKey: "duration",
       header: "Duration",
-      size: 66,
+      minSize: 66,
       cell: ({ getValue }) => {
         const value = getValue();
         const v = Number(value);
@@ -170,7 +170,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       },
       header: "Leverage",
       meta: { align: "right" },
-      size: 66,
+      minSize: 66,
     },
     {
       accessorKey: "aum",
@@ -198,7 +198,7 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       },
       header: "AUM",
       meta: { align: "right" },
-      size: 120,
+      minSize: 180,
     },
   ];
 

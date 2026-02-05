@@ -63,8 +63,6 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
         sx={{
           borderCollapse: "collapse",
           fontSize: `round(${widgetFontSizeEm}em, 1px)`,
-          tableLayout: "fixed",
-          width: "100%",
         }}
       >
         <Box component="thead">
@@ -161,6 +159,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                         padding: `${paddingPx}px`,
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
+                        width: cell.column.getSize(),
                         ...(isFirst ? { paddingLeft: utmostPadding } : {}),
                         ...(isLast ? { paddingRight: utmostPadding } : {}),
                       }}
