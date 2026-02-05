@@ -167,139 +167,120 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
     )
   }
 
+  const cardSx = {
+    overflow: 'hidden',
+    border: `1px solid ${cardBorderColor}`,
+    borderRadius: 1,
+    px: 2,
+    py: 1.5,
+    backgroundColor: cardBackgroundColor,
+    boxShadow: cardBoxShadow,
+    transition:
+      'border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease',
+  }
+
+  const backgroundSx = {
+    position: 'absolute',
+    inset: 0,
+    opacity: 0.08,
+    background: backgroundGradient,
+  }
+
+  const headerSx = {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    mb: 1,
+  }
+
+  const symbolSx = {
+    fontFamily: typography.fontFamilyMono,
+    fontWeight: 700,
+    fontSize: '1rem',
+    letterSpacing: '0.08em',
+    color: changeDirection === 'flat' ? palette.text.primary : changeColor,
+  }
+
+  const stateBadgeSx = {
+    color: stateColor,
+    backgroundColor: alpha(stateColor, 0.12),
+    border: `5px solid ${alpha(stateColor, 0.3)}`,
+    borderRadius: '50%',
+    height: 'auto',
+  }
+
+  const priceSx = {
+    fontFamily: typography.fontFamilyMono,
+    fontSize: '1.25rem',
+    fontWeight: 700,
+    lineHeight: 1.2,
+    padding: 0.5,
+    color: priceColor,
+    transition: 'color 150ms ease',
+    backgroundColor: priceBackgroundColor,
+    borderRadius: priceBorderRadius,
+  }
+
+  const changeTextSx = {
+    fontFamily: typography.fontFamilyMono,
+    fontSize: '0.85rem',
+    color: changeColor,
+  }
+
+  const dividerSx = {
+    my: 1.5,
+    borderColor: alpha(palette.divider, 0.1),
+  }
+
+  const statLabelSx = {
+    fontSize: '0.7rem',
+    color: palette.text.secondary,
+  }
+
+  const statValueSx = {
+    ml: 0.5,
+    fontFamily: typography.fontFamilyMono,
+    color: palette.text.primary,
+  }
+
   return (
-    <Box
-      sx={{
-        overflow: 'hidden',
-        border: `1px solid ${cardBorderColor}`,
-        borderRadius: 1,
-        px: 2,
-        py: 1.5,
-        backgroundColor: cardBackgroundColor,
-        boxShadow: cardBoxShadow,
-        transition:
-          'border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease',
-      }}
-    >
-      <Box
-        sx={{
-          position: 'absolute',
-          inset: 0,
-          opacity: 0.08,
-          background: backgroundGradient,
-        }}
-      />
+    <Box sx={cardSx}>
+      <Box sx={backgroundSx} />
 
       <Box sx={{ position: 'relative' }}>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            mb: 1,
-          }}
-        >
+        <Box sx={headerSx}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             {vixIcon}
-            <Typography
-              sx={{
-                fontFamily: typography.fontFamilyMono,
-                fontWeight: 700,
-                fontSize: '1rem',
-                letterSpacing: '0.08em',
-                color:
-                  changeDirection === 'flat'
-                    ? palette.text.primary
-                    : changeColor,
-              }}
-            >
-              {symbol}
-            </Typography>
+            <Typography sx={symbolSx}>{symbol}</Typography>
           </Box>
-          <Badge
-            sx={{
-              color: stateColor,
-              backgroundColor: alpha(stateColor, 0.12),
-              border: `5px solid ${alpha(stateColor, 0.3)}`,
-              borderRadius: '50%',
-              height: 'auto',
-            }}
-          />
+          <Badge sx={stateBadgeSx} />
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'baseline', gap: 1, mb: 0.5 }}>
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamilyMono,
-              fontSize: '1.25rem',
-              fontWeight: 700,
-              lineHeight: 1.2,
-              padding: 0.5,
-              color: priceColor,
-              transition: 'color 150ms ease',
-              backgroundColor: priceBackgroundColor,
-              borderRadius: priceBorderRadius,
-            }}
-          >
-            {displayValue}
-          </Typography>
+          <Typography sx={priceSx}>{displayValue}</Typography>
         </Box>
 
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           {trendIcon}
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamilyMono,
-              fontSize: '0.85rem',
-              color: changeColor,
-            }}
-          >
-            {changeDisplay}
-          </Typography>
-          <Typography
-            sx={{
-              fontFamily: typography.fontFamilyMono,
-              fontSize: '0.85rem',
-              color: changeColor,
-            }}
-          >
-            {percentDisplay}
-          </Typography>
+          <Typography sx={changeTextSx}>{changeDisplay}</Typography>
+          <Typography sx={changeTextSx}>{percentDisplay}</Typography>
         </Box>
 
-        <Divider sx={{ my: 1.5, borderColor: alpha(palette.divider, 0.1) }} />
+        <Divider sx={dividerSx} />
 
         <Grid container spacing={1}>
           <Grid size={{ xs: 6 }}>
-            <Typography
-              sx={{ fontSize: '0.7rem', color: palette.text.secondary }}
-            >
+            <Typography sx={statLabelSx}>
               H:
-              <Box
-                component="span"
-                sx={{
-                  ml: 0.5,
-                  fontFamily: typography.fontFamilyMono,
-                  color: palette.text.primary,
-                }}
-              >
+              <Box component="span" sx={statValueSx}>
                 {high.toLocaleString('en-US', { maximumFractionDigits: 2 })}
               </Box>
             </Typography>
           </Grid>
           <Grid size={{ xs: 6 }}>
-            <Typography
-              sx={{ fontSize: '0.7rem', color: palette.text.secondary }}
-            >
+            <Typography sx={statLabelSx}>
               L:
-              <Box
-                component="span"
-                sx={{
-                  ml: 0.5,
-                  fontFamily: typography.fontFamilyMono,
-                  color: palette.text.primary,
-                }}
-              >
+              <Box component="span" sx={statValueSx}>
                 {low.toLocaleString('en-US', { maximumFractionDigits: 2 })}
               </Box>
             </Typography>
