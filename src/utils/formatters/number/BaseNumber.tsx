@@ -15,6 +15,7 @@ export interface BaseNumberUnit {
 }
 
 export interface BaseNumberOptions {
+  coloredPositiveNegative?: boolean;
   fractionDigits?: number;
   unit?: BaseNumberUnit;
 }
@@ -26,15 +27,20 @@ export interface BaseNumberProps extends Omit<BoxProps, "children"> {
 
 export function BaseNumber(props: BaseNumberProps) {
   const { options, value, ...boxProps } = props;
-  const { fractionDigits = 2, unit } = options ?? {};
+  const {
+    coloredPositiveNegative = false,
+    fractionDigits = 2,
+    unit,
+  } = options ?? {};
   const { name: unitName = null, position: unitPos = "after" } = unit ?? {};
   const theme = useTheme();
   const {
-    palette: { text },
+    palette: { error, success },
     typography: { fontFamilyMono },
   } = theme;
 
-  const formattedNumber = Number(value).toFixed(fractionDigits);
+  const number = Number(value);
+  const formattedNumber = number.toFixed(fractionDigits);
   const children: ReactNode[] = [formattedNumber];
 
   if (unitName) {
@@ -42,7 +48,7 @@ export function BaseNumber(props: BaseNumberProps) {
       <Box
         component="span"
         key={unitName}
-        sx={{ color: text.secondary, opacity: 0.75 }}
+        sx={{ color: "inherit", opacity: 0.5 }}
       >
         {decode(unitName)}
       </Box>
@@ -55,11 +61,15 @@ export function BaseNumber(props: BaseNumberProps) {
     }
   }
 
+  const numberColor = number > 0 ? success.main : error.main;
+  const color = coloredPositiveNegative ? numberColor : "inherited";
+
   return (
     <Box
       component="span"
       data-testid="BaseNumber"
       sx={{
+        color,
         fontFamily: fontFamilyMono,
         fontSize: "round(92%, 1px)",
       }}

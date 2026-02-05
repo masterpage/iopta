@@ -63,7 +63,10 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       header: "YTD",
       minSize: 66,
       cell: ({ getValue }) => (
-        <BaseNumber value={getValue()} options={{ unit: { name: "%" } }} />
+        <BaseNumber
+          value={getValue()}
+          options={{ coloredPositiveNegative: true, unit: { name: "%" } }}
+        />
       ),
       meta: { align: "right" },
     },
