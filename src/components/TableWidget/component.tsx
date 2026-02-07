@@ -17,6 +17,7 @@ import {
 
 import {
   defaultRglProps,
+  SortIndicator,
   Widget,
   WIDGET_PADDING_CONTENT,
   type WidgetProps,
@@ -89,11 +90,8 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                 const isFirst = i === 0;
                 const isLast = i === headers.length - 1;
                 const { align = "left" } = h.column.columnDef.meta || {};
-                const headerAlign = align === "left" ? "space-between" : align;
-                /**
-                 * false | 'asc' | 'desc'
-                 */
-                const isSorted = h.column.getIsSorted();
+                const isAlignLeft = align === "left";
+                const headerAlign = isAlignLeft ? "space-between" : align;
 
                 return (
                   <Box
@@ -112,23 +110,44 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                       sx={{
                         alignItems: "center",
                         display: "flex",
-                        gap: "7px",
+                        gap: `${paddingPx}px`,
                         height: twoLineHeaderHeight,
                         justifyContent: headerAlign,
                       }}
                     >
-                      <Box component="span">
-                        {flexRender(h.column.columnDef.header, h.getContext())}
-                        {h.column.getCanSort() && (
-                          <Box component="span">
-                            {" "}
-                            {isSorted === "asc"
-                              ? "🔼"
-                              : isSorted === "desc"
-                                ? "🔽"
-                                : "↕️"}
-                          </Box>
-                        )}
+                      <Box
+                        component="span"
+                        data-testid="labelWithSortIndicator"
+                        sx={{
+                          alignItems: "center",
+                          display: "flex",
+                          flexDirection: isAlignLeft ? "row" : "row-reverse",
+                          gap: "0.375em",
+                          lineHeight: "normal",
+                          textAlign: align,
+                        }}
+                      >
+                        <Box
+                          component="span"
+                          data-testid="label"
+                          sx={{
+                            display: "-webkit-box",
+                            overflow: "hidden",
+                            WebkitBoxOrient: "vertical",
+                            WebkitLineClamp: 2,
+                          }}
+                        >
+                          {flexRender(
+                            h.column.columnDef.header,
+                            h.getContext(),
+                          )}
+                        </Box>
+                        <SortIndicator
+                          data-testid="SortIndicator"
+                          sx={{ display: "flex" }}
+                          canSort={h.column.getCanSort()}
+                          isSorted={h.column.getIsSorted()}
+                        />
                       </Box>
                       {!isLast && (
                         <Box
