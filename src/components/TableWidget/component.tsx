@@ -86,11 +86,12 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
               }}
             >
               {hg.headers.map((h, i, headers) => {
-                const canResize = h.column.getCanResize();
-                const canSort = h.column.getCanSort();
+                const { column } = h;
+                const canResize = column.getCanResize();
+                const canSort = column.getCanSort();
                 const isFirst = i === 0;
                 const isLast = i === headers.length - 1;
-                const { align = "left" } = h.column.columnDef.meta || {};
+                const { align = "left" } = column.columnDef.meta || {};
                 const isAlignLeft = align === "left";
                 const headerAlign = isAlignLeft ? "space-between" : align;
 
@@ -107,7 +108,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                     }}
                   >
                     <Box
-                      onClick={h.column.getToggleSortingHandler()}
+                      onClick={column.getToggleSortingHandler()}
                       sx={{
                         alignItems: "center",
                         display: "flex",
@@ -148,16 +149,13 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                             WebkitLineClamp: 2,
                           }}
                         >
-                          {flexRender(
-                            h.column.columnDef.header,
-                            h.getContext(),
-                          )}
+                          {flexRender(column.columnDef.header, h.getContext())}
                         </Box>
                         <SortIndicator
                           data-testid="SortIndicator"
                           sx={{ display: "flex" }}
-                          canSort={h.column.getCanSort()}
-                          isSorted={h.column.getIsSorted()}
+                          canSort={column.getCanSort()}
+                          isSorted={column.getIsSorted()}
                         />
                       </Box>
                       {!isLast && (
