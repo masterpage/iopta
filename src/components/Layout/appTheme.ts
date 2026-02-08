@@ -155,10 +155,13 @@ export const getAppTheme = (mode: PaletteMode) => {
         },
       },
       MuiLink: {
+        defaultProps: { underline: "always" },
         styleOverrides: {
           root: {
-            textDecoration: "underline",
             textUnderlineOffset: "0.125em",
+          },
+          underlineAlways: {
+            textDecoration: "underline",
           },
         },
       },

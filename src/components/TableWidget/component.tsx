@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-import { Box, useTheme } from "@mui/material";
+import { Box, Link, useTheme } from "@mui/material";
 import {
   ColumnSizingState,
   flexRender,
@@ -87,6 +87,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
             >
               {hg.headers.map((h, i, headers) => {
                 const canResize = h.column.getCanResize();
+                const canSort = h.column.getCanSort();
                 const isFirst = i === 0;
                 const isLast = i === headers.length - 1;
                 const { align = "left" } = h.column.columnDef.meta || {};
@@ -116,7 +117,16 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                       }}
                     >
                       <Box
-                        component="span"
+                        {...(canSort
+                          ? {
+                              component: Link,
+                              role: "link",
+                              underline: "none",
+                            }
+                          : {
+                              component: "span",
+                              role: "columnheader",
+                            })}
                         data-testid="labelWithSortIndicator"
                         sx={{
                           alignItems: "center",
@@ -125,6 +135,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                           gap: "0.375em",
                           lineHeight: "normal",
                           textAlign: align,
+                          userSelect: "none",
                         }}
                       >
                         <Box
