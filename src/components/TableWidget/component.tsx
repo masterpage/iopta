@@ -131,6 +131,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
                         data-testid="labelWithSortIndicator"
                         sx={{
                           alignItems: "center",
+                          cursor: canSort ? "pointer" : "default",
                           display: "flex",
                           flexDirection: isAlignLeft ? "row" : "row-reverse",
                           gap: "0.375em",
