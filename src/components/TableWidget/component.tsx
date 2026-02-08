@@ -50,6 +50,7 @@ export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
     data,
     enableColumnResizing: true,
     enableSorting: true,
+    enableSortingRemoval: false,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
