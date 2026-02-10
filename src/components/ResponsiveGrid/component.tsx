@@ -1,35 +1,22 @@
 "use client";
 
-import { Box, useTheme } from "@mui/material";
-import {
-  type ResponsiveGridLayoutProps,
-  ResponsiveGridLayout,
-  useContainerWidth,
-} from "react-grid-layout";
+import { Box } from "@mui/material";
+import { ResponsiveGridLayout, useContainerWidth } from "react-grid-layout";
 
 import { useViewportSize } from "@/hooks";
 
+import { defaultRglProps } from "./consts";
 import { reactGridLayout } from "./styles";
-
-interface ResponsiveGridProps
-  extends Omit<ResponsiveGridLayoutProps, "width">,
-    Partial<Pick<ResponsiveGridLayoutProps, "width">> {}
+import { ResponsiveGridProps } from "./types";
 
 export function ResponsiveGrid(props: ResponsiveGridProps) {
-  const theme = useTheme();
   const { width: viewportWidth } = useViewportSize();
   const { mounted } = useContainerWidth();
   const {
     children,
-    cols = { xl: 18, lg: 12, md: 8, sm: 4, xs: 1 },
-    margin = {
-      sm: [24, 24],
-      xs: [16, 16],
-    },
     width = viewportWidth,
     ...rglProps
-  } = props;
-  const { mdUp, smDown, ...breakpoints } = theme.breakpoints.values;
+  } = { ...defaultRglProps, ...props };
 
   if (!(mounted && width)) {
     return null;
@@ -42,7 +29,10 @@ export function ResponsiveGrid(props: ResponsiveGridProps) {
           cancel: ".no-drag, .MuiButtonBase-root, input, textarea, select",
           handle: ".widget-drag-handle",
         }}
-        {...{ breakpoints, cols, margin, width, ...rglProps }}
+        {...{
+          width,
+          ...rglProps,
+        }}
       >
         {children}
       </ResponsiveGridLayout>

@@ -9,8 +9,12 @@ export function Dashboard() {
   const { currentDashType } = useContextUi();
   const { cols, layouts, widgets } = useMemo(
     () => getDashboard(currentDashType),
-    [currentDashType]
+    [currentDashType],
   );
 
-  return <ResponsiveGrid {...{ cols, layouts }}>{widgets}</ResponsiveGrid>;
+  return (
+    <ResponsiveGrid {...{ cols, layouts }} autoSize>
+      {widgets}
+    </ResponsiveGrid>
+  );
 }
