@@ -146,6 +146,13 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
   return (
     <TableWidget
       {...{ columns, data, ...props }}
+      defaultState={{
+        sorting: [
+          { id: "mtd", desc: true },
+          { id: "ytd", desc: true },
+          { id: "aum", desc: true },
+        ],
+      }}
       fullBleed
       title="Returns"
       subTitle="MTD/YTD"
