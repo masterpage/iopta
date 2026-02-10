@@ -141,11 +141,11 @@ export function ReturnsTD(props: Omit<WidgetProps, "title">) {
       sortingFn: "alphanumeric",
     },
   ];
+  const data = dataReturnsTD.slice(0, 8);
 
   return (
     <TableWidget
-      {...{ columns, ...props }}
-      data={dataReturnsTD}
+      {...{ columns, data, ...props }}
       fullBleed
       title="Returns"
       subTitle="MTD/YTD"
