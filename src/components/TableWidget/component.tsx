@@ -23,20 +23,29 @@ import {
   type WidgetProps,
 } from "@/components";
 
+interface TableWidgetDefaultState {
+  columnSizing?: ColumnSizingState;
+  sorting?: SortingState;
+}
+
 export interface TableWidgetProps<D extends object> extends Omit<
   WidgetProps,
   "children"
 > {
   columns: ColumnDef<D>[];
   data: D[];
+  defaultState?: TableWidgetDefaultState;
 }
 
 export function TableWidget<D extends object>(props: TableWidgetProps<D>) {
-  const { columns, data, ...widgetProps } = props;
-  const [columnSizing, setColumnSizing] = useState<ColumnSizingState>({});
-  const [sorting, setSorting] = useState<SortingState>([
-    { id: "fund", desc: false },
-  ]);
+  const { columns, data, defaultState, ...widgetProps } = props;
+  const {
+    columnSizing: defaultColumnSizing = {},
+    sorting: defaultSorting = [],
+  } = defaultState ?? {};
+  const [columnSizing, setColumnSizing] =
+    useState<ColumnSizingState>(defaultColumnSizing);
+  const [sorting, setSorting] = useState<SortingState>(defaultSorting);
   const theme = useTheme();
   const {
     palette: { grey, mode, text },
