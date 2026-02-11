@@ -111,20 +111,12 @@ export const getAppTheme = (mode: PaletteMode) => {
         },
       },
       MuiCssBaseline: {
-        styleOverrides: ({ palette }) => ({
-          body: {
-            ...(palette.mode === "dark" && { background: "inherit" }),
-          },
+        styleOverrides: () => ({
           "dd, dl": {
             lineHeight: "1rem",
             margin: "unset",
           },
           html: {
-            ...(palette.mode === "dark" && {
-              backgroundColor: palette.background.paper,
-              backgroundImage:
-                "linear-gradient(rgba(255, 255, 255, 0.051), rgba(255, 255, 255, 0.051))",
-            }),
             minHeight: "100%",
             position: "relative",
           },
