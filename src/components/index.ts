@@ -11,6 +11,7 @@ export * from "./StyledPage";
 export * from "./Table";
 export * from "./TableWidget";
 export * from "./ThemedAgGrid";
+export * from "./Tile";
 export * from "./types";
 export * from "./Version";
 export * from "./Widget";
