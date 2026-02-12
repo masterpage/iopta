@@ -1,6 +1,6 @@
-import { Placeholder, Widget, WidgetProps } from "@/components";
+import { Placeholder, Widget, type WidgetProps } from "@/components";
 
-export function BuySell(props: Omit<WidgetProps, "title">) {
+export function BuySellWidget(props: Omit<WidgetProps, "title">) {
   return (
     <Widget {...props} title="Buy/Sell">
       <Placeholder sx={{ backgroundColor: "unset", flex: 1 }}>
