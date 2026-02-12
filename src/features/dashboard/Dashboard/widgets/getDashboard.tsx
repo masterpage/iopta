@@ -80,9 +80,9 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
         },
         { i: "ReturnsTD", x: 0, y: 1, w: 9, ...getH(10) },
         { i: "Buy/Sell", x: 9, y: 1, w: 9, ...getH(10) },
-        { i: "ReturnsLast", x: 0, y: 2, w: 8, h: 5 },
-        { i: "EquityAndLeverage", x: 0, y: 3, w: 8, h: 5 },
-        { i: "Categories", x: 8, y: 2, w: 10, h: 10 },
+        { i: "ReturnsLast", x: 0, y: 2, w: 9, h: 5 },
+        { i: "EquityAndLeverage", x: 0, y: 3, w: 9, h: 5 },
+        { i: "Categories", x: 9, y: 2, w: 9, h: 10 },
       ],
       lg: [
         {
@@ -95,9 +95,9 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
         },
         { i: "ReturnsTD", x: 0, y: 1, w: 12, ...getH(10) },
         { i: "ReturnsLast", x: 0, y: 2, w: 12, ...getH(10) },
-        { i: "Buy/Sell", x: 0, y: 3, w: 5, h: 5 },
-        { i: "EquityAndLeverage", x: 0, y: 4, w: 5, h: 5 },
-        { i: "Categories", x: 5, y: 3, w: 7, h: 10 },
+        { i: "Buy/Sell", x: 0, y: 3, w: 6, h: 5 },
+        { i: "EquityAndLeverage", x: 0, y: 4, w: 6, h: 5 },
+        { i: "Categories", x: 6, y: 3, w: 6, h: 10 },
       ],
       md: [
         {
