@@ -4,19 +4,24 @@ import { Tile } from "@/components";
 import { dataReturnsTD } from "../ReturnsTD";
 import { BaseNumber } from "@/utils";
 
-const rows = 8;
 const ccy = new Intl.NumberFormat("en-US", {
   currency: "USD",
   maximumFractionDigits: 2,
   notation: "compact",
   style: "currency",
 });
+/**
+ * Desired number of rows to show.
+ * Must be equal or less of `dataReturnsTD` length.
+ */
+const rows = 8;
+const funds = rows <= dataReturnsTD.length ? rows : dataReturnsTD.length;
 const { avgLeverage, totalAum } = dataReturnsTD
-  .slice(0, rows)
+  .slice(0, funds)
   .reduce<{ avgLeverage: number; totalAum: number }>(
     (acc, curr, i) => {
       const { aum, leverage } = curr;
-      const isLastRow = i === rows - 1;
+      const isLastRow = i === funds - 1;
 
       acc = {
         avgLeverage: acc.avgLeverage + leverage,
@@ -26,7 +31,7 @@ const { avgLeverage, totalAum } = dataReturnsTD
       if (isLastRow) {
         return {
           ...acc,
-          avgLeverage: acc.avgLeverage / rows,
+          avgLeverage: acc.avgLeverage / funds,
         };
       }
 
