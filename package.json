@@ -28,6 +28,7 @@
     "react-dom": "19.1.0",
     "react-grid-layout": "^2.2.2",
     "react-string-replace": "^1.1.1",
+    "recharts": "^3.7.0",
     "schema-dts": "^1.1.5"
   },
   "description": "iOpta web app",
