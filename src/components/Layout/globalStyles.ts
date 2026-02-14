@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const globalStyles = () => css`
   .grecaptcha-badge {
@@ -7,5 +7,10 @@ export const globalStyles = () => css`
 
   .nobreak {
     white-space: nowrap;
+  }
+
+  svg:focus,
+  svg *:focus {
+    outline: none;
   }
 `;
