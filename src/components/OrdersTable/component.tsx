@@ -1,24 +1,19 @@
-import { useState } from "react";
 import type { ColDef, ICellRendererParams } from "ag-grid-community";
+
+import { useState } from "react";
+
 import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
-import {
-  formatDateSettings,
-  Id,
-  Lozenge,
-  ThemedAgGrid,
-} from "@/components/ThemedAgGrid";
-import { Order, orders, OrderSide, OrderStatus } from "src/data";
-import {
-  deepOrange,
-  green,
-  grey,
-  blue,
-  pink,
-  cyan,
-  lime,
-} from "@mui/material/colors";
+
+import { formatDateSettings, ThemedAgGrid } from "@/components/ThemedAgGrid";
+
+import { Order, orders } from "src/data";
 import { SecurityDialog, SecurityDialogProps } from "../SecurityDialog";
-import { Link } from "@mui/material";
+import {
+  CellRendererOrderId,
+  CellRendererSecurity,
+  CellRendererSide,
+  CellRendererStatus,
+} from "./cellRenderer";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
@@ -30,13 +25,7 @@ export function OrdersTable() {
     {
       field: "orderId",
       headerName: "Order ID",
-      cellRenderer: ({ value }: ICellRendererParams<Order, string>) => {
-        if (!value) return "";
-
-        const [, , id] = value?.split("-");
-
-        return Id({ value: id });
-      },
+      cellRenderer: CellRendererOrderId,
       width: 90,
     },
     {
@@ -47,13 +36,7 @@ export function OrdersTable() {
     { field: "broker", width: 160 },
     {
       field: "side",
-      cellRenderer: ({ value }: ICellRendererParams<Order, OrderSide>) =>
-        Lozenge<OrderSide>({
-          value,
-          options: {
-            colorMap: { BUY: green, SELL: deepOrange },
-          },
-        }),
+      cellRenderer: CellRendererSide,
       width: 80,
     },
     {
@@ -70,32 +53,7 @@ export function OrdersTable() {
     {
       field: "status",
       width: 160,
-      cellRenderer: ({ value }: ICellRendererParams<Order, OrderStatus>) => {
-        return Lozenge<OrderStatus>({
-          value,
-          options: {
-            colorMap: {
-              ACCEPTED: green,
-              CANCELLED: grey,
-              FILLED: cyan,
-              NEW: blue,
-              PARTIALLY_FILLED: lime,
-              REJECTED: pink,
-            },
-            format: (v) => {
-              if (!v) return "";
-
-              let formatted: string = v;
-
-              if (v === "PARTIALLY_FILLED") {
-                formatted = "part.filled";
-              }
-
-              return formatted.replace(/_/g, " ").toUpperCase();
-            },
-          },
-        });
-      },
+      cellRenderer: CellRendererStatus,
     },
     { field: "orderType", width: 120 },
     { field: "fund" },
@@ -107,32 +65,8 @@ export function OrdersTable() {
     {
       field: "security",
       width: 140,
-      cellRenderer: (params: ICellRendererParams<Order, string>) => {
-        const { value, data } = params;
-
-        if (!value) return "";
-
-        const formattedValue = <Id value={value} />;
-
-        if (data) {
-          const { securityType } = data;
-
-          if (securityType === "Equity") {
-            return (
-              <Link
-                onClick={() => {
-                  setSelectedSecurity(value);
-                }}
-                sx={{ cursor: "pointer" }}
-              >
-                {formattedValue}
-              </Link>
-            );
-          }
-        }
-
-        return formattedValue;
-      },
+      cellRenderer: (params: ICellRendererParams<Order, string>) =>
+        CellRendererSecurity({ ...params, setSelectedSecurity }),
     },
     {
       cellDataType: "currency",
