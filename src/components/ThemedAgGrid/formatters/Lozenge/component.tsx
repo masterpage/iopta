@@ -1,15 +1,18 @@
-import { getSx, setAlphaColor } from "@/utils";
-import { Box, BoxProps, Color, PaletteMode } from "@mui/material";
 import type { ICellRendererParams } from "ag-grid-community";
+
+import {
+  Box,
+  type BoxProps,
+  type Color,
+  type PaletteMode,
+} from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-type MuiColorShade = keyof Color;
+import { getSx, setAlphaColor } from "@/utils";
 
-type MuiColor = Record<MuiColorShade, string>;
+type LozengeColorMode = Record<PaletteMode, keyof Color>;
 
-type LozengeColorMode = Record<PaletteMode, MuiColorShade>;
-
-type LozengeOptionsColorMap<V extends string> = Record<V, MuiColor>;
+type LozengeOptionsColorMap<V extends string> = Record<V, Color | string>;
 
 interface LozengeOptions<V extends string = string> {
   /**
@@ -22,16 +25,13 @@ interface LozengeOptions<V extends string = string> {
 }
 
 interface LozengeProps<V extends string>
-  extends BoxProps,
-    Pick<ICellRendererParams<any, V>, "value"> {
+  extends BoxProps, Pick<ICellRendererParams<any, V>, "value"> {
   options: LozengeOptions<V>;
 }
 
 export function Lozenge<V extends string = string>(props: LozengeProps<V>) {
   const { options, sx, value, ...boxProps } = props;
   const { colorMap, colorMode, format = (v) => v } = options;
-  const { dark = 300, light = 700 } = colorMode || {};
-  const valueColor = (value && colorMap[value]) ?? grey;
   const formattedValue = format(value);
 
   return (
@@ -43,8 +43,16 @@ export function Lozenge<V extends string = string>(props: LozengeProps<V>) {
           palette: { mode },
           typography: { fontFamilyMono },
         } = theme;
-        const isLightMode = mode === "light";
-        const color = valueColor[isLightMode ? light : dark];
+        const valueColor = (value && colorMap[value]) ?? grey;
+        let color: string;
+
+        if (typeof valueColor === "object") {
+          const { dark = 300, light = 700 } = colorMode || {};
+
+          color = valueColor[mode === "light" ? light : dark];
+        } else {
+          color = valueColor;
+        }
 
         return {
           backgroundColor: setAlphaColor(color, 0.15),

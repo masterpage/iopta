@@ -4,7 +4,7 @@ import { EnvKey } from "@/utils";
 declare global {
   interface ArrayConstructor {
     isArray(
-      arg: ReadonlyArray<unknown> | unknown
+      arg: ReadonlyArray<unknown> | unknown,
     ): arg is ReadonlyArray<unknown>;
   }
 
@@ -76,6 +76,15 @@ declare module "@mui/material/styles" {
   interface CSSProperties {
     fontVariantNumeric: FontVariantNumeric[];
   }
+
+  interface IoptaPalette {
+    buy: PaletteColorOptions;
+    sell: PaletteColorOptions;
+  }
+
+  interface Palette extends IoptaPalette {}
+
+  interface PaletteOptions extends Partial<IoptaPalette> {}
 }
 
 declare module "node_modules/@mui/material/styles/createTypography" {

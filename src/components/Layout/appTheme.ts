@@ -7,7 +7,7 @@ import {
   ThemeOptions,
   TypographyVariantsOptions,
 } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { deepOrange, grey, teal } from "@mui/material/colors";
 
 const fontFamily: TypographyVariantsOptions["fontFamily"] = [
   "Roboto",
@@ -53,6 +53,11 @@ export const breakpointsValues: Omit<Breakpoints["values"], "mdUp" | "smDown"> =
   };
 
 export const getAppTheme = (mode: PaletteMode) => {
+  const {
+    palette: { augmentColor },
+  } = createTheme({ palette: { mode } });
+  const isLightMode = mode === "light";
+  const modeColorShade = isLightMode ? 700 : 300;
   const themeOptions: ThemeOptions = {
     breakpoints: {
       keys: ["xs", "sm", "mdUp", "md", "lg", "xl"],
@@ -179,8 +184,14 @@ export const getAppTheme = (mode: PaletteMode) => {
       },
     },
     palette: {
-      ...(mode === "light" && { background: { default: grey[100] } }),
+      ...(isLightMode && { background: { default: grey[100] } }),
+      buy: augmentColor({
+        color: { main: teal[modeColorShade] },
+      }),
       mode,
+      sell: augmentColor({
+        color: { main: deepOrange[modeColorShade] },
+      }),
     },
     typography: {
       allVariants: {
