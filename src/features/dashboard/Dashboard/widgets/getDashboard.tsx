@@ -7,7 +7,7 @@ import {
   EquityAndLeverage,
   FirmCategories,
   FundsTiles,
-  ReturnsLast,
+  ReturnsLastWidget,
   ReturnsTD,
 } from "./funds";
 import { Allocations, Analytics, HypoTrades } from "./allocations";
@@ -153,7 +153,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
     widgets = [
       <FundsTiles key="FundsTiles" />,
       <ReturnsTD key="ReturnsTD" />,
-      <ReturnsLast key="ReturnsLast" />,
+      <ReturnsLastWidget key="ReturnsLast" />,
       <BuySellWidget key="Buy/Sell" />,
       <EquityAndLeverage key="EquityAndLeverage" />,
       <FirmCategories key="Categories" />,
