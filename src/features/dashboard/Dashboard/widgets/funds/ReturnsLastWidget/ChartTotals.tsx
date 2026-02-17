@@ -32,9 +32,9 @@ const pct = (n?: number | string | null) =>
   typeof n === "number" ? `${n.toFixed(2)}%` : (n ?? "");
 
 export function ChartTotals() {
-  const [showYtd, setShowYtd] = useState(true);
-  const [showMtd, setShowMtd] = useState(true);
-  const [showTotal, setShowTotal] = useState(true);
+  const [showYtd] = useState(true);
+  const [showMtd] = useState(true);
+  const [showTotal] = useState(true);
   const theme = useTheme();
   const {
     palette: { grey, mode, text },

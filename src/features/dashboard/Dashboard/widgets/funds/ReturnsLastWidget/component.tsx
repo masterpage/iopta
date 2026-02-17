@@ -1,7 +1,7 @@
 "use client";
 
 import { Widget, WidgetProps } from "@/components";
-import { ChartMultiFund } from "./ChartMultiFund/component";
+import { ChartMultiFund } from "./ChartMultiFund";
 
 export function ReturnsLastWidget(props: Omit<WidgetProps, "title">) {
   return (
