@@ -4,14 +4,14 @@ import { Grid } from "@mui/material";
 
 import { Placeholder, Widget, WidgetProps } from "@/components";
 
-import { MultiFundChart } from "./MultiFundChart";
+import { ChartMultiFund } from "./ChartMultiFund";
 
 export function ReturnsLastWidget(props: Omit<WidgetProps, "title">) {
   return (
     <Widget {...props} title="Returns" subTitle="Last 12mo">
       <Grid container columns={4} spacing="10px" sx={{ flex: 1 }}>
         <Grid
-          component={MultiFundChart}
+          component={ChartMultiFund}
           size={{ md: 3, xs: 4 }}
           sx={{ height: "unset" }}
         >

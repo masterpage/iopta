@@ -11,9 +11,9 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { dataReturnsLast } from "./data";
+import { dataReturnsLast } from "../data";
 import { useMemo } from "react";
-import { ReturnsLast } from "./types";
+import { ReturnsLast } from "../types";
 
 // ---- Colors (optional palette) ----
 const FUND_COLORS: string[] = [
@@ -60,7 +60,7 @@ const monthTick = (iso: string) => {
   return `${m}’${yy}`;
 };
 
-export function MultiFundChart() {
+export function ChartMultiFund() {
   const theme = useTheme();
   const {
     palette: {
