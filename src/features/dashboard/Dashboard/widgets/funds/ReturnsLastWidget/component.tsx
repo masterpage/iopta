@@ -6,7 +6,7 @@ import { Placeholder, Widget, WidgetProps } from "@/components";
 
 import { MultiFundChart } from "./MultiFundChart";
 
-export function ReturnsLast(props: Omit<WidgetProps, "title">) {
+export function ReturnsLastWidget(props: Omit<WidgetProps, "title">) {
   return (
     <Widget {...props} title="Returns" subTitle="Last 12mo">
       <Grid container columns={4} spacing="10px" sx={{ flex: 1 }}>
