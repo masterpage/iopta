@@ -2,6 +2,7 @@ import {
   Breakpoints,
   createTheme,
   CSSProperties,
+  darkScrollbar,
   PaletteMode,
   Theme,
   ThemeOptions,
@@ -116,7 +117,8 @@ export const getAppTheme = (mode: PaletteMode) => {
         },
       },
       MuiCssBaseline: {
-        styleOverrides: () => ({
+        styleOverrides: (themeParams) => ({
+          body: themeParams.palette.mode === "dark" ? darkScrollbar() : null,
           "dd, dl": {
             lineHeight: "1rem",
             margin: "unset",
