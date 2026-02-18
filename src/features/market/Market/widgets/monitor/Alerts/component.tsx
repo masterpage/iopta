@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useMemo, useState } from "react";
 
 import {
   Badge,
@@ -7,34 +7,36 @@ import {
   Stack,
   Typography,
   useTheme,
-} from '@mui/material'
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
-import WarningAmberIcon from '@mui/icons-material/WarningAmber'
-import CloseIcon from '@mui/icons-material/Close'
-import { alpha } from '@mui/material/styles'
+} from "@mui/material";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import WarningAmberIcon from "@mui/icons-material/WarningAmber";
+import CloseIcon from "@mui/icons-material/Close";
+import { alpha } from "@mui/material/styles";
 
-import { Widget, WidgetProps } from '@/components'
-import { mockAlerts, typeLabels } from 'src/data/alerts'
+import { Widget, WidgetProps } from "@/components";
+import { mockAlerts, typeLabels } from "src/data/alerts";
 
 function formatRelativeTime(timestamp: string) {
-  const now = Date.now()
-  const then = new Date(timestamp).getTime()
-  const diffMs = Math.max(0, now - then)
-  const minutes = Math.floor(diffMs / (1000 * 60))
-  if (minutes < 1) return 'just now'
-  if (minutes < 60) return `${minutes}m ago`
-  const hours = Math.floor(minutes / 60)
-  if (hours < 24) return `${hours}h ago`
-  const days = Math.floor(hours / 24)
-  return `${days}d ago`
+  const now = Date.now();
+  const then = new Date(timestamp).getTime();
+  const diffMs = Math.max(0, now - then);
+  const minutes = Math.floor(diffMs / (1000 * 60));
+  if (minutes < 1) return "just now";
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.floor(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.floor(hours / 24);
+  return `${days}d ago`;
 }
 
-export function Alerts(props: Omit<WidgetProps, 'title'>) {
-  const { palette, typography } = useTheme()
-  const [acknowledgedIds, setAcknowledgedIds] = useState<Set<string>>(new Set())
-  const alerts = mockAlerts
+export function Alerts(props: Omit<WidgetProps, "title">) {
+  const { palette, typography } = useTheme();
+  const [acknowledgedIds, setAcknowledgedIds] = useState<Set<string>>(
+    new Set(),
+  );
+  const alerts = mockAlerts;
 
   const severityConfig = useMemo(
     () => ({
@@ -58,16 +60,16 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
       },
     }),
     [palette.error.main, palette.info.main, palette.warning.main],
-  )
+  );
 
-  const visibleAlerts = alerts.filter((a) => !acknowledgedIds.has(a.id))
+  const visibleAlerts = alerts.filter((a) => !acknowledgedIds.has(a.id));
   const unacknowledgedCount = alerts.filter(
     (a) => !a.acknowledged && !acknowledgedIds.has(a.id),
-  ).length
+  ).length;
 
   const handleAcknowledge = (id: string) => {
-    setAcknowledgedIds((prev) => new Set([...prev, id]))
-  }
+    setAcknowledgedIds((prev) => new Set([...prev, id]));
+  };
 
   return (
     <Widget
@@ -75,8 +77,8 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
       title={
         <Box
           sx={{
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
             gap: 1.5,
           }}
         >
@@ -86,8 +88,8 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
               color="error"
               badgeContent={unacknowledgedCount}
               sx={{
-                '& .MuiBadge-badge': {
-                  fontSize: '0.65rem',
+                "& .MuiBadge-badge": {
+                  fontSize: "0.65rem",
                   fontWeight: 700,
                   minWidth: 18,
                   height: 18,
@@ -101,7 +103,7 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
       <Box
         sx={{
           maxHeight: 350,
-          overflow: 'auto',
+          overflow: "auto",
           pr: 1,
         }}
       >
@@ -115,15 +117,15 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
             <CheckCircleOutlineIcon
               sx={{ fontSize: 32, color: palette.success.main }}
             />
-            <Typography sx={{ fontSize: '0.9rem' }}>
+            <Typography sx={{ fontSize: "0.9rem" }}>
               All alerts acknowledged
             </Typography>
           </Stack>
         ) : (
           <Stack spacing={1.5}>
             {visibleAlerts.map((alert) => {
-              const config = severityConfig[alert.severity]
-              const Icon = config.icon
+              const config = severityConfig[alert.severity];
+              const Icon = config.icon;
 
               return (
                 <Box
@@ -136,7 +138,7 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                   }}
                 >
                   <Box
-                    sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}
+                    sx={{ display: "flex", alignItems: "flex-start", gap: 1.5 }}
                   >
                     <Icon
                       sx={{ fontSize: 18, color: config.color, mt: 0.25 }}
@@ -144,8 +146,8 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                     <Box sx={{ flex: 1, minWidth: 0 }}>
                       <Box
                         sx={{
-                          display: 'flex',
-                          alignItems: 'center',
+                          display: "flex",
+                          alignItems: "center",
                           gap: 1,
                           mb: 0.5,
                         }}
@@ -155,7 +157,7 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                             px: 0.75,
                             py: 0.25,
                             borderRadius: 0.75,
-                            fontSize: '0.65rem',
+                            fontSize: "0.65rem",
                             fontWeight: 700,
                             fontFamily: typography.fontFamilyMono,
                             color: config.color,
@@ -169,7 +171,7 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                           <Typography
                             sx={{
                               fontFamily: typography.fontFamilyMono,
-                              fontSize: '0.75rem',
+                              fontSize: "0.75rem",
                               fontWeight: 600,
                             }}
                           >
@@ -177,12 +179,12 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                           </Typography>
                         ) : null}
                       </Box>
-                      <Typography sx={{ fontSize: '0.85rem' }}>
+                      <Typography sx={{ fontSize: "0.85rem" }}>
                         {alert.message}
                       </Typography>
                       <Typography
                         sx={{
-                          fontSize: '0.7rem',
+                          fontSize: "0.7rem",
                           color: palette.text.secondary,
                           mt: 0.5,
                         }}
@@ -195,7 +197,7 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                       onClick={() => handleAcknowledge(alert.id)}
                       sx={{
                         color: palette.text.secondary,
-                        '&:hover': {
+                        "&:hover": {
                           backgroundColor: alpha(palette.text.primary, 0.08),
                         },
                       }}
@@ -204,11 +206,11 @@ export function Alerts(props: Omit<WidgetProps, 'title'>) {
                     </IconButton>
                   </Box>
                 </Box>
-              )
+              );
             })}
           </Stack>
         )}
       </Box>
     </Widget>
-  )
+  );
 }

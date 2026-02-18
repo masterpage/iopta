@@ -7,61 +7,61 @@ import {
   Theme,
   ThemeOptions,
   TypographyVariantsOptions,
-} from '@mui/material'
-import { deepOrange, grey, teal } from '@mui/material/colors'
+} from "@mui/material";
+import { deepOrange, grey, teal } from "@mui/material/colors";
 
-const fontFamily: TypographyVariantsOptions['fontFamily'] = [
-  'Roboto',
-  'sans-serif',
-].join(',')
-const fontFamilySerif: TypographyVariantsOptions['fontFamilySerif'] = [
-  'Roboto Serif',
-  'serif',
-].join(',')
-const fontFamilyMono: TypographyVariantsOptions['fontFamilyMono'] = [
-  'Roboto Mono',
-  'monospace',
-].join(',')
+const fontFamily: TypographyVariantsOptions["fontFamily"] = [
+  "Roboto",
+  "sans-serif",
+].join(",");
+const fontFamilySerif: TypographyVariantsOptions["fontFamilySerif"] = [
+  "Roboto Serif",
+  "serif",
+].join(",");
+const fontFamilyMono: TypographyVariantsOptions["fontFamilyMono"] = [
+  "Roboto Mono",
+  "monospace",
+].join(",");
 const fontVariantNumeric = (
-  ['normal'] satisfies CSSProperties['fontVariantNumeric']
-).join(' ')
+  ["normal"] satisfies CSSProperties["fontVariantNumeric"]
+).join(" ");
 
 function getSafeAreaInsetGutters(
-  params: Pick<Theme, 'breakpoints' | 'typography'>,
+  params: Pick<Theme, "breakpoints" | "typography">,
 ) {
   const {
     breakpoints,
     typography: { htmlFontSize },
-  } = params
+  } = params;
 
   return {
-    [breakpoints.up('sm')]: {
+    [breakpoints.up("sm")]: {
       paddingLeft: `max(${htmlFontSize * 1.5}px, env(safe-area-inset-left))`,
       paddingRight: `max(${htmlFontSize * 1.5}px, env(safe-area-inset-right))`,
     },
     paddingLeft: `max(${htmlFontSize}px, env(safe-area-inset-left))`,
     paddingRight: `max(${htmlFontSize}px, env(safe-area-inset-right))`,
-  }
+  };
 }
 
-export const breakpointsValues: Omit<Breakpoints['values'], 'mdUp' | 'smDown'> =
+export const breakpointsValues: Omit<Breakpoints["values"], "mdUp" | "smDown"> =
   {
     lg: 1200,
     md: 900,
     sm: 600,
     xl: 1536,
     xs: 0,
-  }
+  };
 
 export const getAppTheme = (mode: PaletteMode) => {
   const {
     palette: { augmentColor },
-  } = createTheme({ palette: { mode } })
-  const isLightMode = mode === 'light'
-  const modeColorShade = isLightMode ? 700 : 300
+  } = createTheme({ palette: { mode } });
+  const isLightMode = mode === "light";
+  const modeColorShade = isLightMode ? 700 : 300;
   const themeOptions: ThemeOptions = {
     breakpoints: {
-      keys: ['xs', 'sm', 'mdUp', 'md', 'lg', 'xl'],
+      keys: ["xs", "sm", "mdUp", "md", "lg", "xl"],
       values: {
         ...breakpointsValues,
         mdUp: 1050,
@@ -71,7 +71,7 @@ export const getAppTheme = (mode: PaletteMode) => {
     components: {
       MuiAlert: {
         styleOverrides: {
-          message: { margin: 'unset' },
+          message: { margin: "unset" },
         },
       },
       MuiAlertTitle: {
@@ -82,16 +82,16 @@ export const getAppTheme = (mode: PaletteMode) => {
       MuiButton: {
         styleOverrides: {
           endIcon: {
-            marginLeft: 'unset',
-            marginRight: 'unset',
+            marginLeft: "unset",
+            marginRight: "unset",
           },
           root: {
-            columnGap: 'round(0.5em, 1px)',
-            letterSpacing: '0.05em',
+            columnGap: "round(0.5em, 1px)",
+            letterSpacing: "0.05em",
           },
           startIcon: {
-            marginLeft: 'unset',
-            marginRight: 'unset',
+            marginLeft: "unset",
+            marginRight: "unset",
           },
         },
       },
@@ -104,7 +104,7 @@ export const getAppTheme = (mode: PaletteMode) => {
         },
       },
       MuiContainer: {
-        defaultProps: { maxWidth: 'xl' },
+        defaultProps: { maxWidth: "xl" },
         styleOverrides: {
           root: ({
             ownerState: { disableGutters },
@@ -118,26 +118,26 @@ export const getAppTheme = (mode: PaletteMode) => {
       },
       MuiCssBaseline: {
         styleOverrides: (themeParams) => ({
-          body: themeParams.palette.mode === 'dark' ? darkScrollbar() : null,
-          'dd, dl': {
-            lineHeight: '1rem',
-            margin: 'unset',
+          body: themeParams.palette.mode === "dark" ? darkScrollbar() : null,
+          "dd, dl": {
+            lineHeight: "1rem",
+            margin: "unset",
           },
           html: {
-            minHeight: '100%',
-            position: 'relative',
+            minHeight: "100%",
+            position: "relative",
           },
-          'html, body': {
-            margin: 'unset',
-            padding: 'unset',
-            width: '100%',
+          "html, body": {
+            margin: "unset",
+            padding: "unset",
+            width: "100%",
           },
         }),
       },
       MuiFormHelperText: {
         styleOverrides: {
           root: {
-            letterSpacing: '0.03125rem',
+            letterSpacing: "0.03125rem",
             marginLeft: 0,
             marginRight: 0,
           },
@@ -149,18 +149,18 @@ export const getAppTheme = (mode: PaletteMode) => {
             fontWeight: 600,
           },
           root: {
-            fontVariantNumeric: 'normal',
+            fontVariantNumeric: "normal",
           },
         },
       },
       MuiLink: {
-        defaultProps: { underline: 'always' },
+        defaultProps: { underline: "always" },
         styleOverrides: {
           root: {
-            textUnderlineOffset: '0.125em',
+            textUnderlineOffset: "0.125em",
           },
           underlineAlways: {
-            textDecoration: 'underline',
+            textDecoration: "underline",
           },
         },
       },
@@ -168,7 +168,7 @@ export const getAppTheme = (mode: PaletteMode) => {
       MuiMasonry: {
         styleOverrides: {
           root: {
-            width: 'unset',
+            width: "unset",
           },
         },
       },
@@ -199,7 +199,7 @@ export const getAppTheme = (mode: PaletteMode) => {
       allVariants: {
         fontFeatureSettings: ['"kern"', '"liga"', '"clig"', '"calt"'].join(),
         fontVariantNumeric,
-        WebkitFontSmoothing: 'auto',
+        WebkitFontSmoothing: "auto",
       },
       fontFamily,
       fontFamilyMono,
@@ -209,7 +209,7 @@ export const getAppTheme = (mode: PaletteMode) => {
       fontWeightMedium: 500,
       fontWeightRegular: 400,
     },
-  }
+  };
 
-  return createTheme(themeOptions)
-}
+  return createTheme(themeOptions);
+};

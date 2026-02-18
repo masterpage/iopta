@@ -1,7 +1,5 @@
 import { Grid } from "@mui/material";
 
-import { Widget, WidgetProps } from "@/components";
-
 import { MarketOverviewTile } from "./MarketOverviewTile";
 import { useMarketOverviewMetrics } from "src/hooks";
 import { Box, type BoxProps, type SxProps } from "@mui/system";
@@ -12,8 +10,6 @@ export function MarketOverview(props: BoxProps) {
     height: 160,
   };
   const metrics = useMarketOverviewMetrics();
-
-  console.log("PROPS MARKET OVERVIEW", props);
 
   return (
     <Box component="span" {...props}>
