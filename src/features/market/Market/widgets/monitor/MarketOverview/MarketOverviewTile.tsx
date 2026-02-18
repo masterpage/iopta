@@ -142,15 +142,6 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
     : alpha(palette.text.primary, 0.0);
   const priceBorderRadius = isFlashing ? 1 : undefined;
 
-  const isPositiveChange = changePercent >= 0;
-  const gradientColor = isPositiveChange
-    ? palette.success.main
-    : palette.error.main;
-  const backgroundGradient = `linear-gradient(135deg, ${alpha(
-    gradientColor,
-    0.25,
-  )}, transparent)`;
-
   const vixIcon = isVix ? (
     <AutoAwesomeIcon sx={{ fontSize: 16, color: palette.warning.main }} />
   ) : null;
@@ -176,13 +167,6 @@ export function MarketOverviewTile(props: MarketOverviewTileProps) {
     boxShadow: cardBoxShadow,
     transition:
       "border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease",
-  };
-
-  const backgroundSx = {
-    position: "absolute",
-    inset: 0,
-    opacity: 0.08,
-    background: backgroundGradient,
   };
 
   const headerSx = {
