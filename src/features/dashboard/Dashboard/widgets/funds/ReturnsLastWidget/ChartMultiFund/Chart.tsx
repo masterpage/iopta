@@ -83,7 +83,7 @@ export function Chart() {
   );
 
   return (
-    <Box component={ResponsiveContainer} sx={{ flex: 1 }}>
+    <Box component={ResponsiveContainer}>
       <LineChart
         responsive
         data={lineData}
