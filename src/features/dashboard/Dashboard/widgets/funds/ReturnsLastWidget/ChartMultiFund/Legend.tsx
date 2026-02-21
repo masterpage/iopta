@@ -218,11 +218,9 @@ export function Legend(props: BoxProps) {
                 height: rowHeight,
               }}
             >
-              {row.getVisibleCells().map((cell, i, cells) => {
+              {row.getVisibleCells().map((cell) => {
                 const { column, getContext } = cell;
                 const { columnDef } = column;
-                const isFirst = i === 0;
-                const isLast = i === cells.length - 1;
                 const { align: textAlign = "left" } = columnDef.meta || {};
 
                 return (
@@ -237,8 +235,6 @@ export function Legend(props: BoxProps) {
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
                       width: column.getSize(),
-                      ...(isFirst ? { paddingLeft: padding } : {}),
-                      ...(isLast ? { paddingRight: padding } : {}),
                     }}
                   >
                     {flexRender(columnDef.cell, getContext())}
