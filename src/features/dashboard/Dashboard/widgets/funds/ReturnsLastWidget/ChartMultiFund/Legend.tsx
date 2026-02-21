@@ -71,7 +71,8 @@ export function Legend(props: BoxProps) {
     typography: { htmlFontSize },
   } = theme;
   const rowHeight = 30;
-  const borderColor = grey[mode === "light" ? 300 : 700];
+  const borderColorRow = grey[mode === "light" ? 300 : 700];
+  const borderColorHeader = text.secondary;
   const table = useReactTable({
     columns,
     data,
@@ -123,7 +124,7 @@ export function Legend(props: BoxProps) {
                   component="th"
                   key={h.id}
                   sx={{
-                    borderBottom: `1px solid ${text.secondary}`,
+                    borderBottom: `1px solid ${borderColorHeader}`,
                     paddingLeft: padding,
                     width: h.getSize(),
                     ...(isFirst ? { paddingLeft: padding } : {}),
@@ -187,7 +188,7 @@ export function Legend(props: BoxProps) {
                         sx={{
                           borderRight: `2px ${
                             canResize ? "solid" : "dotted"
-                          } ${borderColor}`,
+                          } ${borderColorRow}`,
                           cursor: canResize ? "col-resize" : "default",
                           height: "100%",
                           touchAction: "none",
@@ -213,7 +214,7 @@ export function Legend(props: BoxProps) {
               sx={{
                 ...(isLastRow
                   ? {}
-                  : { borderBottom: `1px solid ${borderColor}` }),
+                  : { borderBottom: `1px solid ${borderColorRow}` }),
                 height: rowHeight,
               }}
             >
