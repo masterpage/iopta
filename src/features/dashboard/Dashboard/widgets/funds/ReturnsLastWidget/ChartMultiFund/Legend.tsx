@@ -179,7 +179,7 @@ export function Legend(props: BoxProps) {
                       <SortIndicator
                         data-testid="SortIndicator"
                         sx={{ display: "flex" }}
-                        canSort={column.getCanSort()}
+                        canSort={canSort}
                         isSorted={column.getIsSorted()}
                       />
                     </Box>
