@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   ColumnDef,
   flexRender,
@@ -8,13 +10,18 @@ import {
 } from "@tanstack/react-table";
 
 import { Box, BoxProps, Link, useTheme } from "@mui/material";
+import { Surface, Symbols } from "recharts";
 
 import { Placeholder, SortIndicator } from "@/components";
-import { dataReturnsLast } from "../data";
-import { useState } from "react";
 import { BaseNumber } from "@/utils";
 
-const columns: ColumnDef<{}>[] = [
+import { dataReturnsLast } from "../data";
+import { getFundColors } from "./consts";
+import { ReturnsLast } from "../types";
+
+type FundCols = Pick<ReturnsLast, "fund" | "mtd" | "ytd">;
+
+const columns: ColumnDef<FundCols>[] = [
   {
     accessorKey: "fund",
     header: "Fund",
@@ -61,6 +68,9 @@ const data = dataReturnsLast.slice(0, 10).map((rl) => {
   return { fund, ytd, mtd };
 });
 
+const fundNames = data.map((d) => d.fund);
+const fundColors = getFundColors(fundNames);
+
 export function Legend(props: BoxProps) {
   const [sorting, setSorting] = useState<SortingState>([
     { id: "mtd", desc: true },
@@ -73,7 +83,7 @@ export function Legend(props: BoxProps) {
   const rowHeight = 30;
   const borderColorRow = grey[mode === "light" ? 300 : 700];
   const borderColorHeader = text.secondary;
-  const table = useReactTable({
+  const table = useReactTable<FundCols>({
     columns,
     data,
     enableColumnResizing: false,
@@ -237,6 +247,25 @@ export function Legend(props: BoxProps) {
                       width: column.getSize(),
                     }}
                   >
+                    {column.id === "fund" && (
+                      <Box
+                        component={Surface}
+                        sx={{
+                          height: 12,
+                          marginRight: "4px",
+                          verticalAlign: "middle",
+                        }}
+                        viewBox={{ x: 0, y: 0, width: 12, height: 12 }}
+                      >
+                        <Symbols
+                          cx={6}
+                          cy={6}
+                          fill={fundColors[row.original.fund]}
+                          size={100}
+                          type="square"
+                        />
+                      </Box>
+                    )}
                     {flexRender(columnDef.cell, getContext())}
                   </Box>
                 );

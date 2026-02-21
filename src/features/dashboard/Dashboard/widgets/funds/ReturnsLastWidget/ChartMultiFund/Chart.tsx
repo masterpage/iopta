@@ -14,20 +14,7 @@ import {
 import { dataReturnsLast } from "../data";
 import { useMemo } from "react";
 import { ReturnsLast } from "../types";
-
-// ---- Colors (optional palette) ----
-const FUND_COLORS: string[] = [
-  "#1f77b4",
-  "#ff7f0e",
-  "#2ca02c",
-  "#d62728",
-  "#9467bd",
-  "#8c564b",
-  "#e377c2",
-  "#7f7f7f",
-  "#bcbd22",
-  "#17becf",
-];
+import { getFundColors } from "./consts";
 
 // ---- Helpers ----
 const getSortedIsoDates = (rows: ReturnsLast[]): string[] => {
@@ -59,6 +46,9 @@ const monthTick = (iso: string) => {
   const yy = String(d.getUTCFullYear()).slice(2);
   return `${m}’${yy}`;
 };
+
+const fundNames = dataReturnsLast.map((d) => d.fund);
+const fundColors = getFundColors(fundNames);
 
 export function Chart() {
   const theme = useTheme();
@@ -95,7 +85,7 @@ export function Chart() {
         }}
       >
         <ReferenceLine y={0} stroke={colorAxis} strokeWidth={2} />
-        {dataReturnsLast.map((row, idx) => (
+        {dataReturnsLast.map((row) => (
           <Line
             activeDot={{ r: 4, stroke: paper }}
             dataKey={row.fund}
@@ -103,7 +93,7 @@ export function Chart() {
             isAnimationActive={false}
             key={row.fund}
             opacity={0.5}
-            stroke={FUND_COLORS[idx % FUND_COLORS.length]}
+            stroke={fundColors[row.fund]}
             strokeWidth={2}
             type="monotone"
           />
