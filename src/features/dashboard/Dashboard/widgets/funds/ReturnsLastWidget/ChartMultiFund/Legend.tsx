@@ -18,7 +18,7 @@ const columns: ColumnDef<{}>[] = [
   {
     accessorKey: "fund",
     header: "Fund",
-    minSize: 100,
+    minSize: 140,
     sortingFn: "alphanumeric",
   },
   {
@@ -33,7 +33,7 @@ const columns: ColumnDef<{}>[] = [
       />
     ),
     header: "MTD",
-    minSize: 66,
+    size: 66,
     meta: { align: "right" },
     sortingFn: "alphanumeric",
   },
@@ -49,7 +49,7 @@ const columns: ColumnDef<{}>[] = [
       />
     ),
     header: "YTD",
-    minSize: 66,
+    size: 66,
     meta: { align: "right" },
     sortingFn: "alphanumeric",
   },
@@ -93,6 +93,7 @@ export function Legend(props: BoxProps) {
       sx={{
         borderCollapse: "collapse",
         fontSize: `round(${widgetFontSizeEm}em, 1px)`,
+        width: "100%",
       }}
     >
       <Box component="thead">
