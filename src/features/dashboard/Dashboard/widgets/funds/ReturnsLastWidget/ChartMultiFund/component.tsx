@@ -14,7 +14,10 @@ export function ChartMultiFund() {
         [breakpoints.down("sm")]: { flexDirection: "column" },
       })}
     >
-      <Grid size={{ lg: 9, md: 8, sm: 6, xs: 12 }} sx={{ flex: 1 }}>
+      <Grid
+        size={{ lg: 9, md: 8, sm: 6, xs: 12 }}
+        sx={{ flex: 1, minHeight: 0, minWidth: 0 }}
+      >
         <Chart />
       </Grid>
       <Grid size={{ lg: 3, md: 4, sm: 6, xs: 12 }}>

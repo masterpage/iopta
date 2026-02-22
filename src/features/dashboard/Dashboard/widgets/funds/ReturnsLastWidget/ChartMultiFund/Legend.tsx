@@ -25,7 +25,7 @@ const columns: ColumnDef<FundCols>[] = [
   {
     accessorKey: "fund",
     header: "Fund",
-    minSize: 140,
+    minSize: 100,
     sortingFn: "alphanumeric",
   },
   {

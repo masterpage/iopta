@@ -1,6 +1,4 @@
-"use client";
-
-import { Box, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import {
   CartesianGrid,
   Line,
@@ -73,7 +71,7 @@ export function Chart() {
   );
 
   return (
-    <Box component={ResponsiveContainer}>
+    <ResponsiveContainer>
       <LineChart
         responsive
         data={lineData}
@@ -130,6 +128,6 @@ export function Chart() {
           formatter={(val, name) => [pct(val as number), name as string]}
         />
       </LineChart>
-    </Box>
+    </ResponsiveContainer>
   );
 }
