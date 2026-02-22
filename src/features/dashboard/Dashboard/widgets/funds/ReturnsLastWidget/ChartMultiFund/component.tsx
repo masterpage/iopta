@@ -5,11 +5,19 @@ import { Legend } from "./Legend";
 
 export function ChartMultiFund() {
   return (
-    <Grid container columns={4} spacing="10px" sx={{ flex: 1 }}>
-      <Grid size={{ md: 3, sm: 2, xs: 4 }}>
+    <Grid
+      container
+      columns={12}
+      spacing="10px"
+      sx={({ breakpoints }) => ({
+        flex: 1,
+        [breakpoints.down("sm")]: { flexDirection: "column" },
+      })}
+    >
+      <Grid size={{ lg: 9, md: 8, sm: 6, xs: 12 }} sx={{ flex: 1 }}>
         <Chart />
       </Grid>
-      <Grid size={{ md: 1, sm: 2, xs: 4 }}>
+      <Grid size={{ lg: 3, md: 4, sm: 6, xs: 12 }}>
         <Legend />
       </Grid>
     </Grid>
