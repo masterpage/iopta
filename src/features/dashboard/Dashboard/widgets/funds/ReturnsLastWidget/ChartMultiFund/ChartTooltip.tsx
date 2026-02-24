@@ -4,6 +4,7 @@ import { Box, useTheme } from "@mui/material";
 import { ContentType } from "recharts/types/component/Tooltip";
 
 import { BaseNumber, monthTick } from "@/utils";
+import { Surface, Symbols } from "recharts";
 
 type PayloadPayload = Record<string, number> & {
   date: string;
@@ -26,8 +27,6 @@ export const ChartTooltip: ContentType<number, string> = (props) => {
   const { active, label: date } = props;
   const payload = props.payload as Payload[];
 
-  console.log({ props });
-
   if (!active || !payload || payload.length === 0) {
     return null;
   }
@@ -37,7 +36,7 @@ export const ChartTooltip: ContentType<number, string> = (props) => {
     alpha,
     palette: { mode, text },
     shape: { borderRadius },
-    typography: { fontWeightBold, fontWeightMedium },
+    typography: { fontWeightBold },
   } = theme;
   const isLightMode = mode === "light";
 
@@ -52,7 +51,7 @@ export const ChartTooltip: ContentType<number, string> = (props) => {
         display: "grid",
         fontSize: "0.75em",
         gap: "0.5em",
-        gridTemplateColumns: "120px 46px",
+        gridTemplateColumns: "140px 46px",
         lineHeight: "normal",
         padding: "0.75em",
       }}
@@ -77,13 +76,22 @@ export const ChartTooltip: ContentType<number, string> = (props) => {
             <Box
               data-testid="key"
               sx={{
-                color,
-                fontWeight: fontWeightMedium,
                 overflow: "hidden",
                 textOverflow: "ellipsis",
                 textWrapMode: "nowrap",
               }}
             >
+              <Box
+                component={Surface}
+                sx={{
+                  height: 10,
+                  marginRight: "3px",
+                  verticalAlign: "middle",
+                }}
+                viewBox={{ x: 0, y: 0, width: 10, height: 10 }}
+              >
+                <Symbols cx={5} cy={5} fill={color} type="circle" />
+              </Box>
               {name}
             </Box>
             <Box data-testid="value" sx={{ textAlign: "right" }}>
