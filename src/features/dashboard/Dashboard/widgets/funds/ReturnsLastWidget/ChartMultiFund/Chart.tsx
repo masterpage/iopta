@@ -14,6 +14,7 @@ import {
 
 import { monthTick } from "@/utils";
 
+import { ChartTooltip } from "./ChartTooltip";
 import { getFundColors } from "./consts";
 
 import { dataReturnsLast } from "../data";
@@ -122,6 +123,7 @@ export function Chart() {
           domain={["auto", "auto"]}
         />
         <Tooltip
+          content={ChartTooltip}
           formatter={(val, name) => [pct(val as number), name as string]}
         />
       </LineChart>
