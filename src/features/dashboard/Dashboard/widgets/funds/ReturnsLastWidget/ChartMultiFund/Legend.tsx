@@ -253,6 +253,7 @@ export function Legend(props: BoxProps) {
                         sx={{
                           height: 12,
                           marginRight: "4px",
+                          marginTop: "-1px",
                           verticalAlign: "middle",
                         }}
                         viewBox={{ x: 0, y: 0, width: 12, height: 12 }}
@@ -262,7 +263,7 @@ export function Legend(props: BoxProps) {
                           cy={6}
                           fill={fundColors[row.original.fund]}
                           size={100}
-                          type="square"
+                          type="circle"
                         />
                       </Box>
                     )}
