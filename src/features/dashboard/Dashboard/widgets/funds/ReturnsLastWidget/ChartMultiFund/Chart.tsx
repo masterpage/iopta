@@ -1,3 +1,5 @@
+import { useMemo } from "react";
+
 import { useTheme } from "@mui/material";
 import {
   CartesianGrid,
@@ -9,10 +11,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { dataReturnsLast } from "../data";
-import { useMemo } from "react";
-import { ReturnsLast } from "../types";
+
+import { monthTick } from "@/utils";
+
 import { getFundColors } from "./consts";
+
+import { dataReturnsLast } from "../data";
+import { ReturnsLast } from "../types";
 
 // ---- Helpers ----
 const getSortedIsoDates = (rows: ReturnsLast[]): string[] => {
@@ -36,14 +41,6 @@ const toWideSeries = (rows: ReturnsLast[], dates: string[]) => {
 // Formatters
 const pct = (n?: number | string | null) =>
   typeof n === "number" ? `${n.toFixed(2)}%` : (n ?? "");
-
-const monthTick = (iso: string) => {
-  // Show "MMM-YY"
-  const d = new Date(iso);
-  const m = d.toLocaleString("en-US", { month: "short" });
-  const yy = String(d.getUTCFullYear()).slice(2);
-  return `${m}’${yy}`;
-};
 
 const fundNames = dataReturnsLast.map((d) => d.fund);
 const fundColors = getFundColors(fundNames);
