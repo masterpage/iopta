@@ -1,11 +1,11 @@
 "use client";
 
-import { getSx, setAlphaColor } from "@/utils";
 import { Box, BoxProps } from "@mui/material";
 import { pink } from "@mui/material/colors";
-import { PropsWithChildren } from "react";
 
-export function Placeholder(props: PropsWithChildren<BoxProps>) {
+import { getSx, setAlphaColor } from "@/utils";
+
+export function Placeholder(props: BoxProps) {
   const { children, sx, ...boxProps } = props;
   const color = pink[100];
   const background = setAlphaColor(color, 0.2);
