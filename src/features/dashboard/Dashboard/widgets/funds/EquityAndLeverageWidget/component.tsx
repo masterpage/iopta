@@ -1,11 +1,13 @@
-import { Placeholder, Widget, WidgetProps } from "@/components";
+"use client";
+
+import { Widget, WidgetProps } from "@/components";
+
+import { ChartEquityAndLeverage } from "./ChartEquityAndLeverage";
 
 export function EquityAndLeverageWidget(props: Omit<WidgetProps, "title">) {
   return (
     <Widget {...props} title="Equity and Leverage" subTitle="Last 12mo">
-      <Placeholder sx={{ backgroundColor: "unset", flex: 1 }}>
-        Equity and Leverage
-      </Placeholder>
+      <ChartEquityAndLeverage />
     </Widget>
   );
 }

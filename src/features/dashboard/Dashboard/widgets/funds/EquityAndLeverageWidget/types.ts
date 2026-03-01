@@ -1,6 +1,6 @@
-type IsoDateMonthEnd = string;
+export type IsoDateMonthEnd = string;
 
-interface EquityAndLeverage {
+export interface EquityAndLeverage {
   equity_usd_mm: number;
   leverage_x: number;
 }
