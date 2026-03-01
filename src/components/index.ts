@@ -5,6 +5,7 @@ export * from "./HttpError";
 export * from "./Layout";
 export * from "./OrdersTable";
 export * from "./Placeholder";
+export * from "./ReCharts";
 export * from "./ResponsiveGrid";
 export * from "./SecurityDialog";
 export * from "./StyledPage";
