@@ -172,13 +172,19 @@ export function ChartEquityAndLeverage() {
           orientation="right"
           tick={{ fill: text.secondary, fontSize: "12px" }}
           tickLine={false}
-          // tickFormatter={(v) => {
-          //   if (v === 0) {
-          //     return v;
-          //   }
+          tickFormatter={(v) => {
+            if (v === 0) {
+              return v;
+            }
 
-          //   return `${v}%`;
-          // }}
+            const realValue = v / 1e2;
+            const formatted = Number(realValue).toLocaleString("en-US", {
+              style: "percent",
+              minimumFractionDigits: 1,
+            });
+
+            return formatted;
+          }}
           width="auto"
           yAxisId="right"
           domain={["auto", "auto"]}
