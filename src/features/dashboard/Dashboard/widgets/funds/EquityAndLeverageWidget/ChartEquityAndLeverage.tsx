@@ -147,13 +147,22 @@ export function ChartEquityAndLeverage() {
           orientation="left"
           tick={{ fill: text.secondary, fontSize: "12px" }}
           tickLine={false}
-          // tickFormatter={(v) => {
-          //   if (v === 0) {
-          //     return v;
-          //   }
+          tickFormatter={(v) => {
+            if (v === 0) {
+              return v;
+            }
 
-          //   return `${v}%`;
-          // }}
+            const realValue = v * 1e7;
+            const formatted = Number(realValue).toLocaleString("en-US", {
+              currency: "USD",
+              currencyDisplay: "narrowSymbol",
+              minimumFractionDigits: 1,
+              notation: "compact",
+              style: "currency",
+            });
+
+            return formatted;
+          }}
           width="auto"
           yAxisId="left"
           domain={["auto", "auto"]}
