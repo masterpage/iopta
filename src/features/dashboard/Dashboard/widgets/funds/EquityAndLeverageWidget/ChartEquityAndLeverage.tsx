@@ -8,6 +8,7 @@ import {
   Line,
   LineChart,
   ResponsiveContainer,
+  Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
@@ -17,6 +18,7 @@ import { monthTick } from "@/utils";
 
 import { dataEquityAndLeverage } from "./data";
 import { EquityAndLeverageByFund, IsoDateMonthEnd } from "./types";
+import { TooltipEquityAndLeverage } from "./TooltipEquityAndLeverage";
 
 // ---- Helpers ----
 const getSortedIsoDates = (rows: EquityAndLeverageByFund[]): string[] => {
@@ -195,6 +197,11 @@ export function ChartEquityAndLeverage() {
           iconType="line"
           iconSize={16}
           verticalAlign="top"
+        />
+        <Tooltip
+          active
+          content={TooltipEquityAndLeverage}
+          formatter={(val, name) => [pct(val as number), name as string]}
         />
       </LineChart>
     </ResponsiveContainer>
