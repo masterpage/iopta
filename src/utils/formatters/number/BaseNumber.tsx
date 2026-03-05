@@ -60,11 +60,7 @@ export function BaseNumber(props: BaseNumberProps) {
       </Box>
     );
 
-    if (unitPos === "before") {
-      children.unshift(Unit);
-    } else {
-      children.push(Unit);
-    }
+    children[unitPos === "before" ? "unshift" : "push"](Unit);
   }
 
   const numberColor = number > 0 ? success.main : error.main;
