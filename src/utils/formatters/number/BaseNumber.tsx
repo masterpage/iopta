@@ -25,13 +25,19 @@ export interface BaseNumberProps extends Omit<BoxProps, "children"> {
   options?: BaseNumberOptions;
 }
 
+export const defaultBaseNumberOptions: Required<
+  Pick<BaseNumberOptions, "coloredPositiveNegative" | "fractionDigits">
+> = {
+  coloredPositiveNegative: false,
+  fractionDigits: 2,
+};
+
 export function BaseNumber(props: BaseNumberProps) {
   const { options, value, ...boxProps } = props;
-  const {
-    coloredPositiveNegative = false,
-    fractionDigits = 2,
-    unit,
-  } = options ?? {};
+  const { coloredPositiveNegative, fractionDigits, unit } = {
+    ...defaultBaseNumberOptions,
+    ...options,
+  };
   const { name: unitName = null, position: unitPos = "after" } = unit ?? {};
   const theme = useTheme();
   const {
