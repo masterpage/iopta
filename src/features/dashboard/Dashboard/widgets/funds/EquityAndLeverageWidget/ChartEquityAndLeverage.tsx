@@ -4,10 +4,11 @@ import { useTheme } from "@mui/material";
 import { blue, deepOrange } from "@mui/material/colors";
 
 import {
+  Area,
   CartesianGrid,
+  ComposedChart,
   Legend,
   Line,
-  LineChart,
   ResponsiveContainer,
   Tooltip,
   XAxis,
@@ -100,7 +101,7 @@ export function ChartEquityAndLeverage() {
 
   return (
     <ResponsiveContainer>
-      <LineChart
+      <ComposedChart
         responsive
         data={lineData}
         margin={{
@@ -110,6 +111,12 @@ export function ChartEquityAndLeverage() {
           bottom: 0,
         }}
       >
+        <defs>
+          <linearGradient id="gradLeverage" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={colorLeverage} stopOpacity={0.5} />
+            <stop offset="100%" stopColor={colorLeverage} stopOpacity={0} />
+          </linearGradient>
+        </defs>
         <Line
           activeDot={{ r: 4, stroke: paper }}
           dataKey="totalEquity_usd_mm"
@@ -123,13 +130,13 @@ export function ChartEquityAndLeverage() {
           type="monotone"
           yAxisId="left"
         />
-        <Line
+        <Area
           activeDot={{ r: 4, stroke: paper }}
           dataKey="firmLeverage_x"
-          name="Firm Leverage"
           dot={false}
-          isAnimationActive={false}
-          key="firmLeverage_x"
+          fill="url(#gradLeverage)"
+          isAnimationActive
+          name="Firm Leverage"
           opacity={0.5}
           stroke={colorLeverage}
           strokeWidth={2}
@@ -209,7 +216,7 @@ export function ChartEquityAndLeverage() {
           content={TooltipEquityAndLeverage}
           formatter={(val, name) => [pct(val as number), name as string]}
         />
-      </LineChart>
+      </ComposedChart>
     </ResponsiveContainer>
   );
 }
