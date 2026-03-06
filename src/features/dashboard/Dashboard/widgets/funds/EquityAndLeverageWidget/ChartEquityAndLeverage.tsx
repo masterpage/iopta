@@ -4,6 +4,7 @@ import { useTheme } from "@mui/material";
 import { blue, deepOrange } from "@mui/material/colors";
 
 import {
+  CartesianGrid,
   Legend,
   Line,
   LineChart,
@@ -134,6 +135,11 @@ export function ChartEquityAndLeverage() {
           strokeWidth={2}
           type="monotone"
           yAxisId="right"
+        />
+        <CartesianGrid
+          stroke={grey[isLightMode ? 400 : 600]}
+          strokeDasharray="1 3"
+          horizontal={false}
         />
         <XAxis
           axisLine={{ stroke: colorAxis }}
