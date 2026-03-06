@@ -4,7 +4,7 @@ import { type ResponsiveGridLayoutProps } from "react-grid-layout";
 import { DashType } from "@/features";
 import {
   BuySellWidget,
-  EquityAndLeverage,
+  EquityAndLeverageWidget,
   FirmCategories,
   FundsTiles,
   ReturnsLastWidget,
@@ -155,7 +155,7 @@ export function getDashboard(dashType: DashType): GetDashboardReturn {
       <ReturnsTD key="ReturnsTD" />,
       <ReturnsLastWidget key="ReturnsLast" />,
       <BuySellWidget key="Buy/Sell" />,
-      <EquityAndLeverage key="EquityAndLeverage" />,
+      <EquityAndLeverageWidget key="EquityAndLeverage" />,
       <FirmCategories key="Categories" />,
     ];
   }

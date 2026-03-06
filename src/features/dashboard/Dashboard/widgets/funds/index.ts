@@ -1,5 +1,5 @@
 export * from "./BuySellWidget";
-export * from "./EquityAndLeverage";
+export * from "./EquityAndLeverageWidget";
 export * from "./FirmCategories";
 export * from "./FundsTiles";
 export * from "./ReturnsLastWidget";

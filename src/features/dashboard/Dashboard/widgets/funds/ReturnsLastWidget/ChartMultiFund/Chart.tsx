@@ -124,7 +124,7 @@ export function Chart() {
         />
         <Tooltip
           content={ChartTooltip}
-          formatter={(val, name) => [pct(val as number), name as string]}
+          formatter={(val, name) => [pct(val), name]}
         />
       </LineChart>
     </ResponsiveContainer>
