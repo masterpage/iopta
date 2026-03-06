@@ -108,7 +108,15 @@ export const TooltipEquityAndLeverage: ContentType<number, string> = (
               {name}
             </Box>
             <Box data-testid="value-equity" sx={{ textAlign: "right" }}>
-              {isEquity ? <CurrencyNumber scale={1e7} value={value} /> : ""}
+              {isEquity ? (
+                <CurrencyNumber
+                  scale={1e7}
+                  options={{ fractionDigits: 3 }}
+                  value={value}
+                />
+              ) : (
+                ""
+              )}
             </Box>
             <Box data-testid="value-leverage" sx={{ textAlign: "right" }}>
               {isEquity ? (
@@ -117,7 +125,7 @@ export const TooltipEquityAndLeverage: ContentType<number, string> = (
                 <BaseNumber
                   value={value}
                   options={{
-                    fractionDigits: 1,
+                    fractionDigits: 2,
                     unit: { name: "%" },
                   }}
                 />
