@@ -83,9 +83,7 @@ export function ChartTotals() {
           type="category"
           width="auto"
         />
-        <Tooltip
-          formatter={(val, name) => [pct(val as number), name as string]}
-        />
+        <Tooltip formatter={(val, name) => [pct(val as number), name]} />
         <Box component={Legend} iconSize={12} iconType="square" fontSize={12} />
         {showTotal && (
           <Bar dataKey="totalLast12mo" fill="#1f77b4" name="Last 12mo Total" />

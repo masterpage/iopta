@@ -214,7 +214,7 @@ export function ChartEquityAndLeverage() {
         <Tooltip
           active
           content={TooltipEquityAndLeverage}
-          formatter={(val, name) => [pct(val as number), name as string]}
+          formatter={(val, name) => [pct(val), name]}
         />
       </ComposedChart>
     </ResponsiveContainer>
